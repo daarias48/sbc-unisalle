@@ -1,0 +1,21 @@
+.fixedNav  {
+    position: fixed;
+    width: 100%;
+}
+.sensorData {
+    margin: 100px 0;
+    text-align: center;
+}
+.sectionInfo {
+    margin: 100px 0;
+    text-align: center;
+}
+.container-table {
+    margin: auto;
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+h2 {
+    margin: 20px;
+}

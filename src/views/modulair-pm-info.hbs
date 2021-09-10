@@ -1,0 +1,176 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixedNav">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">My-Sensor-WEB</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link active" id="home" href="/">Home
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<br>
+<section class="sensorData">
+    <h2 class="titulo">Datos Realtime</h2>
+    <div class="container-table">
+        <table class="table table-hover table">
+        <thead>
+            <tr>
+            <th scope="col">Medida</th>
+            <th scope="col">Valores</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table-active">
+                <th scope="row">Temperatura</th>
+                <td>
+                    {{#if info}}
+                        {{info.temperature}}
+                    {{/if}}
+                </td>
+            </tr>
+            <tr class="table-active">
+                <th scope="row">rh</th>
+                <td>
+                    {{#if info}}
+                        {{info.rh}}
+                    {{/if}}
+                </td>
+            </tr>
+            <tr class="table-active">
+                <th scope="row">PM1</th>
+                <td>
+                    {{#if info}}
+                        {{info.pm1}}
+                    {{/if}}
+                </td>
+            </tr>
+            <tr class="table-active">
+                <th scope="row">PM10</th>
+                <td>
+                    {{#if info}}
+                        {{info.pm10}}
+                    {{/if}}
+                </td>
+            </tr>
+            <tr class="table-active">
+                <th scope="row">PM25</th>
+                <td>
+                    {{#if info}}
+                        {{info.pm25}}
+                    {{/if}}
+                </td>
+            </tr>   
+            <tr class="table-active">
+                <th scope="row">Fecha de muestreo</th>
+                <td>
+                    {{#if info}}
+                        {{info.date}}
+                    {{/if}}
+                </td>
+            </tr>
+            <tr class="table-active">
+                <th scope="row">Hora de muestreo</th>
+                <td>
+                    {{#if info}}
+                        {{info.hour}}
+                    {{/if}}
+                </td>
+            </tr>         
+        </tbody>
+        </table>
+    </div>
+</section>
+<section class="sectionInfo">
+    <h2 class="titulo">Información del sensor</h2>
+    <div class="container-table">
+        <table class="table table-hover table">
+        <thead>
+            <tr>
+            <th scope="col">Type</th>
+            <th scope="col">Información</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table-active">
+                <th scope="row">Modelo</th>
+                <td>
+                    {{#if info}}
+                        {{info.model}}
+                    {{/if}}
+                </td>
+            </tr>
+            <tr class="table-active">
+                <th scope="row">Descripción</th>
+                <td>
+                    {{#if info}}
+                        {{info.description}}
+                    {{/if}}
+                </td>
+            </tr>
+            <tr class="table-active">
+                <th scope="row">País</th>
+                <td>
+                    {{#if info}}
+                        {{info.country}}
+                    {{/if}}
+                </td>
+            </tr>
+            <tr class="table-active">
+                <th scope="row">Ciudad</th>
+                <td>
+                    {{#if info}}
+                        {{info.city}}
+                    {{/if}}
+                </td>
+            </tr>
+            <tr class="table-active">
+                <th scope="row">Status</th>
+                <td>
+                    {{#if info}}
+                        {{info.status}}
+                    {{/if}}
+                </td>
+            </tr>
+            <tr class="table-active">
+                <th scope="row">Número serial</th>
+                <td>
+                    {{#if info}}
+                        {{info.sn}}
+                    {{/if}}
+                </td>
+            </tr>          
+            <tr class="table-active">
+                <th scope="row">Batería</th>
+                <td>
+                    NA
+                </td>
+            </tr>     
+            <tr class="table-active">
+                <th scope="row">Latitud</th>
+                <td>
+                    {{#if info}}
+                        {{info.lat}}
+                    {{/if}}
+                </td>
+            </tr>            
+            <tr class="table-active">
+                <th scope="row">Longitud</th>
+                <td>
+                    {{#if info}}
+                        {{info.lon}}
+                    {{/if}}
+                </td>
+            </tr>            
+        </tbody>
+        </table>
+    </div>
+</section>

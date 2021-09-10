@@ -1,0 +1,187 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixedNav">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">My-Sensor-WEB</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="/">Home
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<br>
+<section class="sensorData">
+    <h2 class="titulo">Datos Realtime</h2>
+    <div class="container-table">
+        <table class="table table-hover table">
+        <thead>
+            <tr>
+            <th scope="col">Medida</th>
+            <th scope="col">Valores</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table-active">
+                <th scope="row">Temperatura</th>
+                <td>
+                    {{#if info}}
+                        {{info.temperature}}
+                    {{/if}}
+                </td>
+            </tr>
+            <tr class="table-active">
+                <th scope="row">Humedad relativa</th>
+                <td>
+                    {{#if info}}
+                        {{info.rh}}
+                    {{/if}}
+                </td>
+            </tr>
+            <tr class="table-active">
+                <th scope="row">NO2 concentrado</th>
+                <td>
+                    {{#if info}}
+                        {{info.NO2}}
+                    {{/if}}
+                </td>
+            </tr>
+            <tr class="table-active">
+                <th scope="row">PM2.5 concentración de masa</th>
+                <td>
+                    {{#if info}}
+                        {{info.pm2_5Mass}}
+                    {{/if}}
+                </td>
+            </tr>   
+            <tr class="table-active">
+                <th scope="row">PM2.5 concentración de número</th>
+                <td>
+                    {{#if info}}
+                        {{info.pm2_5Num}}
+                    {{/if}}
+                </td>
+            </tr>
+            <tr class="table-active">
+                <th scope="row">PM1 concentración de masa</th>
+                <td>
+                    {{#if info}}
+                        {{info.pm1Mass}}
+                    {{/if}}
+                </td>
+            </tr>
+            <tr class="table-active">
+                <th scope="row">PM1 concentración de número</th>
+                <td>
+                    {{#if info}}
+                        {{info.pm1Num}}
+                    {{/if}}
+                </td>
+            </tr>
+            <tr class="table-active">
+                <th scope="row">PM10 concentración de masa</th>
+                <td>
+                    {{#if info}}
+                        {{info.pm10Mass}}
+                    {{/if}}
+                </td>
+            </tr>
+            <tr class="table-active">
+                <th scope="row">PM10 concentración de número</th>
+                <td>
+                    {{#if info}}
+                        {{info.pm10Num}}
+                    {{/if}}
+                </td>
+            </tr>
+            <tr class="table-active">
+                <th scope="row">fecha de muestreo</th>
+                <td>
+                    {{#if info}}
+                        {{info.date}}
+                    {{/if}}
+                </td>
+            </tr>
+            <tr class="table-active">
+                <th scope="row">Hora de muestreo</th>
+                <td>
+                    {{#if info}}
+                        {{info.hour}}
+                    {{/if}}
+                </td>
+            </tr>
+        </tbody>
+        </table>
+    </div>
+</section>
+<section class="sensorData">
+    <h2 class="titulo">Información del sensor</h2>
+    <div class="container-table">
+        <table class="table table-hover table">
+        <thead>
+            <tr>
+            <th scope="col">Tipo</th>
+            <th scope="col">Información</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table-active">
+                <th scope="row">Modelo</th>
+                <td>
+                    {{#if info}}
+                        {{info.model}}
+                    {{/if}}
+                </td>
+            </tr>
+            <tr class="table-active">
+                <th scope="row">ID dispositivo</th>
+                <td>
+                    {{#if info}}
+                        {{info.deviceID}}
+                    {{/if}}
+                </td>
+            </tr>
+            <tr class="table-active">
+                <th scope="row">Estado de batería</th>
+                <td>
+                    {{#if info}}
+                        {{info.batteryStatus}}
+                    {{/if}}
+                </td>
+            </tr>
+            <tr class="table-active">
+                <th scope="row">Porcentaje de batería</th>
+                <td>
+                    {{#if info}}
+                        {{info.batteryValue}}
+                    {{/if}}
+                </td>
+            </tr>
+            <tr class="table-active">
+                <th scope="row">Señal</th>
+                <td>
+                    {{#if info}}
+                        {{info.signal}}
+                    {{/if}}
+                </td>
+            </tr>
+            <tr class="table-active">
+                <th scope="row">Ubicación</th>
+                <td>
+                    {{#if info}}
+                        {{info.location}}
+                    {{/if}}
+                </td>
+            </tr>   
+        </tbody>
+        </table>
+    </div>
+</section>

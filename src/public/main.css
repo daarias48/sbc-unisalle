@@ -1,0 +1,27 @@
+.fixedNav  {
+    position: fixed;
+    width: 100%;
+}
+
+.father {
+    padding: 70px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.div-img {
+    margin: 40px;
+    text-align: center;
+}
+
+.div-img img {
+    display: block;
+    height: 300px;
+    width: 300px;
+    border-radius: 300px;
+    margin-bottom: 20px;
+}
+.div-img a{
+    font-size: large;
+}
+
