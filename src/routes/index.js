@@ -1,14 +1,20 @@
-const { Router } = require('express')
-const { ExpressHandlebars } = require('express-handlebars')
+const { Router } = require('express') // El método Router desde express
 const router = Router()
+const { ExpressHandlebars } = require('express-handlebars')
 const admin = require('firebase-admin')
+const { restart } = require('nodemon')
 const fetch = require('node-fetch')
+const apis = require('../apis')
+const modulairPM = require('../ModulairPM')
+const claritySensor = require('../Clarity')
 const MySensor = require('../mySensor')
+
+const modulair = new MySensor(apis.api_keyModulair);
+const clarity = new MySensor(apis.api_keyClarity);
+
 
 
 var serviceAccount = require('../../mysensorinfo-firebase-adminsdk-n3tpr-a14a6527e5.json')
-const { restart } = require('nodemon')
-
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: 'https://mysensorinfo-default-rtdb.firebaseio.com/'
@@ -18,50 +24,44 @@ const db = admin.database()
 
 
 router.get('/', (req, res) => {
-    res.render('index')
-})
-
-
-router.get('/modulair-pm', (req, res) => {
-    const urlData = "https://api.quant-aq.com/device-api/v1/devices/MOD-PM-00053/data/?sort=timestamp,desc&limit=1";
-    const urlInfo = "https://api.quant-aq.com/device-api/v1/devices/MOD-PM-00053"
-    const api_key = 'Y25LI6BNJQ4YPGGHXM0GT08M'
-    const sensor = new MySensor(api_key)
-    
     async function getting() {
         try {
-            data = await sensor.getUpdateDataModulair(urlData)
-            info = await sensor.getSensorInfoModulAir(urlInfo)
-            showInfo(data, info)
+            dataModulair = await modulair.getUpdateDataModulair(apis.urlDataModulair)
+            infoModulair = await modulair.getSensorInfoModulAir(apis.urlInfoModulair)
+            
+            dataClarity = await clarity.getDataClarity(apis.urlDataClarity)
+            infoClarity = await clarity.getInfoClarity(apis.urlInfoClarity)
+
+            let sensorModulair = modulairPM(dataModulair, infoModulair)
+            let sensorClarity = claritySensor(dataClarity, infoClarity)
+            db.ref('ModulairPM').push(sensorModulair)
+            db.ref('Clarity').push(sensorClarity)
+            // db.ref('ModulairPM').once('child_added', (snapshot) => {
+            //     const data = snapshot.val()
+            //     console.log(data.hour);
+            // })
         } catch (error) {
             console.log(error);
         }
     }
     getting()
-    const showInfo = (data, info) => {
-        const tiempo = data.timestamp_local
-        const fechaa = tiempo.slice(0, 10)
-        const hora = tiempo.slice(11, 19)
-        const sensor = {
-            'temperature': data.met.temp,
-            'rh': data.met.rh,
-            'pm1' : data.pm1,
-            'pm10' : data.pm10,
-            'pm25' : data.pm25,
-            'date': fechaa,
-            'hour' : hora,
-            'model': info.model,
-            'description': info.description,
-            'country' : info.country,
-            'city' : info.city,
-            'status' : info.status,
-            'sn': info.sn,
-            'lat': info.geo.lat,
-            'lon' : info.geo.lon
+    res.render('index')
+})
+
+
+router.get('/modulair-pm', (req, res) => {
+    async function getting() {
+        try {
+            data = await modulair.getUpdateDataModulair(apis.urlDataModulair)
+            info = await modulair.getSensorInfoModulAir(apis.urlInfoModulair)
+            let sensorModulair = modulairPM(data, info);
+            db.ref('ModulairPM').push(sensorModulair)
+            res.render('modulair-pm-info', {info: sensorModulair})
+        } catch (error) {
+            console.log(error);
         }
-        db.ref('ModulairPM').push(sensor)
-        res.render('modulair-pm-info', {info: sensor})
     }
+    getting()
 })
 
 router.get('/clarity', (req, res) => {
@@ -73,37 +73,14 @@ router.get('/clarity', (req, res) => {
         try {
             let data = await sensor.getDataClarity(urlData)
             let info = await sensor.getInfoClarity(urlDevice)
-            showInfo(data, info)
+            let sensorClarity = claritySensor(data, info)
+            res.render('clarity-info', {info: sensorClarity})
+            db.ref('Clarity').push(sensorClarity)
         } catch (error) {
             console.log(error);
         }
     }
     getting()
-    const showInfo = (data, info) => {
-        const time = data.time
-        const date = time.slice(0, 10)
-        const hour = time.slice(11, 19)
-        const claritySensor = {
-            'deviceID' : data.deviceCode,
-            'model' : 'Clarity Node-S',
-            'batteryStatus' : info.batteryStatus,
-            'batteryValue' : info.batteryPercentage,
-            'signal' : info.signalStrength,
-            'date' : date,
-            'hour' : hour,
-            'location' : data.location.coordinates,
-            'temperature' : data.characteristics.temperature.value,
-            'rh' : data.characteristics.relHumid.value,
-            'NO2' : data.characteristics.no2Conc.value,
-            'pm2_5Num': data.characteristics.pm2_5ConcNum.value,
-            'pm2_5Mass': data.characteristics.pm2_5ConcMass.value,
-            'pm1Num': data.characteristics.pm1ConcNum.value,
-            'pm1Mass': data.characteristics.pm1ConcMass.value,
-            'pm10Num': data.characteristics.pm10ConcNum.value,
-            'pm10Mass': data.characteristics.pm10ConcMass.value
-        }
-        res.render('clarity-info', {info: claritySensor})
-    }
 })
 
 module.exports = router

@@ -4,13 +4,7 @@ const router = Router()
 
 
 router.get('/', (req, res) => {
-    res.render('index')
-})
-
-router.post('/sensor-info', (req, res) => {
-    console.log(req.body);
-    
-    res.send('Received')
+    res.send('Complete route for api')
 })
 
 
