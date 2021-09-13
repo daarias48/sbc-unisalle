@@ -36,10 +36,6 @@ router.get('/', (req, res) => {
             let sensorClarity = claritySensor(dataClarity, infoClarity)
             db.ref('ModulairPM').push(sensorModulair)
             db.ref('Clarity').push(sensorClarity)
-            // db.ref('ModulairPM').once('child_added', (snapshot) => {
-            //     const data = snapshot.val()
-            //     console.log(data.hour);
-            // })
         } catch (error) {
             console.log(error);
         }
@@ -65,14 +61,10 @@ router.get('/modulair-pm', (req, res) => {
 })
 
 router.get('/clarity', (req, res) => {
-    const urlData ="https://clarity-data-api.clarity.io/v1/measurements?code=AN92S2XQ&limit=1";
-    const urlDevice ="https://clarity-data-api.clarity.io/v1/devices?code=AN92S2XQ";
-    let api_key="O67ZARLVyFiTnxx3Q8USbpy8iBenoCmD7DsT6oW6";
-    const sensor = new MySensor(api_key)
     async function getting() {
         try {
-            let data = await sensor.getDataClarity(urlData)
-            let info = await sensor.getInfoClarity(urlDevice)
+            let data = await clarity.getDataClarity(apis.urlDataClarity)
+            let info = await clarity.getInfoClarity(apis.urlInfoClarity)
             let sensorClarity = claritySensor(data, info)
             res.render('clarity-info', {info: sensorClarity})
             db.ref('Clarity').push(sensorClarity)
