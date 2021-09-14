@@ -3,6 +3,7 @@ const app = require('./app')
 const MySensor = require('./mySensor')
 const fetch = require("node-fetch");
 app.listen(app.get('port'))
+console.log('Server on port', app.get('port'));
 
 // const urlData ="https://clarity-data-api.clarity.io/v1/measurements?code=AN92S2XQ&limit=1";
 // const urlDevice ="https://clarity-data-api.clarity.io/v1/devices?code=AN92S2XQ";
