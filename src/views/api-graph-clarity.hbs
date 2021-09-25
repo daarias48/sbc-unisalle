@@ -1,0 +1,29 @@
+<div class="graphClarity">
+    <div class="select-containerClarity">
+        <select name="measuresClarity" class="measuresClarity">
+            <option value="0">Temperatura</option>
+            <option value="1">RH</option>
+            <option value="2">NO2</option>
+            <option value="3">PM2.5 masas</option>
+            <option value="4">PM2.5 números</option>
+            <option value="5">PM1 masas</option>
+            <option value="6">PM1 números</option>
+            <option value="7">PM10 masas</option>
+            <option value="8">PM10 números</option>
+        </select>
+    </div>
+    <canvas id="myChart-api-clarity"></canvas>
+</div>
+<div class="collectionClarity">
+        <input type="hidden" class="hoursClarity" value="{{collection.hours}}">
+        <input type="hidden" class="datesClarity" value="{{collection.dates}}">
+        <input type="hidden" class="temperaturesClarity" value="{{collection.temperatures}}">
+        <input type="hidden" class="rhClarity" value="{{collection.rh}}">
+        <input type="hidden" class="no2Clarity" value="{{collection.no2}}">
+        <input type="hidden" class="pm25massClarity" value="{{collection.pm25mass}}">
+        <input type="hidden" class="pm25numClarity" value="{{collection.pm25num}}">
+        <input type="hidden" class="pm1massClarity" value="{{collection.pm1mass}}">
+        <input type="hidden" class="pm1numClarity" value="{{collection.pm1num}}">
+        <input type="hidden" class="pm10massClarity" value="{{collection.pm10mass}}">
+        <input type="hidden" class="pm10numClarity" value="{{collection.pm10num}}">
+</div>

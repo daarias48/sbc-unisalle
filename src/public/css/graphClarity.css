@@ -1,0 +1,11 @@
+.graphClarity {
+    position: relative;
+    margin: auto;
+    background-color: rgb(235, 236, 236);
+    height: 100vh;
+    width: 95vw;
+    border: 1px solid #ddd;
+}
+.select-containerClarity {   
+    margin: 10px;
+}

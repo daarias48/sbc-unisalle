@@ -1,0 +1,47 @@
+.fixedNav  {
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+}
+.titleMain {
+    font-size: 35px;
+    font-family: 'Patua One', cursive;
+}
+.father {
+    margin-top: 100px;
+    padding: 26px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.div-img {
+    margin: 40px;
+    text-align: center;
+}
+
+.div-img img {
+    display: block;
+    height: 300px;
+    width: 300px;
+    border-radius: 300px;
+    margin-bottom: 20px;
+}
+.div-img a{
+    color: #000;
+    font-size: larger;
+}
+
+.footer-container {
+    height: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #222b;
+    
+}
+.ul-footer {
+    margin: auto 0;
+    list-style: none;
+    color: #bbb;
+}
+

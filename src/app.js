@@ -3,6 +3,7 @@ const express = require('express')
 const morgan = require('morgan') // middleware
 const expressHandle = require('express-handlebars')
 const path = require('path') // permite trabajar con directorio
+const { application } = require('express')
 const app = express()
 
 //settings
@@ -25,7 +26,7 @@ app.use('/api', require('./routes/api'))
 
 
 //static files
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, '/public')))
 
 
 module.exports = app

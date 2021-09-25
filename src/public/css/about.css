@@ -1,0 +1,31 @@
+.containerAbout {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin: 100px auto;
+    width: 90%;
+    padding: 10px;
+}
+.containerAbout img{
+    float: right;
+    width: 40% ;
+    padding: 10px;
+}
+.containerAbout p {
+    text-align: justify;
+    margin: 10px;
+}
+.footer-container-about {
+    position: absolute;
+    bottom: 0;
+    height: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #222b;
+    
+}
+.ul-footer-about {
+    margin: auto 0;
+    list-style: none;
+    color: #bbb;
+}

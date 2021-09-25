@@ -14,7 +14,7 @@ class MySensor {
             methods: 'GET',
             headers: headers,
         })
-            .then((response) => response.json())
+            .then((response) => response.json())    
             .then((data) => {
                 data = data.data[0]
                 return data
