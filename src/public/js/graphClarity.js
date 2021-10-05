@@ -24,16 +24,12 @@ try {
 
     let hours = strHours.split(',')
     let dates = strDates.split(',')
-    const axisX = []
-    for (let x in hours) {
-        let time = `${dates[x]} _ ${hours[x]}`
-        axisX.push(time)
-    }
-
+    const labelDates = document.querySelector('.p-dates')
+    labelDates.innerHTML = dates
     var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-        labels: axisX,
+        labels: hours,
         datasets: [{
             label: 'Temperatura °C',
             data: temperatures,

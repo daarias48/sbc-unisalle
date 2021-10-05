@@ -3,6 +3,7 @@ const modulairPM = (data, info) => {
     const fechaa = tiempo.slice(0, 10)
     const hora = tiempo.slice(11, 19)
     return sensor = {
+        'id': tiempo,
         'temperature': data.met.temp,
         'rh': data.met.rh,
         'pm1' : data.pm1,

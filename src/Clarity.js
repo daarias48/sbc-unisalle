@@ -13,8 +13,9 @@ const claritySensor = (data, info) => {
     const pm10num = (data.characteristics.pm10ConcNum.value).toFixed(3)
     const lat = (data.location.coordinates[0]).toFixed(4)
     const lon = (data.location.coordinates[1]).toFixed(4)
-    
+    const id = data.recId.slice(26, 30)
     return sensor = {
+        'id': id,
         'deviceID' : data.deviceCode,
         'model' : 'Clarity Node-S',
         'batteryStatus' : info.batteryStatus,

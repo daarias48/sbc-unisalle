@@ -9,6 +9,7 @@ const claritySensor = require('../Clarity')
 const MySensor = require('../mySensor')
 const admin = require('../controllers/database')
 const CursorDB = require('../controllers/getColletionDB')
+const cron = require('node-cron')
 
 const db = admin.database()
 
@@ -19,63 +20,46 @@ const modulairCursor = new CursorDB()
 
 
 router.get('/', (req, res) => {
-    async function getting() {
-        try {
-            dataModulair = await modulair.getUpdateDataModulair(apis.urlDataModulair)
-            infoModulair = await modulair.getSensorInfoModulAir(apis.urlInfoModulair)
-            
-            dataClarity = await clarity.getDataClarity(apis.urlDataClarity)
-            infoClarity = await clarity.getInfoClarity(apis.urlInfoClarity)
-
-            let sensorModulair = modulairPM(dataModulair, infoModulair)
-            let sensorClarity = claritySensor(dataClarity, infoClarity)
-            db.ref('ModulairPM').push(sensorModulair)
-            db.ref('Clarity').push(sensorClarity)
-        } catch (error) {
-            console.log(error);
-        }
-    }
-    getting()
     res.render('index')
+})
+
+router.get('/login', (req, res) => {
+    res.render('login')
 })
 
 
 router.get('/modulair-pm', (req, res) => {
-    async function getting() {
-        try {
-            data = await modulair.getUpdateDataModulair(apis.urlDataModulair)
-            info = await modulair.getSensorInfoModulAir(apis.urlInfoModulair)
-            let sensorModulair = modulairPM(data, info);
-            db.ref('ModulairPM').push(sensorModulair)
-            db.ref('ModulairPM').once('value', (snapshot) => {
-                const data = snapshot.val()
-                const collection = modulairCursor.modulairCollection(data)
-                res.render('modulair-pm-info', {sensorModulair, collection})
-            })
-        } catch (error) {
-            console.log(error);
-        }
+    try {
+        console.log('ff');
+        let data = []
+        let sensorModulair = []
+        db.ref('sensors/modulairPm').on('value', (snapshot) => {
+            data = snapshot.val()
+            return data
+        })
+        db.ref('sensors/modulairPm').on('child_added', (snapshot) => {
+            sensorModulair = snapshot.val()
+            return sensorModulair = snapshot.val()
+        })
+        const collection = modulairCursor.modulairCollection(data)
+        console.log(collection);
+        res.render('modulair-pm-info', {sensorModulair, collection})
+    } catch (error) {
+        console.log(error);
     }
-    getting()
 })
 
 router.get('/clarity', (req, res) => {
-    async function getting() {
-        try {
-            let data = await clarity.getDataClarity(apis.urlDataClarity)
-            let info = await clarity.getInfoClarity(apis.urlInfoClarity)
-            let sensorClarity = claritySensor(data, info)
-            db.ref('Clarity').push(sensorClarity)
-            db.ref('Clarity').once('value', (snapshot) => {
-                const data = snapshot.val()
-                const collection = clarityCursor.clarityColletion(data)
-                res.render('clarity-info', {sensorClarity, collection})
-            })
-        } catch (error) {
-            console.log(error);
-        }
-    }
-    getting()
+    try {
+        db.ref('sensors/clarity').on('value', (snapshot) => {
+            return data = snapshot.val()
+        })
+        db.ref('sensors/clarity').on('child_added', (snapshot) => {
+            return sensorClarity = snapshot.val()
+        })
+        const collection = clarityCursor.clarityColletion(data)
+        res.render('clarity-info', {sensorClarity, collection})
+    } catch (error) {}
 })
 
 router.get('/about', (req, res) => {

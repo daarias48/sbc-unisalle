@@ -23,20 +23,40 @@ try {
         data: {
         labels: axisXModulair,
         datasets: [{
-            label: 'Temperatura °C',
+            label: `Temperatura °C` ,
             data: temperaturesModulair,
             backgroundColor: 'rgb(75, 192, 192)',
             borderColor: 'rgb(0, 0, 0)',
-            tension: 0.1
+            tension: 0
         }]},
         options: {
             plugins: {
                 title: {
                     display: true,
-                    text: 'Datos contra tiempo',
-                    font: {size: 20},
+                    text: `Datos tomados`,
+                    font: {size: 30},
                     color: '#000'
                 },
+                legend: {
+                    position: 'top',
+                    labels: {
+                        boxWidth: 15,
+                        font: {size: 16}
+                    }
+                },
+                tooltips: {
+                    enabled: true,
+                    backgroundColor: 'red'
+                }
+            },
+            elements: {
+                line: {
+                    borderWidth: 2
+                },
+                point: {
+                    radius: 3,
+                    
+                }
             },
             maintainAspectRatio: false,
             scales: {
@@ -50,7 +70,7 @@ try {
             },
             layout: {
                 padding: {
-                    bottom: 50
+                    bottom: 40
                 }
             },
             responsive: true
@@ -64,32 +84,35 @@ try {
         switch(measureModulair) {
             case "0":
                 myChart.data.datasets[0].data = temperaturesModulair
-                myChart.data.datasets[0].label = 'Temperatura °C'
+                myChart.data.datasets[0].label = `Temperatura °C` 
                 myChart.update()
                 break;
             case "1": 
                 myChart.data.datasets[0].data = rhModulair
-                myChart.data.datasets[0].label = 'Humedad Rel. (%)'
+                myChart.data.datasets[0].label = `Humedad Rel. (%)`
                 myChart.update()
                 break;
             case "2": 
                 myChart.data.datasets[0].data = pm1Modulair
-                myChart.data.datasets[0].label = 'PM1 µg/m3'
+                myChart.data.datasets[0].label = `PM1 µg/m3`
                 myChart.update()
                 break;
             case "3": 
                 myChart.data.datasets[0].data = pm10Modulair
-                myChart.data.datasets[0].label = 'PM10 µg/m3'
+                myChart.data.datasets[0].label = `PM10 µg/m3`
                 myChart.update()
                 break;
             case "4": 
                 myChart.data.datasets[0].data = pm25Modulair
-                myChart.data.datasets[0].label = 'PM2.5 µg/m3'
+                myChart.data.datasets[0].label = `PM2.5 µg/m3`
                 myChart.update()
                 break;
         }
 
     }
+    const datesP = document.querySelector('.p-dates')
+    datesP.innerHTML = datesModulair 
+    
 } catch (error) {
     
 }

@@ -2,25 +2,36 @@
 const app = require('./app')
 const MySensor = require('./mySensor')
 const fetch = require("node-fetch");
+var cron = require('node-cron');
+const admin = require('./controllers/database')
+const apis = require('./apis')
+const modulairObj = require('./ModulairPM')
+const modulairPMTest = new MySensor(apis.api_keyModulair)
+const claritySensor = new MySensor(apis.api_keyClarity)
+const clarityObj = require('./Clarity')
+
+const db = admin.database()
+
 app.listen(app.get('port'))
 console.log('Server on port', app.get('port'));
 
-// const urlData ="https://clarity-data-api.clarity.io/v1/measurements?code=AN92S2XQ&limit=1";
-// const urlDevice ="https://clarity-data-api.clarity.io/v1/devices?code=AN92S2XQ";
-// let api_key="O67ZARLVyFiTnxx3Q8USbpy8iBenoCmD7DsT6oW6";
-// const sensor =  new MySensor(api_key)
 
-// sensor.getInfoClarity(urlDevice)
-//     .then((data) => {
-//         console.log(data);
-//     })
+const pushing = async () => {
+    const dataModulair = await modulairPMTest.getUpdateDataModulair(apis.urlDataModulair)
+    const infoModulair = await modulairPMTest.getSensorInfoModulAir(apis.urlInfoModulair)
 
-const urlInfo = "https://api.quant-aq.com/device-api/v1/devices/MOD-PM-00053"
-const urlData = "https://api.quant-aq.com/device-api/v1/devices/MOD-PM-00053/data/?"
-const api_key2 = 'Y25LI6BNJQ4YPGGHXM0GT08M'
-const sensorModul = new MySensor(api_key2)
-sensorModul.getSensorInfoModulAir(urlData)
-    .then((data) => {
-        // console.log(data.data);
+    const dataClarity = await claritySensor.getDataClarity(apis.urlDataClarity)
+    const infoClarity = await claritySensor.getInfoClarity(apis.urlInfoClarity)
+
+    const collectionModulair = modulairObj(dataModulair, infoModulair)
+    const collectionClarity = clarityObj(dataClarity, infoClarity)
+    db.ref('sensors/clarity').orderByChild('id').equalTo(collectionClarity.id).once('value', (snapshot) =>{
+        if(!snapshot.exists()) db.ref('sensors/clarity').push(collectionClarity)            
     })
-
+    db.ref('sensors/modulairPm').orderByChild('id').equalTo(collectionModulair.id).once('value', (snapshot) =>{
+        if(!snapshot.exists()) db.ref('sensors/modulairPm').push(collectionModulair)            
+    })
+}
+// cron.schedule('*/20 * * * * *', () => {
+//     pushing()
+// });

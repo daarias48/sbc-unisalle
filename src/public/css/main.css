@@ -1,5 +1,8 @@
+
 .fixedNav  {
+    background-color: #48e;
     position: fixed;
+    top: 0;
     width: 100%;
     z-index: 100;
 }
@@ -13,6 +16,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    min-height: calc(100vh - 78.5px - 62px);
 }
 .div-img {
     margin: 40px;

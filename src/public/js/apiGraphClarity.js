@@ -24,16 +24,11 @@ try {
 
     let hours = strHoursClarity.split(',')
     let dates = strDatesClarity.split(',')
-    const axisXClarity = []
-    for (let x in hours) {
-        let time = `${dates[x]} _ ${hours[x]}`
-        axisXClarity.push(time)
-    }
-
+    
     var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-        labels: axisXClarity,
+        labels: hours,
         datasets: [{
             label: 'Temperatura °C',
             data: temperatures,

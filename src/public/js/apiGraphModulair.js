@@ -17,16 +17,12 @@ try {
 
     let hoursModulair = HoursModulair.split(',')
     let datesModulair = DatesModulair.split(',')
-    const axisXModulairpm = []
-    for (let x in hoursModulair) {
-        let time = `${datesModulair[x]} _ ${hoursModulair[x]}`
-        axisXModulairpm.push(time)
-    }
+    
 
     var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-        labels: axisXModulairpm,
+        labels: hoursModulair,
         datasets: [{
             label: 'Temperatura °C',
             data: temperaturesModulair,

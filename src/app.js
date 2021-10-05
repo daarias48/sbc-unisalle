@@ -19,7 +19,6 @@ app.set('view engine', '.hbs')
 app.use(morgan('dev'))
 app.use(express.urlencoded({extended: false})) // para aceptar los datos de formularios html (false = solo recibe datos JSON)
 
-
 //routes
 app.use(require('./routes/index'))
 app.use('/api', require('./routes/api'))

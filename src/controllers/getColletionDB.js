@@ -30,57 +30,27 @@ class CursorDB {
             allPm10Mass.push(collection[data].pm10Mass)
             allPm10Num.push(collection[data].pm10Num)
         }
-        allHours.reverse()
-        allTemperatures.reverse()
-        allDates.reverse()
-        allRh.reverse()
-        allNo2.reverse()
-        allPm25Mass.reverse()
-        allPm25Num.reverse()
-        allPm1Mass.reverse() 
-        allPm1Num.reverse()
-        allPm10Mass.reverse()
-        allPm10Num.reverse()
-
-        const hours = []
-        const dates = []
-        const temperatures = []
-        const rh = []
-        const no2 = []
-        const pm25mass = []
-        const pm25num = []
-        const pm1mass = []
-        const pm1num = []
-        const pm10mass = []
-        const pm10num = []
-
-        for(let i = 0; i < 50; i++) {
-            hours.push(allHours[i])
-            temperatures.push(allTemperatures[i])
-            dates.push(allDates[i])
-            rh.push(allRh[i])
-            no2.push(allNo2[i])
-            pm25mass.push(allPm25Mass[i])
-            pm25num.push(allPm25Num[i])
-            pm1mass.push(allPm1Mass[i])
-            pm1num.push(allPm1Num[i])
-            pm10mass.push(allPm10Mass[i])
-            pm10num.push(allPm10Num[i])
+        const hours = allHours.reverse().filter((el, i) => i < 120 ).reverse()
+        const dates = allDates.reverse().filter((el, i) => i < 120 ).reverse()
+        const objDatesReduced = dates.reduce((acc, el) => {
+            if(!acc[el]) acc[el] = el
+            return acc
+        }, {})
+        const datesFiltered = []
+        for(let date in objDatesReduced){
+            datesFiltered.push(objDatesReduced[date])
         }
-        dates.reverse()
-        temperatures.reverse()
-        hours.reverse()
-        rh.reverse()
-        no2.reverse()
-        pm25mass.reverse()
-        pm25num.reverse() 
-        pm1mass.reverse()
-        pm1num.reverse() 
-        pm10mass.reverse()
-        pm10num.reverse() 
-
+        const temperatures = allTemperatures.reverse().filter((el, i) => i < 120 ).reverse()
+        const rh = allRh.reverse().filter((el, i) => i < 120 ).reverse()
+        const no2 = allNo2.reverse().filter((el, i) => i < 120 ).reverse()
+        const pm25mass = allPm25Mass.reverse().filter((el, i) => i < 120 ).reverse()
+        const pm25num = allPm25Num.reverse().filter((el, i) => i < 120 ).reverse()
+        const pm1mass = allPm1Mass.reverse().filter((el, i) => i < 120 ).reverse()
+        const pm1num = allPm1Num.reverse().filter((el, i) => i < 120 ).reverse()
+        const pm10mass = allPm10Mass.reverse().filter((el, i) => i < 120 ).reverse()
+        const pm10num = allPm10Num.reverse().filter((el, i) => i < 120 ).reverse()
         const analytics = {
-            'dates': dates,
+            'dates': datesFiltered,
             'hours': hours,
             'temperatures': temperatures,
             'rh' : rh,
@@ -113,17 +83,23 @@ class CursorDB {
             allPM10.push(collection[data].pm10)
             allPM25.push(collection[data].pm25)
         }
-        const reduced = (arr) => arr.map((el, i) => el != arr[i +1] ? el : 0).filter((el) => el != 0)
-        const dates = reduced(allDates)
-        const hours = reduced(allHours)
-        const temperatures = allTemperatures
-        const rh = allRh
-        const pm1 = allPM1
-        const pm10 = allPM10
-        const pm25 = allPM25
-        
+        const dates = allDates.reverse().filter((el, i) => i < 120 ).reverse()
+        const objDatesReduced = dates.reduce((acc, el) => {
+            if(!acc[el]) acc[el] = el
+            return acc
+        }, {})
+        const datesFiltered = []
+        for(let date in objDatesReduced){
+            datesFiltered.push(objDatesReduced[date])
+        }
+        const hours = allHours.reverse().filter((el, i) => i < 120 ).reverse()
+        const temperatures = allTemperatures.reverse().filter((el, i) => i < 120 ).reverse()
+        const rh = allRh.reverse().filter((el, i) => i < 120 ).reverse()
+        const pm1 = allPM1.reverse().filter((el, i) => i < 120 ).reverse()
+        const pm10 = allPM10.reverse().filter((el, i) => i < 120 ).reverse()
+        const pm25 = allPM25.reverse().filter((el, i) => i < 120 ).reverse()
         const analytics = {
-            'dates': dates,
+            'dates': datesFiltered,
             'hours': hours,
             'temperatures': temperatures,
             'rh': rh,
