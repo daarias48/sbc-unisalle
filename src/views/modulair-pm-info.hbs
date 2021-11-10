@@ -1,34 +1,3 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixedNav">
-  <a class="navbar-brand titleMain" href="/">MySensorWEB</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="./about">About</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Contact</a>
-      </li>
-      
-    </ul>
-  </div>
-</nav>
-<br>
-<div class="test">
-        <input type="hidden" class="hoursModulair" value="{{collection.hours}}">
-        <input type="hidden" class="datesModulair" value="{{collection.dates}}">
-        <input type="hidden" class="temperaturesModulair" value="{{collection.temperatures}}">
-        <input type="hidden" class="rhModulair" value="{{collection.rh}}">
-        <input type="hidden" class="pm1Modulair" value="{{collection.pm1}}">
-        <input type="hidden" class="pm10Modulair" value="{{collection.pm10}}">
-        <input type="hidden" class="pm25Modulair" value="{{collection.pm25}}">
-</div>
 <div class="graph">
     <div class="comBox-container">
         <select name="measures" class="select-measures">
@@ -42,170 +11,132 @@
     <canvas id="myChartModulair"></canvas>
     <p class="p-dates"></p>
 </div>
-<br>
 <section class="sensorData">
     <h2 class="titulo">Datos Realtime</h2>
     <h3 id="subtitle"></h3>
     <div class="container-table">
-        <table class="table table-hover table">
-        <thead>
-            <tr>
-            <th scope="col">Medida</th>
-            <th scope="col">Valores</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="table-active">
-                <th scope="row">Temperatura</th>
-                <td>
-                    {{#if sensorModulair}}
-                        {{sensorModulair.temperature}}
-                    {{/if}}
-                </td>
-            </tr>
-            <tr class="table-active">
-                <th scope="row">rh</th>
-                <td>
-                    {{#if sensorModulair}}
-                        {{sensorModulair.rh}}
-                    {{/if}}
-                </td>
-            </tr>
-            <tr class="table-active">
-                <th scope="row">PM1</th>
-                <td>
-                    {{#if sensorModulair}}
-                        {{sensorModulair.pm1}}
-                    {{/if}}
-                </td>
-            </tr>
-            <tr class="table-active">
-                <th scope="row">PM10</th>
-                <td>
-                    {{#if sensorModulair}}
-                        {{sensorModulair.pm10}}
-                    {{/if}}
-                </td>
-            </tr>
-            <tr class="table-active">
-                <th scope="row">PM25</th>
-                <td>
-                    {{#if sensorModulair}}
-                        {{sensorModulair.pm25}}
-                    {{/if}}
-                </td>
-            </tr>   
-            <tr class="table-active">
-                <th scope="row">Fecha de muestreo</th>
-                <td>
-                    {{#if sensorModulair}}
-                        {{sensorModulair.date}}
-                    {{/if}}
-                </td>
-            </tr>
-            <tr class="table-active">
-                <th scope="row">Hora de muestreo</th>
-                <td>
-                    {{#if sensorModulair}}
-                        {{sensorModulair.hour}}
-                    {{/if}}
-                </td>
-            </tr>         
-        </tbody>
+        <table class="table" style="background-color: #014691;">
+            <thead class="theadModul">
+                <tr>
+                    <th scope="col">Medida</th>
+                    <th scope="col">Valores</th>
+                </tr>
+            </thead>
+            <tbody class=" table" style="color: #fff;">
+                <tr class="table-active">
+                    <th scope="row">Temperatura</th>
+                    <td id="temp">
+
+                    </td>
+                </tr>
+                <tr class="table-active">
+                    <th scope="row">rh</th>
+                    <td id="rh">
+
+                    </td>
+                </tr>
+                <tr class="table-active">
+                    <th scope="row">PM1</th>
+                    <td id="pm1">
+
+                    </td>
+                </tr>
+                <tr class="table-active">
+                    <th scope="row">PM10</th>
+                    <td id="pm10">
+
+                    </td>
+                </tr>
+                <tr class="table-active">
+                    <th scope="row">PM25</th>
+                    <td id="pm25">
+
+                    </td>
+                </tr>
+                <tr class="table-active">
+                    <th scope="row">Fecha de muestreo</th>
+                    <td id="date">
+
+                    </td>
+                </tr>
+                <tr class="table-active">
+                    <th scope="row">Hora de muestreo</th>
+                    <td id="hour">
+
+                    </td>
+                </tr>
+            </tbody>
         </table>
     </div>
 </section>
 <section class="sectionInfo">
     <h2 class="titulo">Información del sensor</h2>
     <div class="container-table">
-        <table class="table table-hover table">
-        <thead>
-            <tr>
-            <th scope="col">Type</th>
-            <th scope="col">Información</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="table-active">
-                <th scope="row">Modelo</th>
-                <td>
-                    {{#if sensorModulair}}
-                        {{sensorModulair.model}}
-                    {{/if}}
-                </td>
-            </tr>
-            <tr class="table-active">
-                <th scope="row">Descripción</th>
-                <td>
-                    {{#if sensorModulair}}
-                        {{sensorModulair.description}}
-                    {{/if}}
-                </td>
-            </tr>
-            <tr class="table-active">
-                <th scope="row">País</th>
-                <td>
-                    {{#if sensorModulair}}
-                        {{sensorModulair.country}}
-                    {{/if}}
-                </td>
-            </tr>
-            <tr class="table-active">
-                <th scope="row">Ciudad</th>
-                <td>
-                    {{#if sensorModulair}}
-                        {{sensorModulair.city}}
-                    {{/if}}
-                </td>
-            </tr>
-            <tr class="table-active">
-                <th scope="row">Status</th>
-                <td>
-                    {{#if sensorModulair}}
-                        {{sensorModulair.status}}
-                    {{/if}}
-                </td>
-            </tr>
-            <tr class="table-active">
-                <th scope="row">Número serial</th>
-                <td>
-                    {{#if sensorModulair}}
-                        {{sensorModulair.sn}}
-                    {{/if}}
-                </td>
-            </tr>          
-            <tr class="table-active">
-                <th scope="row">Batería</th>
-                <td>
-                    NA
-                </td>
-            </tr>     
-            <tr class="table-active">
-                <th scope="row">Latitud</th>
-                <td>
-                    {{#if sensorModulair}}
-                        {{sensorModulair.lat}}
-                    {{/if}}
-                </td>
-            </tr>            
-            <tr class="table-active">
-                <th scope="row">Longitud</th>
-                <td>
-                    {{#if sensorModulair}}
-                        {{sensorModulair.lon}}
-                    {{/if}}
-                </td>
-            </tr>            
-        </tbody>
+        <table class="table">
+            <thead class="theadModul">
+                <tr>
+                    <th scope="col">Type</th>
+                    <th scope="col">Información</th>
+                </tr>
+            </thead>
+            <tbody class=" table" style="color: #fff;">
+                <tr class="table-active">
+                    <th scope="row">Modelo</th>
+                    <td id="model">
+
+                    </td>
+                </tr>
+                <tr class="table-active">
+                    <th scope="row">Descripción</th>
+                    <td id="description">
+
+                    </td>
+                </tr>
+                <tr class="table-active">
+                    <th scope="row">País</th>
+                    <td id="country">
+
+                    </td>
+                </tr>
+                <tr class="table-active">
+                    <th scope="row">Ciudad</th>
+                    <td id="city">
+
+                    </td>
+                </tr>
+                <tr class="table-active">
+                    <th scope="row">Status</th>
+                    <td id="status">
+
+                    </td>
+                </tr>
+                <tr class="table-active">
+                    <th scope="row">Número serial</th>
+                    <td id="n-serie">
+
+                    </td>
+                </tr>
+                <tr class="table-active">
+                    <th scope="row">Batería</th>
+                    <td>
+                        NA
+                    </td>
+                </tr>
+                <tr class="table-active">
+                    <th scope="row">Latitud</th>
+                    <td id="lat">
+
+                    </td>
+                </tr>
+                <tr class="table-active">
+                    <th scope="row">Longitud</th>
+                    <td id="lon">
+
+                    </td>
+                </tr>
+            </tbody>
         </table>
     </div>
 </section>
-<br>
-<footer>
-  <div class="footer-container">
-    <ul class="ul-footer">
-      <li class="li-footer">&copy; Andrés Florez</li>
-    </ul>
-  </div>
-</footer>
-<script src="/js/graphModulair.js"></script>
+
+<script type="module" src="/js/modulair.js"></script>

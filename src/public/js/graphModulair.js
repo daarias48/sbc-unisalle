@@ -8,6 +8,7 @@ try {
     const strPM10Modulair = document.querySelector('.pm10Modulair').value
     const strPM25Modulair = document.querySelector('.pm25Modulair').value
 
+    
     let temperaturesModulair = strTemperatureModulair.split(',')
     let rhModulair = strRhModulair.split(',')
     let pm1Modulair = strPM1Modulair.split(',')
@@ -15,7 +16,8 @@ try {
     let pm25Modulair = strPM25Modulair.split(',')
     let hoursModulair = strHoursModulair.split(',')
     let datesModulair = strDatesModulair.split(',')
-
+    
+    console.log(hoursModulair);
     const axisXModulair = hoursModulair
     
     var myChart = new Chart(ctx, {
@@ -25,9 +27,9 @@ try {
         datasets: [{
             label: `Temperatura °C` ,
             data: temperaturesModulair,
-            backgroundColor: 'rgb(75, 192, 192)',
+            backgroundColor: 'rgb(75, 192, 0)',
             borderColor: 'rgb(0, 0, 0)',
-            tension: 0
+            tension: .4
         }]},
         options: {
             plugins: {
@@ -35,7 +37,7 @@ try {
                     display: true,
                     text: `Datos tomados`,
                     font: {size: 30},
-                    color: '#000'
+                    color: 'rgb(0, 0, 0)'
                 },
                 legend: {
                     position: 'top',

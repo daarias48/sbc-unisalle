@@ -1,22 +1,55 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixedNav">
-  <a class="navbar-brand titleMain" href="/">MySensorWEB</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="./about">About</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Contact</a>
-      </li>
-      
-    </ul>
+<div class="row">
+  <div class="col-md-7 mx-auto">
+    <div class="card mt-4 text-center">
+      <img src="/imgs/logo.png" alt="La Salle" class="mx-auto mt-4 img-fluid p-3" style="width: 500px;">
+      <div class="card-header">
+        <h1>Iniciar sesión</h1>
+      </div>
+      <div class="card-body">
+        <form action="/login" method="post">
+          <div class="form-group">
+            <input type="email" class="form-control" placeholder="Email" name="email" required>
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" placeholder="Contraseña" name="password" required>
+          </div>
+          <div class="form-group "><button type="submit" class="btn btn-primary d-block">Acceder</button></div>
+          <span>¿No tienes cuenta?<a href="/signup"> regístrate aquí</a></span>
+          <br />
+          <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        </form>
+      </div>
+    </div>
   </div>
-</nav>
+</div>
 <br>
+<script>
+  function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+        console.log('User signed out.');
+        });
+    }
+</script>
+<script>
+  function onSignIn(googleUser) {
+    // var profile = googleUser.getBasicProfile();
+    // console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    // console.log('Name: ' + profile.getName());
+    // console.log('Image URL: ' + profile.getImageUrl());
+    // console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+    var id_token = googleUser.getAuthResponse().id_token;
+    // console.log(id_token);
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/googleLogin');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onload = function () {
+      console.log('Signed in as: ' + xhr.responseText);
+      if (xhr.responseText == 'success') {
+        signOut();
+        location.assign('/info')
+      }
+    };
+    xhr.send(JSON.stringify({ token: id_token }));
+  }
+</script>

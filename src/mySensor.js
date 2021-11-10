@@ -54,19 +54,91 @@ class MySensor {
     }
 
     getDataClarity(url) {
-        let headers = {
-            'Accept-Encoding': 'gzip',
-            'x-api-key': this.api_key
-        }
-        return fetch(url,{
-            methods:'GET',
-            headers: headers,
-        })
-            .then((response)=>{
-                return response.json()
-            }).then((resp) => {
-                return resp[0]
+        try {
+            let headers = {
+                'Accept-Encoding': 'gzip',
+                'x-api-key': this.api_key
+            }
+            return fetch(url,{
+                methods:'GET',
+                headers: headers,
             })
+                .then((response)=>{
+                    return response.json()
+                }).then((resp) => {
+                    return resp[0]
+                })
+        } catch (error) {
+            console.log('Error', error);
+        }
+    }
+
+    getDataNubo(url) {
+        try {
+            let headers = {
+                "Content-Type": "application/json",
+                'Api-key': this.api_key
+            }
+            return fetch(url, {
+                methods:'GET',
+                headers: headers,
+            })
+                .then((response)=> response.json())
+                .then((resp) => resp[resp.length - 1])
+        } catch (error) {
+            console.log('Error:', error);
+        }
+    }
+
+    getInfoNubo(url) {
+        try {
+            let headers = {
+                "Content-Type": "application/json",
+                'Api-key': this.api_key
+            }
+            return fetch(url, {
+                methods:'GET',
+                headers: headers,
+            })
+                .then((response)=> response.json())
+                .then((resp) => resp[0])
+        } catch (error) {
+            console.log('Error:', error);
+        }
+    }
+
+    getInfoEva(url) {
+        try {
+            let headers = {
+                "Content-Type": "application/json",
+                'Authorization': this.api_key
+            }
+            return fetch(url, {
+                methods:'GET',
+                headers: headers,
+            })
+                .then((response)=> response.json())
+                .then((resp) => resp)
+        } catch (error) {
+            console.log('Error:', error);
+        }
+    }
+
+    getDataEva(url) {
+        try {
+            let headers = {
+                "Content-Type": "application/json",
+                'Authorization': this.api_key
+            }
+            return fetch(url, {
+                methods:'GET',
+                headers: headers,
+            })
+                .then((response)=> response.json())
+                .then((resp) => resp[0])
+        } catch (error) {
+            console.log('Error:', error);
+        }
     }
 }
 

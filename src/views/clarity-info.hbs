@@ -1,143 +1,95 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixedNav">
-  <a class="navbar-brand titleMain" href="/">MySensorWEB</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="./about">About</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Contact</a>
-      </li>
-      
-    </ul>
-  </div>
-</nav>
-<br>
-<div class="test">
-        <input type="hidden" class="hour" value="{{sensorClarity.hour}}">
-        <input type="hidden" class="date" value="{{sensorClarity.date}}">
-        
-        <input type="hidden" class="hours" value="{{collection.hours}}">
-        <input type="hidden" class="dates" value="{{collection.dates}}">
-        <input type="hidden" class="temperatures" value="{{collection.temperatures}}">
-        <input type="hidden" class="rh" value="{{collection.rh}}">
-        <input type="hidden" class="no2" value="{{collection.no2}}">
-        <input type="hidden" class="pm25mass" value="{{collection.pm25mass}}">
-        <input type="hidden" class="pm25num" value="{{collection.pm25num}}">
-        <input type="hidden" class="pm1mass" value="{{collection.pm1mass}}">
-        <input type="hidden" class="pm1num" value="{{collection.pm1num}}">
-        <input type="hidden" class="pm10mass" value="{{collection.pm10mass}}">
-        <input type="hidden" class="pm10num" value="{{collection.pm10num}}">
-        
-        
-</div>
 <div class="graph">
     <div class="comBox-container">
-        <select name="measures" class="select-measures">
+        <select name="measures" class="select-measuresClarity">
             <option value="0">Temperatura</option>
             <option value="1">RH</option>
             <option value="2">NO2</option>
-            <option value="3">PM2.5 masas</option>
-            <option value="4">PM2.5 números</option>
-            <option value="5">PM1 masas</option>
-            <option value="6">PM1 números</option>
-            <option value="7">PM10 masas</option>
-            <option value="8">PM10 números</option>
+            <option value="3">PM1 conc masas</option>
+            <option value="4">PM1 conc números</option>
+            <option value="5">PM10 conc masas</option>
+            <option value="6">PM10 conc números</option>
+            <option value="7">PM2.5 conc masas</option>
+            <option value="8">PM2.5 conc números</option>
         </select>
     </div>
-    <canvas id="myChart"></canvas>
-    <p class="p-dates"></p>
+    <canvas id="myChartClarity"></canvas>
+    <p class="p-dates-clarity"></p>
 </div>
-<br>
 <section class="sensorData">
-    {{!-- {{#each}}
-        <h2 class="titulo">{{collection.dates[0]}}</h2>
-    {{/each}} --}}
     <h2 class="titulo">Datos Realtime</h2>
     <div class="container-table">
-        <table class="table table-hover table">
-        <thead>
+        <table class=" table table-sm" style="background-color: #014691;">
+        <thead class="theadClarity">
             <tr>
             <th scope="col">Medida</th>
             <th scope="col">Valores</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="table" style="color: #fff;">
             <tr class="table-active">
                 <th scope="row">Temperatura</th>
-                <td>
-                    {{sensorClarity.temperature}}
+                <td id="temperatureClarity">
+                    
                 </td>
             </tr>
             <tr class="table-active">
                 <th scope="row">Humedad relativa</th>
-                <td>
-                    {{sensorClarity.rh}}
+                <td id="rhClarity">
+                    
                 </td>
             </tr>
             <tr class="table-active">
                 <th scope="row">NO2 concentrado</th>
-                <td>
-                    {{sensorClarity.NO2}}
+                <td id="no2Clarity">
+                    
                 </td>
             </tr>
             <tr class="table-active">
                 <th scope="row">PM2.5 concentración de masa</th>
-                <td>
-                    {{sensorClarity.pm2_5Mass}}
+                <td id="pm25massClarity">
+                    
                 </td>
             </tr>   
             <tr class="table-active">
                 <th scope="row">PM2.5 concentración de número</th>
-                <td>
-                    {{sensorClarity.pm2_5Num}}
+                <td id="pm25numClarity">
+                    
                 </td>
             </tr>
             <tr class="table-active">
                 <th scope="row">PM1 concentración de masa</th>
-                <td>
-                    {{sensorClarity.pm1Mass}}
+                <td id="pm1massClarity">
+                    
                 </td>
             </tr>
             <tr class="table-active">
                 <th scope="row">PM1 concentración de número</th>
-                <td>
-                    {{sensorClarity.pm1Num}}
+                <td id="pm1numClarity">
+                    
                 </td>
             </tr>
             <tr class="table-active">
                 <th scope="row">PM10 concentración de masa</th>
-                <td>
-                    {{sensorClarity.pm10Mass}}
+                <td id="pm10massClarity">
+                    
                 </td>
             </tr>
             <tr class="table-active">
                 <th scope="row">PM10 concentración de número</th>
-                <td>
-                    {{sensorClarity.pm10Num}}
+                <td id="pm10numClarity">
+                    
                 </td>
             </tr>
             <tr class="table-active">
                 <th scope="row">fecha de muestreo</th>
-                <td>
-                    {{#if sensorClarity}}
-                        {{sensorClarity.date}}
-                    {{/if}}
+                <td id="dateClarity">
+
                 </td>
             </tr>
             <tr class="table-active">
                 <th scope="row">Hora de muestreo</th>
-                <td>
-                    {{#if sensorClarity}}
-                        {{sensorClarity.hour}}
-                    {{/if}}
+                <td id="hourClarity">
+
                 </td>
             </tr>
         </tbody>
@@ -147,79 +99,58 @@
 <section class="sensorData">
     <h2 class="titulo">Información del sensor</h2>
     <div class="container-table">
-        <table class="table table-hover table">
-        <thead>
+        <table class="table table-sm">
+        <thead class="theadClarity">
             <tr>
             <th scope="col">Tipo</th>
             <th scope="col">Información</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class=" table" style="color: #fff;" >
             <tr class="table-active">
                 <th scope="row">Modelo</th>
-                <td>
-                    {{#if sensorClarity}}
-                        {{sensorClarity.model}}
-                    {{/if}}
+                <td id="modelClarity">
+
                 </td>
             </tr>
             <tr class="table-active">
                 <th scope="row">ID dispositivo</th>
-                <td>
-                    {{#if sensorClarity}}
-                        {{sensorClarity.deviceID}}
-                    {{/if}}
+                <td id="idClarity">
+
                 </td>
             </tr>
             <tr class="table-active">
                 <th scope="row">Estado de batería</th>
-                <td>
-                    {{#if sensorClarity}}
-                        {{sensorClarity.batteryStatus}}
-                    {{/if}}
+                <td id="stateClarity">
+
                 </td>
             </tr>
             <tr class="table-active">
                 <th scope="row">Porcentaje de batería</th>
-                <td>
-                    {{#if sensorClarity}}
-                        {{sensorClarity.batteryValue}}
-                    {{/if}}
+                <td id="batteryClarity">
+
                 </td>
             </tr>
             <tr class="table-active">
                 <th scope="row">Señal</th>
-                <td>
-                    {{#if sensorClarity}}
-                        {{sensorClarity.signal}}
-                    {{/if}}
+                <td id="signalClarity">
+
                 </td>
             </tr>
             <tr class="table-active">
                 <th scope="row">Latitud</th>
-                <td>
-                    {{#if sensorClarity}}
-                        {{sensorClarity.lat}}
-                    {{/if}}
+                <td id="latClarity">
+
                 </td>
             </tr>   
             <tr class="table-active">
                 <th scope="row">Longitud</th>
-                <td>
-                    {{#if sensorClarity}}
-                        {{sensorClarity.lon}}
-                    {{/if}}
+                <td id="lonClarity">
+
                 </td>
             </tr>   
         </tbody>
         </table>
     </div>
 </section>
-<br>
-<footer>
-  <div class="footer-container">
-    <ul class="ul-footer">
-      <li class="li-footer">&copy; Andrés Florez</li>
-    </ul>
-  </div>
-</footer>
+<script type="module" src="/js/clarity.js"></script>

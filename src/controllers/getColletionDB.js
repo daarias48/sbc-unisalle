@@ -1,6 +1,3 @@
-const admin = require('./database')
-const db = admin.database()
-
 class CursorDB {
     constructor(){}
 

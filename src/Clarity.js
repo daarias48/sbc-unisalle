@@ -1,7 +1,8 @@
 const claritySensor = (data, info) => {
-    const time = data.time
-    const date = time.slice(0, 10)
-    const hour = time.slice(11, 19)
+    const time2 = new Date(data.time)
+    const date = time2.toLocaleDateString()
+    const hour = time2.toLocaleTimeString()
+    
     const temperature = (data.characteristics.temperature.value).toFixed(3)
     const rh = (data.characteristics.relHumid.value).toFixed(3)
     const no2 = (data.characteristics.no2Conc.value).toFixed(3)
@@ -11,9 +12,10 @@ const claritySensor = (data, info) => {
     const pm1num = (data.characteristics.pm1ConcNum.value).toFixed(3)
     const pm10mass = (data.characteristics.pm10ConcMass.value).toFixed(3)
     const pm10num = (data.characteristics.pm10ConcNum.value).toFixed(3)
-    const lat = (data.location.coordinates[0]).toFixed(4)
-    const lon = (data.location.coordinates[1]).toFixed(4)
-    const id = data.recId.slice(26, 30)
+    const lat = (data.location.coordinates[1]).toFixed(4)
+    const lon = (data.location.coordinates[0]).toFixed(4)
+    const id = data.recId.slice(26, 31)
+
     return sensor = {
         'id': id,
         'deviceID' : data.deviceCode,

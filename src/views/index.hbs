@@ -1,73 +1,61 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixedNav">
-  <div class="container">
-    <a class="navbar-brand titleMain" href="/">MySensorWEB</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="./about">About</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Contact</a>
-      </li>
-      <li class="nav-item login">
-        <a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">Login</a>
-      </li>
-      <li class="nav-item login">
-        <a class="nav-link" href="#">SignUp</a>
-      </li>
-      <li class="nav-item logout">
-        <a class="nav-link" href="#">Logout</a>
-      </li>
-    </ul>
+<section>
+  <div>
+    <h2 style="margin-bottom: -56px;">Ubicaciones de nuestros sensores</h2>
+    <div id="map"></div>
   </div>
-  </div>
-</nav>
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Login</h5>
-      </div>
-      <div class="modal-body">
-        <form id="form-login">
-          <div class="container-login">
-              <input type="email" placeholder="Email" id="email-login" class="form-control" required>
-          </div>
-          <div class="container-login">
-              <input type="password" placeholder="Password" id="password-login" class="form-control" required>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Go!</button>  
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-<section class="section">
-  <div class="father">
-        <div class="div-img">
-            <a href="./modulair-pm">
-              <img src="https://www.quant-aq.com/static/img/products/modulair-pm-i93.b.jpg" alt="ModulairPM" title="ModulairPM">
-              ModulairPM
-            </a>
-        </div>
-        <div class="div-img">
-            <a href="./clarity">
-              <img src="https://assets.website-files.com/5f64f95d58facb3cb9ddca5b/5f6fa725b66faeab04446144_node1.jpg" alt="Clarity" title="Clarity">
-              Clarity
-            </a>
-        </div>
+  <div class="info">
+    <h2>La importancia de la calidad y el monitoreo del aire</h2>
+    <p>La Red de Monitoreo de Calidad del Aire, realiza el monitoreo de los contaminantes criterio PM10, PM2.5, PM1.0, O2, NO2, y las variables meteorológicas temperatura, presión atmosférica, y humedad. Donde dependiendo de un cierto intervalo de tiempo, tendremos nuevas mediciones, con las cuales poder tener un análisis y llevar un control de datos. </p>
   </div>
 </section>
-<footer>
-  <div class="footer-container">
-    <ul class="ul-footer">
-      <li class="li-footer">&copy; Andrés Florez</li>
-    </ul>
+
+<section class="section-sensors">
+  <h3>Sensores disponibles:</h3>
+  <div class="container-sensors">
+    <div class="div-img-sensors">
+        <img src="/imgs/modulairpm.jpeg" alt="ModulairPM"
+          title="ModulairPM">
+        <p>ModulairPM</p>
+    </div>
+    <div class="div-img-sensors">
+        <img src="/imgs/modulairpm2.jpeg" alt="ModulairPM2"
+          title="ModulairPM2">
+        <p>ModulairPM2</p>
+    </div>
+    <div class="div-img-sensors">
+        <img src="/imgs/clarity.jpeg"
+          alt="Clarity" title="Clarity">
+        <p>Clarity</p>
+    </div>
+    <div class="div-img-sensors">
+        <img src="/imgs/nubo.jpeg"
+          alt="NuboAir" title="NuboAir">
+        <p>NuboAir</p>
+    </div>
+    <div class="div-img-sensors">
+        <img src="/imgs/eva.jpeg"
+          alt="Eva" title="Eva">
+        <p>Eva</p>
+    </div>
+    <div class="div-img-sensors">
+        <img
+          src="/imgs/plantower.jpeg"
+          alt="Plantower 1" title="Plantower 1">
+        <p>Plantower</p>
+    </div>
+    <div class="div-img-sensors">
+        <img
+          src="/imgs/mhz-sensor.jpeg"
+          alt="mhz" title="MHZ">
+        <p>MHZ</p>
+    </div>
   </div>
-</footer>
+  <p style="font-size: 20px;">Si quieres saber más sobre estos sensores, regístrate <a href="/signup">aquí</a></p>
+</section>
+
+<script type="module" src="js/login.js"></script>
+<script src="js/googleMaps.js"></script>
+
+<script async
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDeawHKlf1NBvPDIUer0sYDxn7WrIIL3ag&callback=initMap">
+  </script>

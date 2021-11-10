@@ -1,0 +1,13 @@
+{{#each errors}}
+  <div class="alert alert-danger alert-dismissible fade show d-flex justify-content-between" role="alert">
+    {{text}}
+  <button type="button" class="btn-close" style="border: transparent; background-color: transparent;" data-bs-dismiss="alert" aria-label="Close"><i class="fas fa-times-circle"></i></button>
+</div>
+{{/each}}
+
+{{#if errorsMsg}}
+  <div class="alert alert-danger alert-dismissible fade show d-flex justify-content-between" role="alert">
+    {{errorsMsg}}
+  <button type="button" class="btn-close" style="border: transparent; background-color: transparent;" data-bs-dismiss="alert" aria-label="Close"><i class="fas fa-times-circle"></i></button>
+</div>
+{{/if}}
