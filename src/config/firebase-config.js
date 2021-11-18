@@ -1,5 +1,5 @@
 const firebase = require('firebase/app')
-const { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signInWithRedirect } = require('firebase/auth')
+const { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signInWithRedirect, signOut } = require('firebase/auth')
 
 const firebaseConfig = {
     apiKey: "AIzaSyDeawHKlf1NBvPDIUer0sYDxn7WrIIL3ag",
@@ -13,4 +13,4 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig)
 
-module.exports = { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signInWithRedirect }
+module.exports = { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signInWithRedirect, signOut }

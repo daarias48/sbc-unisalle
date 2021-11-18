@@ -1,8 +1,9 @@
 {{#if user}}
-  <nav class="navbar navbar-expand-lg navbar-dark fixedNav" style="background-color: #014691; box-shadow: 0px 7px 6px -2px rgba(231,166,26,1);">
+  <nav class="navbar navbar-expand-lg navbar-dark fixedNav" style="background-color: #0a3356; box-shadow: 0px 7px 6px -2px rgba(231,166,26,1);">
   <div class="container">
     <div class="logo-salle">
-      <img src="/imgs/logo.png" class="img-logo" alt="La Salle">
+      <img src="/imgs/viento.png" class="img-logo" alt="La Salle">
+      <a class="nav-link active titleMain" href="/info">SBC Unisalle</a>
     </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,14 +11,11 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto ul-nav ul">
-        <li class="nav-item">
-          <a class="nav-link active titleMain" href="/info" >MySensorWEB</a>
-        </li>
         <li class="nav-item li">
           <a class="nav-link active" href="./about">Sobre nosotros <i class="fas fa-file-alt"></i></a>
         </li>
         <li class="nav-item li">
-          <a class="nav-link active" href="/contact">Contacto <i class="fas fa-address-book"></i></a>
+          <a class="nav-link active" href="/contact-clima">Contacto <i class="fas fa-address-book"></i></a>
         </li>
         <li class="nav-item login active li">
           <a class="nav-link active " href="/logout">Cerrar sesión <i class="fas fa-sign-in-alt"></i></a>
@@ -29,10 +27,11 @@
 {{/if}}
 
 {{#unless user}}
-  <nav class="navbar navbar-expand-lg navbar-dark fixedNav" style="background-color: #014691; box-shadow: 0px 7px 6px -2px rgba(231,166,26,1);">
+  <nav class="navbar navbar-expand-lg navbar-dark fixedNav" style="background-color: #0a3356; box-shadow: 0px 7px 6px -2px rgba(231,166,26,1);">
   <div class="container">
     <div class="logo-salle">
-      <img src="/imgs/logo.png" class="img-logo" alt="La Salle">
+      <img src="/imgs/viento.png" class="img-logo" alt="La Salle">
+      <a class="nav-link active titleMain" href="/">SBC Unisalle</a>
     </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,14 +39,11 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto ul-nav ul">
-        <li class="nav-item">
-          <a class="nav-link active titleMain" href="/">MySensorWEB</a>
-        </li>
         <li class="nav-item li">
           <a class="nav-link active" href="./about">Sobre nosotros <i class="fas fa-file-alt"></i></a>
         </li>
         <li class="nav-item li">
-          <a class="nav-link active" href="/contact">Contacto <i class="fas fa-address-book"></i></a>
+          <a class="nav-link active" href="/contact-clima">Contacto <i class="fas fa-address-book"></i></a>
         </li>
         <li class="nav-item login active li">
           <a class="nav-link active " href="/login">Iniciar sesión <i class="fas fa-sign-in-alt"></i></a>

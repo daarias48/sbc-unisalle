@@ -35,6 +35,7 @@ const pushingModulair = async () => {
     const collectionEva = evaObj(dataEva, infoEva)
     const collectionModulair = modulairObj(dataModulair, infoModulair)
     const collectionModulair2 = modulairObj(dataModulair2, infoModulair2)
+    
 
     try {
         db.ref('sensors/eva').orderByChild('id').equalTo(collectionEva.id).once('value', (snapshot) =>{

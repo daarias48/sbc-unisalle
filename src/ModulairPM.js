@@ -2,13 +2,14 @@ const modulairPM = (data, info) => {
     const tiempo = data.timestamp_local
     const fechaa = tiempo.slice(0, 10)
     const hora = tiempo.slice(11, 19)
+
     return sensor = {
         'id': tiempo,
-        'temperature': data.met.temp,
+        'temperature': data.met.temp.toFixed(1),
         'rh': data.met.rh,
-        'pm1' : data.pm1,
-        'pm10' : data.pm10,
-        'pm25' : data.pm25,
+        'pm1' : data.pm1.toFixed(2),
+        'pm10' : data.pm10.toFixed(2),
+        'pm25' : data.pm25.toFixed(2),
         'date': fechaa,
         'hour' : hora,
         'model': info.model,

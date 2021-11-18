@@ -1,21 +1,28 @@
-let map;
-let markerClarity
-let markerModul
-let markerModul2
-let markerNubo
-let markerEva
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-app.js";
+import { getDatabase, ref, onChildAdded, get, child, limitToLast, query, onValue } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-database.js";
 
+var firebaseConfig = {
+  apiKey: "AIzaSyDeawHKlf1NBvPDIUer0sYDxn7WrIIL3ag",
+  authDomain: "mysensorinfo.firebaseapp.com",
+  databaseURL: "https://mysensorinfo-default-rtdb.firebaseio.com",
+  projectId: "mysensorinfo",
+  storageBucket: "mysensorinfo.appspot.com",
+  messagingSenderId: "72274332118",
+  appId: "1:72274332118:web:b0ee741dcfe8604fa13c77",
+  measurementId: "G-RZMGVP8RQT"
+};
+
+// Initialize Firebase
+initializeApp(firebaseConfig);
+
+
+let map;
+let marker
 function initMap() {
   const coords = {
     lat: 4.7499,
     lng: -74.0333
   }
-
-  const coordsModul = {lat: 4.749, lng: -74.033}
-  const coordsModul2 = {lat: 4.749, lng: -74.0336}
-  const coordsClarity = {lat: 4.750, lng: -74.033}
-  const coordsNubo = {lat: 4.749, lng: -74.034}
-  const coordsEva = {lat: 4.750, lng: -74.034}
 
   map = new google.maps.Map(document.getElementById("map"), {
     center: coords,
@@ -27,146 +34,63 @@ function initMap() {
     disableAutoPan: true,
   });
 
-  const infoClarity =
-    '<div id="content">' +
-    '<div id="siteNotice">' +
-    "</div>" +
-    '<h1 id="firstHeading" class="firstHeading">Clarity</h1>' +
-    '<div id="bodyContent">' +
-    '<p><a href="./clarity">' +
-    "Information clarity</a></p>" +
-    "</div>" +
-    "</div>";
-  const infoModul =
-    '<div id="content">' +
-    '<div id="siteNotice">' +
-    "</div>" +
-    '<h1 id="firstHeading" class="firstHeading">ModulPM</h1>' +
-    '<div id="bodyContent">' +
-    '<p><a href="./modulair-pm">' +
-    "Information modulair</a></p>" +
-    "</div>" +
-    "</div>";
-  const infoModul2 =
-    '<div id="content">' +
-    '<div id="siteNotice">' +
-    "</div>" +
-    '<h1 id="firstHeading" class="firstHeading">ModulairPM 2</h1>' +
-    '<div id="bodyContent">' +
-    '<p><a href="./modulair-pm2">' +
-    "Information modulairPM2</a></p>" +
-    "</div>" +
-    "</div>";
-  const infoNubo =
-    '<div id="content">' +
-    '<div id="siteNotice">' +
-    "</div>" +
-    '<h1 id="firstHeading" class="firstHeading">Nuboair</h1>' +
-    '<div id="bodyContent">' +
-    '<p><a href="./nuboair">' +
-    "Information Nuboair</a></p>" +
-    "</div>" +
-    "</div>";
-  const infoEva =
-    '<div id="content">' +
-    '<div id="siteNotice">' +
-    "</div>" +
-    '<h1 id="firstHeading" class="firstHeading">Eva</h1>' +
-    '<div id="bodyContent">' +
-    '<p><a href="./eva">' +
-    "Information Eva</a></p>" +
-    "</div>" +
-    "</div>";
+  const icaCounts = [0.0, 51.0, 101.0, 151.0, 201.0, 301.0, 500.0]
+  const pm25Counts = [0.0, 12.0, 37.0, 55.0, 150.0, 250.0, 500.0]
 
-  const infowindowClarity = new google.maps.InfoWindow({
-    content: infoClarity,
-    maxWidth: 200,
-  });
-  const infowindowModul = new google.maps.InfoWindow({
-    content: infoModul,
-    maxWidth: 200,
-  });
-  const infowindowModul2 = new google.maps.InfoWindow({
-    content: infoModul2,
-    maxWidth: 200,
-  });
-  const infowindowNubo = new google.maps.InfoWindow({
-    content: infoNubo,
-    maxWidth: 200,
-  });
-  const infowindowEva = new google.maps.InfoWindow({
-    content: infoEva,
-    maxWidth: 200,
-  });
-  
-  markerClarity = new google.maps.Marker({
-    position: coordsClarity,
-    map: map,
-    title: 'Clarity'
-  })
-  markerClarity.addListener('click', () => {
-    infowindowClarity.open({
-      anchor: markerClarity,
-      map,
-      shouldFocus: false,
-    })
-  })
-  markerClarity.setAnimation(google.maps.Animation.BOUNCE)
+  const db = getDatabase()
+  const myRef = query(ref(db, 'sensors/modulairPm'), limitToLast(1))
+  onValue(myRef, (data) => {
+    data.forEach((doc) => {
+      const modulair = doc.val()
+      let ica
+      for(let i = 0; i < icaCounts.length - 1; i++) {
+        if(modulair.pm25 >= pm25Counts[i] && modulair.pm25 < pm25Counts[i + 1]) {
+          ica = ((modulair.pm25 - pm25Counts[i]) * (icaCounts[i + 1] - icaCounts[i]) / (pm25Counts[i + 1] - pm25Counts[i])) + icaCounts[i]
+        }
+      }
 
-  markerModul = new google.maps.Marker({
-    position: coordsModul,
-    map: map,
-    title: 'ModulairPM'
-  })
-  markerModul.setAnimation(google.maps.Animation.BOUNCE)
-  markerModul.addListener('click', () => {
-    infowindowModul.open({
-      anchor: markerModul,
-      map,
-      shouldFocus: false,
+      const info =
+        '<div id="content">' +
+        '<div id="siteNotice">' +
+        "</div>" +
+        '<h4 id="firstHeading" class="firstHeading">Datos en tiempo real</h4>' +
+        '<div id="bodyContent">' +
+        `<p>Índice de calidad de aire ICA: ${ica.toFixed(0)}  </p>` +
+        `<p>Temperatura: ${modulair.temperature} °C </p>` +
+        `<p>Humedad: ${modulair.temperature} (%) </p>` +
+        `<p>PM1: ${modulair.pm1} µg/m3 </p>` +
+        `<p>PM10: ${modulair.pm10} µg/m3 </p>` +
+        `<p>PM2.5: ${modulair.pm25} µg/m3 </p>` +
+        `<p>Fecha: ${modulair.date} </p>` +
+        `<p>Hora: ${modulair.hour} </p>` +
+        "</div>" +
+        "</div>";
+      
+      const infowindow = new google.maps.InfoWindow({
+        content: info,
+        maxWidth: 400,
+      });
+      
+      marker = new google.maps.Marker({
+        position: coords,
+        map: map,
+        title: 'Sensor'
+      })
+      infowindow.open({
+        anchor: marker,
+        map,
+        shouldFocus: false,
+      })
+      marker.addListener('click', () => {
+        infowindow.open({
+          anchor: marker,
+          map,
+          shouldFocus: false,
+        })
+      })
+      marker.setAnimation(google.maps.Animation.BOUNCE)
     })
-  })
-
-  markerModul2 = new google.maps.Marker({
-    position: coordsModul2,
-    map: map,
-    title: 'ModulairPM2'
-  })
-  markerModul2.setAnimation(google.maps.Animation.BOUNCE)
-  markerModul2.addListener('click', () => {
-    infowindowModul2.open({
-      anchor: markerModul2,
-      map,
-      shouldFocus: false,
-    })
-  })
-
-  markerNubo = new google.maps.Marker({
-    position: coordsNubo,
-    map: map,
-    title: 'Nubo'
-  })
-  markerNubo.setAnimation(google.maps.Animation.BOUNCE)
-  markerNubo.addListener('click', () => {
-    infowindowNubo.open({
-      anchor: markerNubo,
-      map,
-      shouldFocus: false,
-    })
-  })
-
-  markerEva = new google.maps.Marker({
-    position: coordsEva,
-    map: map,
-    title: 'Eva',
-  })
-  markerEva.setAnimation(google.maps.Animation.BOUNCE)
-  markerEva.addListener('click', () => {
-    infowindowEva.open({
-      anchor: markerEva,
-      map,
-      shouldFocus: false,
-    })
-  })
-  
+  }, { onlyOnce: true })
 }
+
+export default initMap()

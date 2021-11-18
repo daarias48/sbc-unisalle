@@ -35,8 +35,6 @@ const battery = document.getElementById('batteryClarity');
 const model = document.getElementById('modelClarity');
 const signal = document.getElementById('signalClarity');
 const status = document.getElementById('stateClarity');
-const lat = document.getElementById('latClarity');
-const lon = document.getElementById('lonClarity');
 
 let clarity = []
 const allDates = []
@@ -45,15 +43,15 @@ const dbRef = getDatabase();
 const commentsRef = ref(dbRef, 'sensors/clarity')
 onChildAdded(commentsRef, (data) => {
     clarity = data.val()
-    temp.innerHTML = clarity.temperature
-    rh.innerHTML = clarity.rh
-    no2.innerHTML = clarity.NO2
-    pm1mass.innerHTML = clarity.pm1Mass
-    pm1num.innerHTML = clarity.pm1Num
-    pm10mass.innerHTML = clarity.pm10Mass
-    pm10num.innerHTML = clarity.pm10Num
-    pm25mass.innerHTML = clarity.pm2_5Mass
-    pm25num.innerHTML = clarity.pm2_5Num
+    temp.innerHTML = `${clarity.temperature} °C`
+    rh.innerHTML = `${clarity.rh} (%)`
+    no2.innerHTML = `${clarity.NO2} PPB`
+    pm1mass.innerHTML = `${clarity.pm1Mass} µg/m3`
+    pm1num.innerHTML = `${clarity.pm1Num} µg/m3`
+    pm10mass.innerHTML = `${clarity.pm10Mass} µg/m3`
+    pm10num.innerHTML = `${clarity.pm10Num} µg/m3`
+    pm25mass.innerHTML = `${clarity.pm2_5Mass} µg/m3`
+    pm25num.innerHTML = `${clarity.pm2_5Num} µg/m3`
     date.innerHTML = clarity.date
     hour.innerHTML = clarity.hour
     model.innerHTML = clarity.model
@@ -61,8 +59,6 @@ onChildAdded(commentsRef, (data) => {
     status.innerHTML = clarity.batteryStatus
     battery.innerHTML = clarity.batteryValue
     signal.innerHTML = clarity.signal
-    lat.innerHTML = clarity.lat
-    lon.innerHTML = clarity.lon
 }, {
     onlyOn: true
 })
@@ -92,17 +88,11 @@ var myChart = new Chart(ctx, {
     },
     options: {
         plugins: {
-            title: {
-                display: true,
-                text: `Datos tomados clarity`,
-                font: { size: 30 },
-                color: '#fff'
-            },
             legend: {
                 position: 'top',
                 labels: {
                     boxWidth: 15,
-                    font: { size: 16 },
+                    font: { size: 30 },
                     color: '#fff'
                 }
             },
@@ -113,11 +103,10 @@ var myChart = new Chart(ctx, {
         },
         elements: {
             line: {
-                borderWidth: 5,
-                borderColor: '#fff'
+                borderWidth: 2,
             },
             point: {
-                radius: 7,
+                radius: 3,
 
             }
         },
@@ -140,7 +129,7 @@ var myChart = new Chart(ctx, {
             padding: {
                 bottom: 40
             },
-            color: '#fff'
+            color: '#000'
         },
         responsive: true
     }
@@ -176,7 +165,7 @@ onValue(reference, (snap) => {
     const pm25Num = allPm25Num.reverse().filter((el, i) => i < 9).reverse()
     datesReduced = allDates.reverse().filter((el, i) => i < 9).reverse()
     const dates = myDates(datesReduced)
-    inputDatesClarity.innerHTML = `Fecha de los datos tomados: ${dates}`
+    inputDatesClarity.innerHTML = `${dates}`
 
     selectClarity.value = "0"
     myChart.data.datasets[0].data = temperature

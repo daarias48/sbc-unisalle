@@ -37,8 +37,6 @@ const status = document.getElementById('status');
 const deviceName = document.getElementById('deviceName');
 const device = document.getElementById('device');
 const type = document.getElementById('type');
-const lat = document.getElementById('lat');
-const lon = document.getElementById('lon');
 
 let eva = []
 const allDates = []
@@ -47,19 +45,17 @@ const dbRef = getDatabase();
 const commentsRef = ref(dbRef, 'sensors/eva')
 onChildAdded(commentsRef, (data) => {
     eva = data.val()
-    temp.innerHTML = eva.temperature
-    rh.innerHTML = eva.rh
-    atmP.innerHTML = eva.pressure
-    pm10_1.innerHTML = eva.pm10_1
-    pm10_2.innerHTML = eva.pm10_2
-    pm25_1.innerHTML = eva.pm25_1
-    pm25_2.innerHTML = eva.pm25_2
+    temp.innerHTML = `${eva.temperature} °C`
+    rh.innerHTML = `${eva.rh} (%)`
+    atmP.innerHTML = `${eva.pressure} hPa`
+    pm10_1.innerHTML = `${eva.pm10_1} µg/m3`
+    pm10_2.innerHTML = `${eva.pm10_2} µg/m3`
+    pm25_1.innerHTML = `${eva.pm25_1} µg/m3`
+    pm25_2.innerHTML = `${eva.pm25_2} µg/m3`
     date.innerHTML = eva.date
     hour.innerHTML = eva.hour
     country.innerHTML = eva.country
     status.innerHTML = eva.status
-    lat.innerHTML = eva.lat
-    lon.innerHTML = eva.lon
     device.innerHTML = eva.device
     deviceName.innerHTML = eva.deviceName
     type.innerHTML = eva.type
@@ -89,17 +85,11 @@ var myChart = new Chart(ctx, {
     }]},
     options: {
         plugins: {
-            title: {
-                display: true,
-                text: `Datos tomados Eva`,
-                font: {size: 30},
-                color: '#fff'
-            },
             legend: {
                 position: 'top',
                 labels: {
                     boxWidth: 15,
-                    font: {size: 16},
+                    font: {size: 30},
                     color: '#fff'
                 }
             },
@@ -110,10 +100,10 @@ var myChart = new Chart(ctx, {
         },
         elements: {
             line: {
-                borderWidth: 5
+                borderWidth: 2
             },
             point: {
-                radius: 7,
+                radius: 3,
                 
             }
         },
@@ -168,7 +158,7 @@ onValue(reference, (snap) => {
     const pm25_2 = allPm25_2.reverse().filter((el, i) => i < 30).reverse()
     datesReduced = allDates.reverse().filter((el, i) => i < 30).reverse()
     const dates = myDates(datesReduced) 
-    inputDates.innerHTML = `Fecha de los datos tomados: ${dates}`
+    inputDates.innerHTML = `${dates}`
 
 
     selectModulair.value = "0"

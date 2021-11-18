@@ -2,22 +2,25 @@
     position: fixed;
     width: 100%;
 }
+.tables-container {
+    width: 30%;
+}
 .sensorData {
-    margin: 100px 0;
+    margin: 50px 50px;
     text-align: center;
 }
 .sectionInfo {
-    margin: 100px 0;
+    margin: 50px 50px;
     text-align: center;
 }
 .container-table {
     background-color: #014691;
     margin: auto;
-    width: 80%;
     padding: 10px;
     border: 1px solid #014691;
     color: #fff;
-}
+    width: 100%;
+}|
 h2 {
     margin: 20px;
 }
@@ -27,8 +30,10 @@ h2 {
 }
 
 .p-dates {
-    margin-left: 40px;
-    color: #fff;
+    display: block;
+    text-align: right;
+    margin: 10px;
+    color: #000;
 }
 .select-measures {
     border-radius: 10px;

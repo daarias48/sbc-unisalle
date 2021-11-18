@@ -1,15 +1,18 @@
 <section>
   <div>
-    <h2 style="margin-bottom: -56px;">Ubicaciones de nuestros sensores</h2>
-    <div id="map"></div>
-  </div>
-  <div class="info">
-    <h2>La importancia de la calidad y el monitoreo del aire</h2>
-    <p>La Red de Monitoreo de Calidad del Aire, realiza el monitoreo de los contaminantes criterio PM10, PM2.5, PM1.0, O2, NO2, y las variables meteorológicas temperatura, presión atmosférica, y humedad. Donde dependiendo de un cierto intervalo de tiempo, tendremos nuevas mediciones, con las cuales poder tener un análisis y llevar un control de datos. </p>
+    <h1 class="titulo-main">Tecnologías de bajo costo para la medición y gobernanza de la calidad del aire en Bogotá - Colombia</h1>
+    <hr>
+    <div class="container-map-ica">
+      <div id="map"></div>
+      <div class="container-ica">
+        <img src="/imgs/indices.png" alt="Indices de la calidad del aire">
+      </div>
+    </div>
+
   </div>
 </section>
 
-<section class="section-sensors">
+{{!-- <section class="section-sensors">
   <h3>Sensores disponibles:</h3>
   <div class="container-sensors">
     <div class="div-img-sensors">
@@ -50,12 +53,13 @@
         <p>MHZ</p>
     </div>
   </div>
-  <p style="font-size: 20px;">Si quieres saber más sobre estos sensores, regístrate <a href="/signup">aquí</a></p>
 </section>
+<br> --}}
 
+<p style="font-size: 25px; margin: 20px 20px;"><b>Si quieres saber más sobre estos sensores, regístrate <a href="/signup">aquí</a></b></p>
 <script type="module" src="js/login.js"></script>
-<script src="js/googleMaps.js"></script>
+<script type="module" src="js/googleMaps.js"></script>
 
-<script async
+<script async 
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDeawHKlf1NBvPDIUer0sYDxn7WrIIL3ag&callback=initMap">
   </script>

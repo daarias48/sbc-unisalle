@@ -1,5 +1,5 @@
 <section class="section">
-    <h1>Bienvenido {{user.email}}</h1>
+    <h1>Bienvenido {{user.name}}</h1>
     <h2>Seleccione su sensor</h2>
     <div class="father">
         <div class="div-img">
@@ -52,12 +52,14 @@
         </div>
     </div>
 </section>
-<div>
-    <h2 style="margin-bottom: -56px;">Ubicaciones de nuestros sensores</h2>
-    <div id="map"></div>
-</div>
+<div class="container-map-ica">
+      <div id="map"></div>
+      <div class="container-ica">
+        <img src="/imgs/indices.png" alt="Indices de la calidad del aire">
+      </div>
+    </div>
 
-<script src="js/googleMaps.js"></script>
+<script type="module" src="js/googleMaps.js"></script>
 <script async
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDeawHKlf1NBvPDIUer0sYDxn7WrIIL3ag&callback=initMap">
   </script>

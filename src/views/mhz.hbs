@@ -1,36 +1,61 @@
-<section class="sectionInfo">
-    <h2 class="titulo">Sensor MHZ19C</h2>
-    <div class="container-table">
-        <table class="table" style="background-color: #014691;">
-            <thead class="theadModul">
-                <tr>
-                    <th scope="col">Type</th>
-                    <th scope="col">Información</th>
-                </tr>
-            </thead>
-            <tbody class="table" style="color: #fff;">
-                <tr class="table-active">
-                    <th scope="row">CO2</th>
-                    <td id="co2">
-                    </td>
-                </tr>
-                <tr class="table-active">
-                    <th scope="row">Fecha de muestreo</th>
-                    <td id="dateMhz">
-                    </td>
-                </tr>
-                <tr class="table-active">
-                    <th scope="row">Humedad</th>
-                    <td id="hMhz">
-                    </td>
-                </tr>
-                <tr class="table-active">
-                    <th scope="row">Temperatura</th>
-                    <td id="tempMhz">
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+<div class="graph-sensors">
+    <div class="mySensors">
+        <div class="a-sensors">
+            <a href="/modulair-pm">ModulairPM</a>
+        </div>
+        <div class="a-sensors">
+            <a href="/modulair-pm2">ModulairPM2</a>
+        </div>
+        <div class="a-sensors">
+            <a href="/nuboair">Nuboair</a>
+        </div>
+        <div class="a-sensors">
+            <a href="/clarity">Clarity</a>
+        </div>
+        <div class="a-sensors">
+            <a href="/eva">Eva</a>
+        </div>
+        <div class="a-sensors">
+            <a href="/plantower">Plantower</a>
+        </div>
+        <div class="a-sensors">
+            <a href="/mhz">MHZ19C</a>
+        </div>
     </div>
-</section>
+    <section class="sectionInfo" style="width: 70%;">
+        <h2 class="titulo">Sensor MHZ19C</h2>
+        <div class="container-table">
+            <table class="table">
+                <thead class="theadModul">
+                    <tr>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Información</th>
+                    </tr>
+                </thead>
+                <tbody class="table" style="color: #fff;">
+                    <tr class="table-active">
+                        <th scope="row">CO2</th>
+                        <td id="co2">
+                        </td>
+                    </tr>
+                    <tr class="table-active">
+                        <th scope="row">Fecha de muestreo</th>
+                        <td id="dateMhz">
+                        </td>
+                    </tr>
+                    <tr class="table-active">
+                        <th scope="row">Humedad</th>
+                        <td id="hMhz">
+                        </td>
+                    </tr>
+                    <tr class="table-active">
+                        <th scope="row">Temperatura</th>
+                        <td id="tempMhz">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>
 <script type="module" src="/js/mhz.js"></script>

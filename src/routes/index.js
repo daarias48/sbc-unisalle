@@ -18,7 +18,8 @@ const {
     onAuthStateChanged,
     GoogleAuthProvider,
     signInWithPopup,
-    signInWithRedirect
+    signInWithRedirect,
+    signOut
 } = require('../config/firebase-config')
 
 const user = new User()
@@ -88,6 +89,21 @@ router.get('/about', checkAuthenticated, (req, res) => {
         }) 
     }else {
         res.render('about', {user})
+    }
+})
+
+router.get('/contact-clima', checkAuthenticated, (req, res) => {
+    let user = req.user
+    if(!user) {
+        onAuthStateChanged(auth, async user => {
+            if(user) {
+                res.render('contact-clima', {user})
+            }else {
+                res.render('contact-clima')
+            }
+        }) 
+    }else {
+        res.render('contact-clima', {user})
     }
 })
 
@@ -239,18 +255,26 @@ router.post('/signup', async (req, res) => {
 
 router.get('/info', checkAuthenticated, (req, res) => {
     let user = req.user
-    if(!user) {
-        onAuthStateChanged(auth, async user => {
-            if(user) {
-                res.render('info-sensors', {user})
-            }else {
-                req.flash('errorsMsg', 'No está autorizado, por favor ingrese o regístrese')
-                res.redirect('/login')
-            }
-        }) 
-    }else {
-        res.render('info-sensors', {user})
+    try {
+        if(!user) {
+            onAuthStateChanged(auth, async user => {
+                if(user) {
+                    const myRef = db.collection('users').doc(user.email)
+                    const doc = await myRef.get()
+                    user.name = doc.data().name
+                    res.render('info-sensors', {user})
+                }else {
+                    req.flash('errorsMsg', 'No está autorizado, por favor ingrese o regístrese')
+                    res.redirect('/login')
+                }
+            }) 
+        }else {
+            res.render('info-sensors', {user})
+        }    
+    } catch (error) {
+        console.log(error);
     }
+    
 })
 
 router.post('/googleLogin', (req, res) => {
@@ -272,10 +296,14 @@ router.post('/googleLogin', (req, res) => {
 })
 
 router.get('/logout', (req, res) => {
-    auth.signOut()
-    res.clearCookie('session-token')
-    req.logout()
-    res.redirect('/')
+    try {
+        signOut(auth)
+        res.clearCookie('session-token')
+        req.logout()
+        res.redirect('/')
+    } catch (error) {
+        console.log(error);
+    }
 })
 
 function checkAuthenticated(req, res, next){
@@ -299,7 +327,7 @@ function checkAuthenticated(req, res, next){
           })
           .catch(err=>{
             req.flash('errorsMsg', 'No está autorizado, por favor ingrese o regístrese')
-            res.redirect('/login')
+            return res.redirect('/login')
           })
     }else {
         next()

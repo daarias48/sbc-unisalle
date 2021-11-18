@@ -1,156 +1,173 @@
-<div class="graph">
-    <div class="comBox-container">
-        <select name="measures" class="select-measuresClarity">
-            <option value="0">Temperatura</option>
-            <option value="1">RH</option>
-            <option value="2">NO2</option>
-            <option value="3">PM1 conc masas</option>
-            <option value="4">PM1 conc números</option>
-            <option value="5">PM10 conc masas</option>
-            <option value="6">PM10 conc números</option>
-            <option value="7">PM2.5 conc masas</option>
-            <option value="8">PM2.5 conc números</option>
-        </select>
+<h1 class="sensor-title" >Sensor Clarity</h1>
+<p class="p-dates-clarity"></p>
+<div class="graph-sensors">
+    <div class="mySensors">
+        <div class="a-sensors">
+            <a href="/modulair-pm">ModulairPM</a>
+        </div>
+        <div class="a-sensors">
+            <a href="/modulair-pm2">ModulairPM2</a>
+        </div>
+        <div class="a-sensors">
+            <a href="/nuboair">Nuboair</a>
+        </div>
+        <div class="a-sensors">
+            <a href="/clarity">Clarity</a>
+        </div>
+        <div class="a-sensors">
+            <a href="/eva">Eva</a>
+        </div>
+        <div class="a-sensors">
+            <a href="/plantower">Plantower</a>
+        </div>
+        <div class="a-sensors">
+            <a href="/mhz">MHZ19C</a>
+        </div>
     </div>
-    <canvas id="myChartClarity"></canvas>
-    <p class="p-dates-clarity"></p>
+    <div class="graph">
+        <div class="comBox-container">
+            <select name="measures" class="select-measuresClarity">
+                <option value="0">Temperatura</option>
+                <option value="1">RH</option>
+                <option value="2">NO2</option>
+                <option value="3">PM1 conc masas</option>
+                <option value="4">PM1 conc números</option>
+                <option value="5">PM10 conc masas</option>
+                <option value="6">PM10 conc números</option>
+                <option value="7">PM2.5 conc masas</option>
+                <option value="8">PM2.5 conc números</option>
+            </select>
+        </div>
+        <canvas id="myChartClarity"></canvas>
+    </div>
 </div>
-<section class="sensorData">
-    <h2 class="titulo">Datos Realtime</h2>
-    <div class="container-table">
-        <table class=" table table-sm" style="background-color: #014691;">
-        <thead class="theadClarity">
-            <tr>
-            <th scope="col">Medida</th>
-            <th scope="col">Valores</th>
-            </tr>
-        </thead>
-        <tbody class="table" style="color: #fff;">
-            <tr class="table-active">
-                <th scope="row">Temperatura</th>
-                <td id="temperatureClarity">
-                    
-                </td>
-            </tr>
-            <tr class="table-active">
-                <th scope="row">Humedad relativa</th>
-                <td id="rhClarity">
-                    
-                </td>
-            </tr>
-            <tr class="table-active">
-                <th scope="row">NO2 concentrado</th>
-                <td id="no2Clarity">
-                    
-                </td>
-            </tr>
-            <tr class="table-active">
-                <th scope="row">PM2.5 concentración de masa</th>
-                <td id="pm25massClarity">
-                    
-                </td>
-            </tr>   
-            <tr class="table-active">
-                <th scope="row">PM2.5 concentración de número</th>
-                <td id="pm25numClarity">
-                    
-                </td>
-            </tr>
-            <tr class="table-active">
-                <th scope="row">PM1 concentración de masa</th>
-                <td id="pm1massClarity">
-                    
-                </td>
-            </tr>
-            <tr class="table-active">
-                <th scope="row">PM1 concentración de número</th>
-                <td id="pm1numClarity">
-                    
-                </td>
-            </tr>
-            <tr class="table-active">
-                <th scope="row">PM10 concentración de masa</th>
-                <td id="pm10massClarity">
-                    
-                </td>
-            </tr>
-            <tr class="table-active">
-                <th scope="row">PM10 concentración de número</th>
-                <td id="pm10numClarity">
-                    
-                </td>
-            </tr>
-            <tr class="table-active">
-                <th scope="row">fecha de muestreo</th>
-                <td id="dateClarity">
+<div class="sensor-container">
 
-                </td>
-            </tr>
-            <tr class="table-active">
-                <th scope="row">Hora de muestreo</th>
-                <td id="hourClarity">
+    <section class="sensorData">
+        <h2 class="titulo">Datos en tiempo real</h2>
+        <div class="container-table">
+            <table class=" table table-sm" >
+            <thead class="theadClarity">
+                <tr>
+                <th scope="col">Medida</th>
+                <th scope="col">Valores</th>
+                </tr>
+            </thead>
+            <tbody class="table" style="color: #fff;">
+                <tr class="table-active">
+                    <th scope="row">Temperatura</th>
+                    <td id="temperatureClarity">
+                        
+                    </td>
+                </tr>
+                <tr class="table-active">
+                    <th scope="row">Humedad relativa (RH)</th>
+                    <td id="rhClarity">
+                        
+                    </td>
+                </tr>
+                <tr class="table-active">
+                    <th scope="row">NO2 concentrado</th>
+                    <td id="no2Clarity">
+                        
+                    </td>
+                </tr>
+                <tr class="table-active">
+                    <th scope="row">PM2.5 concentración de masa</th>
+                    <td id="pm25massClarity">
+                        
+                    </td>
+                </tr>   
+                <tr class="table-active">
+                    <th scope="row">PM2.5 concentración de número</th>
+                    <td id="pm25numClarity">
+                        
+                    </td>
+                </tr>
+                <tr class="table-active">
+                    <th scope="row">PM1 concentración de masa</th>
+                    <td id="pm1massClarity">
+                        
+                    </td>
+                </tr>
+                <tr class="table-active">
+                    <th scope="row">PM1 concentración de número</th>
+                    <td id="pm1numClarity">
+                        
+                    </td>
+                </tr>
+                <tr class="table-active">
+                    <th scope="row">PM10 concentración de masa</th>
+                    <td id="pm10massClarity">
+                        
+                    </td>
+                </tr>
+                <tr class="table-active">
+                    <th scope="row">PM10 concentración de número</th>
+                    <td id="pm10numClarity">
+                        
+                    </td>
+                </tr>
+                <tr class="table-active">
+                    <th scope="row">fecha de muestreo</th>
+                    <td id="dateClarity">
 
-                </td>
-            </tr>
-        </tbody>
-        </table>
-    </div>
-</section>
-<section class="sensorData">
-    <h2 class="titulo">Información del sensor</h2>
-    <div class="container-table">
-        <table class="table table-sm">
-        <thead class="theadClarity">
-            <tr>
-            <th scope="col">Tipo</th>
-            <th scope="col">Información</th>
-            </tr>
-        </thead>
-        <tbody class=" table" style="color: #fff;" >
-            <tr class="table-active">
-                <th scope="row">Modelo</th>
-                <td id="modelClarity">
+                    </td>
+                </tr>
+                <tr class="table-active">
+                    <th scope="row">Hora de muestreo</th>
+                    <td id="hourClarity">
 
-                </td>
-            </tr>
-            <tr class="table-active">
-                <th scope="row">ID dispositivo</th>
-                <td id="idClarity">
+                    </td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+    </section>
+    <section class="sensorData">
+        <h2 class="titulo">Información del sensor</h2>
+        <div class="container-table">
+            <table class="table table-sm">
+            <thead class="theadClarity">
+                <tr>
+                <th scope="col">Tipo</th>
+                <th scope="col">Información</th>
+                </tr>
+            </thead>
+            <tbody class=" table" style="color: #fff;" >
+                <tr class="table-active">
+                    <th scope="row">Modelo</th>
+                    <td id="modelClarity">
 
-                </td>
-            </tr>
-            <tr class="table-active">
-                <th scope="row">Estado de batería</th>
-                <td id="stateClarity">
+                    </td>
+                </tr>
+                <tr class="table-active">
+                    <th scope="row">ID dispositivo</th>
+                    <td id="idClarity">
 
-                </td>
-            </tr>
-            <tr class="table-active">
-                <th scope="row">Porcentaje de batería</th>
-                <td id="batteryClarity">
+                    </td>
+                </tr>
+                <tr class="table-active">
+                    <th scope="row">Estado de batería</th>
+                    <td id="stateClarity">
 
-                </td>
-            </tr>
-            <tr class="table-active">
-                <th scope="row">Señal</th>
-                <td id="signalClarity">
+                    </td>
+                </tr>
+                <tr class="table-active">
+                    <th scope="row">Porcentaje de batería</th>
+                    <td id="batteryClarity">
 
-                </td>
-            </tr>
-            <tr class="table-active">
-                <th scope="row">Latitud</th>
-                <td id="latClarity">
+                    </td>
+                </tr>
+                <tr class="table-active">
+                    <th scope="row">Señal</th>
+                    <td id="signalClarity">
 
-                </td>
-            </tr>   
-            <tr class="table-active">
-                <th scope="row">Longitud</th>
-                <td id="lonClarity">
-
-                </td>
-            </tr>   
-        </tbody>
-        </table>
-    </div>
-</section>
+                    </td>
+                </tr> 
+            </tbody>
+            </table>
+        </div>
+    </section>
+</div>
 <script type="module" src="/js/clarity.js"></script>

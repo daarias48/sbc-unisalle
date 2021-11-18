@@ -1,7 +1,17 @@
 const nuboairObj = (data, info) => {
     const fullDate = new Date(data.timeWindowStart)
     const date = fullDate.toLocaleDateString()
-    const hour = fullDate.toLocaleTimeString()
+    fullDate.setHours(-5)
+    const hourData = fullDate.getUTCHours()
+    const minData = fullDate.getUTCMinutes()
+    let hour
+    let min
+    if(hourData < 10) hour = `0${hourData}`
+    else hour = hourData
+    if(minData < 10) min = `0${minData}`
+    else min = minData
+
+    const myTime = `${hour}:${min}`
     
     return nuboair = {
         id: data.timeWindowStart,
@@ -14,7 +24,7 @@ const nuboairObj = (data, info) => {
         deviceId: info.deviceId,
         deviceName: info.deviceName,
         date: date,
-        hour: hour,
+        hour: myTime,
     }
 }
 

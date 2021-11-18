@@ -1,112 +1,140 @@
-<div class="graph">
-    <div class="comBox-container">
-        <select name="measures" class="select-measures">
-            <option value="0">Temperatura</option>
-            <option value="1">RH</option>
-            <option value="2">Presión atm</option>
-            <option value="3">PM10</option>
-            <option value="4">PM25</option>
-        </select>
+<h1 class="sensor-title">Sensor Nuboair</h1>
+<p class="p-dates"></p>
+<div class="graph-sensors">
+    <div class="mySensors">
+        <div class="a-sensors">
+            <a href="/modulair-pm">ModulairPM</a>
+        </div>
+        <div class="a-sensors">
+            <a href="/modulair-pm2">ModulairPM2</a>
+        </div>
+        <div class="a-sensors">
+            <a href="/nuboair">Nuboair</a>
+        </div>
+        <div class="a-sensors">
+            <a href="/clarity">Clarity</a>
+        </div>
+        <div class="a-sensors">
+            <a href="/eva">Eva</a>
+        </div>
+        <div class="a-sensors">
+            <a href="/plantower">Plantower</a>
+        </div>
+        <div class="a-sensors">
+            <a href="/mhz">MHZ19C</a>
+        </div>
     </div>
-    <canvas id="myChartModulair"></canvas>
-    <p class="p-dates"></p>
+    <div class="graph">
+        <div class="comBox-container">
+            <select name="measures" class="select-measures">
+                <option value="0">Temperatura</option>
+                <option value="1">RH</option>
+                <option value="2">Presión atm</option>
+                <option value="3">PM10</option>
+                <option value="4">PM2.5</option>
+            </select>
+        </div>
+        <canvas id="myChartModulair"></canvas>
+    </div>
 </div>
-<section class="sensorData">
-    <h2 class="titulo">Datos Realtime</h2>
-    <h3 id="subtitle"></h3>
-    <div class="container-table">
-        <table class="table" style="background-color: #014691;">
-            <thead class="theadModul">
-                <tr>
-                    <th scope="col">Medida</th>
-                    <th scope="col">Valores</th>
-                </tr>
-            </thead>
-            <tbody class=" table" style="color: #fff;">
-                <tr class="table-active">
-                    <th scope="row">Temperatura</th>
-                    <td id="temp">
+<div class="sensor-container">
+    <section class="sensorData">
+        <h2 class="titulo">Datos en tiempo real</h2>
+        <h3 id="subtitle"></h3>
+        <div class="container-table">
+            <table class="table" >
+                <thead class="theadModul">
+                    <tr>
+                        <th scope="col">Medida</th>
+                        <th scope="col">Valores</th>
+                    </tr>
+                </thead>
+                <tbody class=" table" style="color: #fff;">
+                    <tr class="table-active">
+                        <th scope="row">Temperatura</th>
+                        <td id="temp">
 
-                    </td>
-                </tr>
-                <tr class="table-active">
-                    <th scope="row">rh</th>
-                    <td id="rh">
+                        </td>
+                    </tr>
+                    <tr class="table-active">
+                        <th scope="row">Humedad relativa (RH)</th>
+                        <td id="rh">
 
-                    </td>
-                </tr>
-                <tr class="table-active">
-                    <th scope="row">Presión atm</th>
-                    <td id="atmPressure">
+                        </td>
+                    </tr>
+                    <tr class="table-active">
+                        <th scope="row">Presión atm</th>
+                        <td id="atmPressure">
 
-                    </td>
-                </tr>
-                <tr class="table-active">
-                    <th scope="row">Calidad de aire</th>
-                    <td id="airQuality">
+                        </td>
+                    </tr>
+                    <tr class="table-active">
+                        <th scope="row">Calidad de aire</th>
+                        <td id="airQuality">
 
-                    </td>
-                </tr>
-                <tr class="table-active">
-                    <th scope="row">PM10</th>
-                    <td id="pm10">
+                        </td>
+                    </tr>
+                    <tr class="table-active">
+                        <th scope="row">PM10</th>
+                        <td id="pm10">
 
-                    </td>
-                </tr>
-                <tr class="table-active">
-                    <th scope="row">PM25</th>
-                    <td id="pm25">
+                        </td>
+                    </tr>
+                    <tr class="table-active">
+                        <th scope="row">PM2.5</th>
+                        <td id="pm25">
 
-                    </td>
-                </tr>
-                <tr class="table-active">
-                    <th scope="row">Fecha de muestreo</th>
-                    <td id="date">
+                        </td>
+                    </tr>
+                    <tr class="table-active">
+                        <th scope="row">Fecha de muestreo</th>
+                        <td id="date">
 
-                    </td>
-                </tr>
-                <tr class="table-active">
-                    <th scope="row">Hora de muestreo</th>
-                    <td id="hour">
+                        </td>
+                    </tr>
+                    <tr class="table-active">
+                        <th scope="row">Hora de muestreo</th>
+                        <td id="hour">
 
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</section>
-<section class="sectionInfo">
-    <h2 class="titulo">Información del sensor</h2>
-    <div class="container-table">
-        <table class="table">
-            <thead class="theadModul">
-                <tr>
-                    <th scope="col">Type</th>
-                    <th scope="col">Información</th>
-                </tr>
-            </thead>
-            <tbody class=" table" style="color: #fff;">
-                <tr class="table-active">
-                    <th scope="row">Nombre dispositivo</th>
-                    <td id="deviceName">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <section class="sectionInfo">
+        <h2 class="titulo">Información del sensor</h2>
+        <div class="container-table">
+            <table class="table">
+                <thead class="theadModul">
+                    <tr>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Información</th>
+                    </tr>
+                </thead>
+                <tbody class=" table" style="color: #fff;">
+                    <tr class="table-active">
+                        <th scope="row">Nombre dispositivo</th>
+                        <td id="deviceName">
 
-                    </td>
-                </tr>
-                <tr class="table-active">
-                    <th scope="row">Id dispositivo</th>
-                    <td id="deviceId">
+                        </td>
+                    </tr>
+                    <tr class="table-active">
+                        <th scope="row">Id dispositivo</th>
+                        <td id="deviceId">
 
-                    </td>
-                </tr>
-                <tr class="table-active">
-                    <th scope="row">Batería</th>
-                    <td>
-                        NA
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</section>
+                        </td>
+                    </tr>
+                    <tr class="table-active">
+                        <th scope="row">Batería</th>
+                        <td>
+                            NA
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>
 
 <script type="module" src="/js/nuboair.js"></script>

@@ -34,7 +34,8 @@ try {
             label: 'Temperatura °C',
             data: temperatures,
             backgroundColor: 'rgb(75, 192, 192)',
-            borderColor: 'rgb(0, 0, 0)',
+            // borderColor: 'rgb(0, 0, 0)',
+            borderDash: [10,5],
             tension: 0.1
         }]},
         options: {

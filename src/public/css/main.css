@@ -7,19 +7,29 @@ body {
     width: 100%;
     z-index: 100;
 }
+.layout {
+    margin-top: 100px;
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+.titulo-main {
+    text-align: center;
+    margin: auto;
+    max-width: 90%;
+}
 .titleMain {
     font-size: 30px;
     font-family: 'Patua One', cursive;
 }
 .father {
-    padding: 26px;
+    padding: 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     min-height: calc(100vh - 78.5px - 62px);
 }
 .div-img {
-    margin: 40px;
+    margin: 20px;
     text-align: center;
 }
 
@@ -35,14 +45,14 @@ body {
     font-size: larger;
 }
 .container-sensors {
-    padding: 26px;
+    padding: 0px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     min-height: calc(100vh - 78.5px - 62px);
 }
 .div-img-sensors {
-    margin: 40px;
+    margin: 20px;
     text-align: center;
     background-color: #111;
     padding: 10px;
@@ -64,12 +74,12 @@ body {
 }
 
 .div-img {
-    margin: 40px;
+    margin: 30px;
     text-align: center;
-    background-color: #013063;
+    background-color: #36506d;
     padding: 10px;
     border-radius: 10px;
-    outline: 3px solid rgba(231,166,26,1);
+    border: 3px solid rgba(231,166,26,1);
 }
 
 .div-img a {
@@ -91,13 +101,46 @@ body {
     color: #f00;
 }
 
+.container-map-ica {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
 #map {
-    border-radius: 20px;
-    margin: 100px auto;
+    border-radius: 10px;
+    margin: 10px;
+    outline: 1px solid #0a3356;
+    width: 900px;
     height: 500px;
-    width: 80%;
-    outline: 1px solid #014691;
-    box-shadow: 10px 10px 5px #999;
+}
+
+.container-ica {
+    margin: 10px;
+}
+
+.container-ica img {
+    width: 300px;
+}
+
+
+.container-img-about {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.img-about {
+    margin: 10px;
+}
+
+.img-about img {
+    padding: 2px;
+    margin: auto;
+    border: 2px solid #264260;
+    border-radius: 10px;
+    max-width: 900px;
 }
 
 .ul-nav {
@@ -105,12 +148,15 @@ body {
 }
 
 .logo-salle {
-    background-color: #fff;
-    padding: 10px 15px;
-    border-radius: 10px;
+    background-color: #0a3356;
 }
+.logo-salle > a {
+    display: inline-block;
+    color: #fff;
+}
+
 .img-logo {
-    width: 200px;
+    width: 70px;
 }
 .li {
     padding: 10px 0;
@@ -135,11 +181,11 @@ ul{
 	list-style: none;
 }
 .footer{
-	background-color: #014691;
+	background-color: #0a3356;
     padding: 10px 0;
 }
 .footer-col{
-   width: 25%;
+    margin: 0 auto;
    padding: 0 15px;
 }
 .footer-col h4{
@@ -205,4 +251,45 @@ ul{
   .footer-col{
     width: 100%;
 }
+}
+
+.container-imgs-footer {
+    margin: 0 auto;
+}
+
+.container-imgs-footer img {
+    max-width: 300px;
+    margin-top: 67px;
+    height: 100px;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.sensor-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    /* width: 100%; */
+}
+
+.sensor-title {
+    text-align: center;
+}
+
+.graph-sensors {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.mySensors {
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+.mySensors a {
+   display: inline-block; 
+   display: flex;
+   flex-direction: column;
+   font-size: 25px;
 }

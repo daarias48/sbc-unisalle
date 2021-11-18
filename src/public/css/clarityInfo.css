@@ -2,13 +2,13 @@
     margin: 100px 0;
 }
 .graph {
+    width: 80%;
     position: relative;
     margin: auto;
-    margin-top: 80px;
-    background-color: #014691;
+    background-color: #36506d;
     height: 70vh;
     border: 2px solid #013063;
-    padding-bottom: 90px;
+    padding-bottom: 20px;
     border-radius: 10px;
     box-shadow: 10px 10px 5px #999;
 }
@@ -16,15 +16,16 @@
     margin: 10px;
 }
 .p-dates-clarity {
-    margin-left: 40px;
-    color: #fff;
+    text-align: right;
+    margin: 10px;
+    color: #000;
 }
 .select-measuresClarity {
     border-radius: 10px;
     padding: 5px;
 }
 .container-table{
-    background-color: #014691;
+    background-color: #012a58bb;
     border-radius: 10px;
     box-shadow: 10px 10px 5px #999;
 }

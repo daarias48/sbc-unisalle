@@ -39,14 +39,14 @@ const dbRef = getDatabase();
 const commentsRef = ref(dbRef, 'sensors/nuboair')
 onChildAdded(commentsRef, (data) => {
     nuboair = data.val()
-    temp.innerHTML = nuboair.temperature
-    rh.innerHTML = nuboair.rh
-    pm10.innerHTML = nuboair.pm10
-    pm25.innerHTML = nuboair.pm25
+    temp.innerHTML = `${nuboair.temperature} °C`
+    rh.innerHTML = `${nuboair.rh} (%)`
+    pm10.innerHTML = `${nuboair.pm10} µg/m3`
+    pm25.innerHTML = `${nuboair.pm25} µg/m3`
     date.innerHTML = nuboair.date
     hour.innerHTML = nuboair.hour
     airQ.innerHTML = nuboair.airQuality
-    atmP.innerHTML = nuboair.pressure
+    atmP.innerHTML = `${nuboair.pressure} hPa`
     dName.innerHTML = nuboair.deviceName
     dId.innerHTML = nuboair.deviceId
 
@@ -74,17 +74,11 @@ var myChart = new Chart(ctx, {
     }]},
     options: {
         plugins: {
-            title: {
-                display: true,
-                text: `Datos tomados NuboAir`,
-                font: {size: 30},
-                color: '#fff'
-            },
             legend: {
                 position: 'top',
                 labels: {
                     boxWidth: 15,
-                    font: {size: 16},
+                    font: {size: 30},
                     color: '#fff'
                 }
             },
@@ -95,10 +89,10 @@ var myChart = new Chart(ctx, {
         },
         elements: {
             line: {
-                borderWidth: 5
+                borderWidth: 2
             },
             point: {
-                radius: 7,
+                radius: 3,
                 
             }
         },
@@ -149,7 +143,7 @@ onValue(reference, (snap) => {
     const pm25 = allPm25.reverse().filter((el, i) => i < 30).reverse()
     datesReduced = allDates.reverse().filter((el, i) => i < 30).reverse()
     const dates = myDates(datesReduced) 
-    inputDates.innerHTML = `Fecha de los datos tomados: ${dates}`
+    inputDates.innerHTML = `${dates}`
 
 
     selectModulair.value = "0"

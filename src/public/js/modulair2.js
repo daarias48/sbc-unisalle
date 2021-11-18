@@ -34,8 +34,6 @@ const country = document.getElementById('country');
 const city = document.getElementById('city');
 const status = document.getElementById('status');
 const nSerial = document.getElementById('n-serie');
-const lat = document.getElementById('lat');
-const lon = document.getElementById('lon');
 
 let modulair = []
 const allDates = []
@@ -44,11 +42,11 @@ const dbRef = getDatabase();
 const commentsRef = ref(dbRef, 'sensors/modulairPm2')
 onChildAdded(commentsRef, (data) => {
     modulair = data.val()
-    temp.innerHTML = modulair.temperature
-    rh.innerHTML = modulair.rh
-    pm1.innerHTML = modulair.pm1
-    pm10.innerHTML = modulair.pm10
-    pm25.innerHTML = modulair.pm25
+    temp.innerHTML = `${modulair.temperature} °C`
+    rh.innerHTML = `${modulair.rh} (%)`
+    pm1.innerHTML = `${modulair.pm1} µg/m3`
+    pm10.innerHTML = `${modulair.pm10} µg/m3`
+    pm25.innerHTML = `${modulair.pm25} µg/m3`
     date.innerHTML = modulair.date
     hour.innerHTML = modulair.hour
     model.innerHTML = modulair.model
@@ -57,8 +55,6 @@ onChildAdded(commentsRef, (data) => {
     city.innerHTML = modulair.city
     status.innerHTML = modulair.status
     nSerial.innerHTML = modulair.sn
-    lat.innerHTML = modulair.lat
-    lon.innerHTML = modulair.lon
 
 }, {
     onlyOn: true
@@ -84,17 +80,11 @@ var myChart = new Chart(ctx, {
     }]},
     options: {
         plugins: {
-            title: {
-                display: true,
-                text: `Datos tomados modulairPM2`,
-                font: {size: 30},
-                color: '#fff'
-            },
             legend: {
                 position: 'top',
                 labels: {
                     boxWidth: 15,
-                    font: {size: 16},
+                    font: {size: 30},
                     color: '#fff'
                 }
             },
@@ -159,7 +149,7 @@ onValue(reference, (snap) => {
     const pm25 = allPm25.reverse().filter((el, i) => i < 30).reverse()
     datesReduced = allDates.reverse().filter((el, i) => i < 30).reverse()
     const dates = myDates(datesReduced) 
-    inputDates.innerHTML = `Fecha de los datos tomados: ${dates}`
+    inputDates.innerHTML = `${dates}`
 
 
     selectModulair.value = "0"
