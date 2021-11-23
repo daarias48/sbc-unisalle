@@ -8,7 +8,7 @@
     background-color: #36506d;
     height: 70vh;
     border: 2px solid #013063;
-    padding-bottom: 20px;
+    padding-bottom: 80px;
     border-radius: 10px;
     box-shadow: 10px 10px 5px #999;
 }
@@ -19,6 +19,11 @@
     text-align: right;
     margin: 10px;
     color: #000;
+}
+.p-hour {
+    margin-left: 10px;
+    margin-bottom: 10px;
+    color: #fff;
 }
 .select-measuresClarity {
     border-radius: 10px;

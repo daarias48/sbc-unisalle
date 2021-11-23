@@ -1,7 +1,9 @@
 const modulairPM = (data, info) => {
     const tiempo = data.timestamp_local
-    const fechaa = tiempo.slice(0, 10)
-    const hora = tiempo.slice(11, 19)
+    const fullDate = new Date(data.timestamp_local)
+    const test = fullDate.toLocaleString('es-MX', { timeZone: 'America/Guayaquil' }).split(' ')
+    const date = test[0]
+    const hora = tiempo.slice(11, 16)
 
     return sensor = {
         'id': tiempo,
@@ -10,7 +12,7 @@ const modulairPM = (data, info) => {
         'pm1' : data.pm1.toFixed(2),
         'pm10' : data.pm10.toFixed(2),
         'pm25' : data.pm25.toFixed(2),
-        'date': fechaa,
+        'date': date,
         'hour' : hora,
         'model': info.model,
         'description': info.description,

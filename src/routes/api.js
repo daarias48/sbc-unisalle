@@ -10,7 +10,7 @@ const clarityCursor = new CursorDB()
 const db = admin.database()
 
 router.get('/', (req, res) => {
-    res.render('api-index')
+    res.render('prueba')
 })
 
 router.get('/clarity', (req, res) => {

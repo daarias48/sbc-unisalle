@@ -1,25 +1,17 @@
 const collectionEva = (data, info) => {
     const fullDate = new Date(data.ts)
-    const date = fullDate.toLocaleDateString()
-    fullDate.setHours(-5)
-    const hourData = fullDate.getUTCHours()
-    const minData = fullDate.getUTCMinutes()
-    let hour
-    let min
-    if(hourData < 10) hour = `0${hourData}`
-    else hour = hourData
-    if(minData < 10) min = `0${minData}`
-    else min = minData
-
-    const myTime = `${hour}:${min}`
+    const test = fullDate.toLocaleString('es-MX', { timeZone: 'America/Guayaquil' }).split(' ')
+    const date = test[0]
+    const myHour = test[1].split(':')
+    const hourFormat = `${myHour[0]}:${myHour[1]}`
 
     try {
         return eva = {
             id: data.ts,
             date: date,
-            hour: myTime,
+            hour: hourFormat,
             temperature: data.val.temperatura.toFixed(1),
-            rh: data.val.humedad,
+            rh: data.val.humedad.toFixed(1),
             pm10_1: data.val.pm10_1.toFixed(2),
             pm10_2: data.val.pm10_2.toFixed(2),
             pm25_1: data.val.pm25_1.toFixed(2),

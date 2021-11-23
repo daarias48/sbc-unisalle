@@ -186,6 +186,21 @@ router.get('/eva', checkAuthenticated, (req, res) => {
     }
 })
 
+router.get('/politics', checkAuthenticated, (req, res) => {
+    let user = req.user
+    if(!user) {
+        onAuthStateChanged(auth, user => {
+            if(user) {
+                res.render('politics', {user})
+            }else {
+                res.render('politics')
+            }
+        })
+    }else {
+        res.render('politics', {user})
+    }
+})
+
 // User routes
 
 router.get('/login', (req, res) => {
@@ -226,10 +241,12 @@ router.get('/signup', (req, res) => {
 })
 
 router.post('/signup', async (req, res) => {
-    const { name, email, password, phone } = req.body
-    const errors = validator(req.body)
+    const { name, email, password, confirmPassword, phone } = req.body
+    const errors = []
     const pass = await user.encryptPassword(password)
     const verifyUser = await user.getUser(req.body.email)
+    console.log(errors);
+
     if (verifyUser != null) {
         errors.push({ text: 'El email se encuentra registrado' })
         res.render('signup', { errors, name, email, password, phone })
@@ -249,7 +266,20 @@ router.post('/signup', async (req, res) => {
                 return res.redirect('/info')
             }
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+            if(err.code === 'auth/weak-password') {
+                errors.push({ text: 'La contraseña debe tener al menos 6 caracteres' })
+            }
+            if(password != confirmPassword) {
+                errors.push({ text: 'Las contraseñas no coinciden' })
+            }
+            if(typeof name !== 'string') {
+                errors.push({ text: 'El nombre debe contener solo contiene letras' })
+            }
+            if(name.length < 3) errors.push({ text: 'El nombre debe contener al menos 4 caracteres' })
+            if(!/^[0-9]+/i.test(phone)) errors.push({ text: 'El teléfono no puede contener letras' })
+            return res.render('signup', { errors })
+        })
     }
 })
 

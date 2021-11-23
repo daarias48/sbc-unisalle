@@ -149,7 +149,7 @@ onValue(reference, (snap) => {
     const pm25 = allPm25.reverse().filter((el, i) => i < 20).reverse()
     datesReduced = allDates.reverse().filter((el, i) => i < 20).reverse()
     const dates = myDates(datesReduced) 
-    inputDates.innerHTML = `${dates}`
+    inputDates.innerHTML = `Fecha: ${dates}`
 
 
     selectModulair.value = "0"

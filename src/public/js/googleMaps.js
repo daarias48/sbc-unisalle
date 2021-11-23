@@ -1,6 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-app.js";
 import { getDatabase, ref, onChildAdded, get, child, limitToLast, query, onValue } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-database.js";
 
+var map;
 var firebaseConfig = {
   apiKey: "AIzaSyDeawHKlf1NBvPDIUer0sYDxn7WrIIL3ag",
   authDomain: "mysensorinfo.firebaseapp.com",
@@ -16,7 +17,6 @@ var firebaseConfig = {
 initializeApp(firebaseConfig);
 
 
-let map;
 let marker
 function initMap() {
   const coords = {

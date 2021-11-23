@@ -153,19 +153,19 @@ onValue(reference, (snap) => {
         allPm25Mass.push(data[key].pm2_5Mass)
         allPm25Num.push(data[key].pm2_5Num)
     }
-    const hour = allHours.reverse().filter((el, i) => i < 9).reverse()
-    const temperature = allTemperatures.reverse().filter((el, i) => i < 9).reverse()
-    const no2 = allNO2.reverse().filter((el, i) => i < 9).reverse()
-    const rh = allRh.reverse().filter((el, i) => i < 9).reverse()
-    const pm1Mass = allPm1Mass.reverse().filter((el, i) => i < 9).reverse()
-    const pm1Num = allPm1Num.reverse().filter((el, i) => i < 9).reverse()
-    const pm10Mass = allPm10Mass.reverse().filter((el, i) => i < 9).reverse()
-    const pm10Num = allPm10Num.reverse().filter((el, i) => i < 9).reverse()
-    const pm25Mass = allPm25Mass.reverse().filter((el, i) => i < 9).reverse()
-    const pm25Num = allPm25Num.reverse().filter((el, i) => i < 9).reverse()
-    datesReduced = allDates.reverse().filter((el, i) => i < 9).reverse()
+    const hour = allHours.reverse().filter((el, i) => i < 20).reverse()
+    const temperature = allTemperatures.reverse().filter((el, i) => i < 20).reverse()
+    const no2 = allNO2.reverse().filter((el, i) => i < 20).reverse()
+    const rh = allRh.reverse().filter((el, i) => i < 20).reverse()
+    const pm1Mass = allPm1Mass.reverse().filter((el, i) => i < 20).reverse()
+    const pm1Num = allPm1Num.reverse().filter((el, i) => i < 20).reverse()
+    const pm10Mass = allPm10Mass.reverse().filter((el, i) => i < 20).reverse()
+    const pm10Num = allPm10Num.reverse().filter((el, i) => i < 20).reverse()
+    const pm25Mass = allPm25Mass.reverse().filter((el, i) => i < 20).reverse()
+    const pm25Num = allPm25Num.reverse().filter((el, i) => i < 20).reverse()
+    datesReduced = allDates.reverse().filter((el, i) => i < 20).reverse()
     const dates = myDates(datesReduced)
-    inputDatesClarity.innerHTML = `${dates}`
+    inputDatesClarity.innerHTML = `Fecha: ${dates}`
 
     selectClarity.value = "0"
     myChart.data.datasets[0].data = temperature

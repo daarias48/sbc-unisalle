@@ -135,15 +135,15 @@ onValue(reference, (snap) => {
         allPm10.push(data[key].pm10)
         allPm25.push(data[key].pm25)
     }
-    const hour = allHours.reverse().filter((el, i) => i < 30).reverse()
-    const temperature = allTemperatures.reverse().filter((el, i) => i < 30).reverse()
-    const rh = allRh.reverse().filter((el, i) => i < 30).reverse()
-    const atmP = allAtmP.reverse().filter((el, i) => i < 30).reverse()
-    const pm10 = allPm10.reverse().filter((el, i) => i < 30).reverse()
-    const pm25 = allPm25.reverse().filter((el, i) => i < 30).reverse()
-    datesReduced = allDates.reverse().filter((el, i) => i < 30).reverse()
+    const hour = allHours.reverse().filter((el, i) => i < 20).reverse()
+    const temperature = allTemperatures.reverse().filter((el, i) => i < 20).reverse()
+    const rh = allRh.reverse().filter((el, i) => i < 20).reverse()
+    const atmP = allAtmP.reverse().filter((el, i) => i < 20).reverse()
+    const pm10 = allPm10.reverse().filter((el, i) => i < 20).reverse()
+    const pm25 = allPm25.reverse().filter((el, i) => i < 20).reverse()
+    datesReduced = allDates.reverse().filter((el, i) => i < 20).reverse()
     const dates = myDates(datesReduced) 
-    inputDates.innerHTML = `${dates}`
+    inputDates.innerHTML = `Fecha: ${dates}`
 
 
     selectModulair.value = "0"

@@ -1,17 +1,9 @@
 const claritySensor = (data, info) => {
     const time2 = new Date(data.time)
-    const date = time2.toLocaleDateString()
-    time2.setHours(-5)
-    const hourData = time2.getUTCHours()
-    const minData = time2.getUTCMinutes()
-    let hour
-    let min
-    if(hourData < 10) hour = `0${hourData}`
-    else hour = hourData
-    if(minData < 10) min = `0${minData}`
-    else min = minData
-
-    const myTime = `${hour}:${min}`
+    const test = time2.toLocaleString('es-MX', { timeZone: 'America/Guayaquil' }).split(' ')
+    const date = test[0]
+    const myHour = test[1].split(':')
+    const hourFormat = `${myHour[0]}:${myHour[1]}`
     
     const temperature = (data.characteristics.temperature.value).toFixed(1)
     const rh = (data.characteristics.relHumid.value).toFixed(1)
@@ -34,7 +26,7 @@ const claritySensor = (data, info) => {
         'batteryValue' : info.batteryPercentage,
         'signal' : info.signalStrength,
         'date' : date,
-        'hour' : myTime,
+        'hour' : hourFormat,
         'lat' : lat,
         'lon' : lon,
         'temperature' : temperature,
