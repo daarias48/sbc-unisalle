@@ -87,7 +87,7 @@ body {
 }
 
 .div-img:hover {
-    transition: all 1s ease;
+    transition: all .6s ease;
     background-color: #011933;
 }
 

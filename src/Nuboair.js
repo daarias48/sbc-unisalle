@@ -9,12 +9,12 @@ const nuboairObj = (data, info) => {
     
     return nuboair = {
         id: id,
-        rh: data.RH.toFixed(3),
-        temperature: data.T.toFixed(3),
-        pm25: data.PM2p5.toFixed(3),
-        pm10: data.PM1p0.toFixed(3),
-        pressure: data.AtmosphericPressure,
-        airQuality: data.AirQualityIndex.toFixed(3),
+        rh: data.RH.toFixed(1),
+        temperature: data.T.toFixed(1),
+        pm25: data.PM2p5.toFixed(2),
+        pm10: data.PM1p0.toFixed(2),
+        pressure: data.AtmosphericPressure.toFixed(2),
+        airQuality: data.AirQualityIndex.toFixed(0),
         deviceId: info.deviceId,
         deviceName: info.deviceName,
         date: date,
