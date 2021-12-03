@@ -5,8 +5,8 @@ const claritySensor = (data, info) => {
     const myHour = test[1].split(':')
     const hourFormat = `${myHour[0]}:${myHour[1]}`
     
-    const temperature = (data.characteristics.temperature.value).toFixed(1)
-    const rh = (data.characteristics.relHumid.value).toFixed(1)
+    const temperature = (data.characteristics.temperature.value).toFixed(0)
+    const rh = (data.characteristics.relHumid.value).toFixed(0)
     const no2 = (data.characteristics.no2Conc.value).toFixed(1)
     const pm2_5mass = (data.characteristics.pm2_5ConcMass.value).toFixed(2)
     const pm2_5num = (data.characteristics.pm2_5ConcNum.value).toFixed(2)
@@ -22,8 +22,11 @@ const claritySensor = (data, info) => {
         'id': id,
         'deviceID' : data.deviceCode,
         'model' : 'Clarity Node-S',
-        'batteryStatus' : info.batteryStatus,
-        'batteryValue' : info.batteryPercentage,
+        //'batteryStatus' : info.batteryStatus,
+        //'batteryValue' : info.batteryPercentage,
+        'storage': 'Panel solar',
+        'maker': 'Clarity',
+        'comunication': 'Celular 3G',
         'signal' : info.signalStrength,
         'date' : date,
         'hour' : hourFormat,

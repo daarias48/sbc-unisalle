@@ -24,19 +24,16 @@ const selectModulair = document.querySelector('.select-measures')
 const temp = document.getElementById('temp');
 const rh = document.getElementById('rh');
 const pm10_1 = document.getElementById('pm10_1');
-const pm10_2 = document.getElementById('pm10_2');
 const pm25_1 = document.getElementById('pm25_1');
-const pm25_2 = document.getElementById('pm25_2');
 const atmP = document.getElementById('atmPressure');
 const date = document.getElementById('date');
 const hour = document.getElementById('hour');
 
-
-const country = document.getElementById('country');
-const status = document.getElementById('status');
 const deviceName = document.getElementById('deviceName');
 const device = document.getElementById('device');
-const type = document.getElementById('type');
+const storage = document.getElementById('storage');
+const comunication = document.getElementById('comunication');
+const maker = document.getElementById('maker');
 
 let eva = []
 const allDates = []
@@ -49,16 +46,15 @@ onChildAdded(commentsRef, (data) => {
     rh.innerHTML = `${eva.rh} (%)`
     atmP.innerHTML = `${eva.pressure} hPa`
     pm10_1.innerHTML = `${eva.pm10_1} µg/m3`
-    pm10_2.innerHTML = `${eva.pm10_2} µg/m3`
     pm25_1.innerHTML = `${eva.pm25_1} µg/m3`
-    pm25_2.innerHTML = `${eva.pm25_2} µg/m3`
     date.innerHTML = eva.date
     hour.innerHTML = eva.hour
-    country.innerHTML = eva.country
-    status.innerHTML = eva.status
     device.innerHTML = eva.device
-    deviceName.innerHTML = eva.deviceName
-    type.innerHTML = eva.type
+    deviceName.innerHTML = eva.model
+    storage.innerHTML = eva.storage
+    comunication.innerHTML = eva.comunication
+    maker.innerHTML = eva.maker
+
 }, {
     onlyOn: true
 })
@@ -77,10 +73,10 @@ var myChart = new Chart(ctx, {
     data: {
     labels: [],
     datasets: [{
-        label: `Temperatura °C` ,
+        label: `Temperatura ambiente °C` ,
         data: [],
-        backgroundColor: 'rgb(255, 0, 0)',
-        borderColor: 'rgb(255, 255, 255)',
+        backgroundColor: '#0a3356',
+        borderColor: '#0056b4',
         tension: 0
     }]},
     options: {
@@ -90,7 +86,7 @@ var myChart = new Chart(ctx, {
                 labels: {
                     boxWidth: 15,
                     font: {size: 30},
-                    color: '#fff'
+                    color: '#000'
                 }
             },
             tooltips: {
@@ -100,7 +96,7 @@ var myChart = new Chart(ctx, {
         },
         elements: {
             line: {
-                borderWidth: 2
+                borderWidth: 1
             },
             point: {
                 radius: 3,
@@ -112,14 +108,14 @@ var myChart = new Chart(ctx, {
             y: {
                 beginAtZero: false,
                 ticks: {
-                    color: '#fff'
+                    color: '#000'
                 }
 
             },
             x: {
                 grid: {display: false},
                 ticks: {
-                    color: '#fff'
+                    color: '#000'
                 }
             }
         },
@@ -163,7 +159,7 @@ onValue(reference, (snap) => {
 
     selectModulair.value = "0"
     myChart.data.datasets[0].data = temperature
-    myChart.data.datasets[0].label = `Temperatura °C` 
+    myChart.data.datasets[0].label = `Temperatura ambiente °C` 
     myChart.data.labels = hour
     myChart.update()
     selectModulair.addEventListener('change', updateSelect)
@@ -173,13 +169,13 @@ onValue(reference, (snap) => {
             case "0":
                 myChart.data.labels = hour
                 myChart.data.datasets[0].data = temperature
-                myChart.data.datasets[0].label = `Temperatura °C` 
+                myChart.data.datasets[0].label = `Temperatura ambiente °C` 
                 myChart.update()
                 break;
             case "1": 
                 myChart.data.labels = hour
                 myChart.data.datasets[0].data = rh
-                myChart.data.datasets[0].label = `Humedad Rel. (%)`
+                myChart.data.datasets[0].label = `Humedad Rel. externa (%)`
                 myChart.update()
                 break;
             case "2": 
@@ -191,25 +187,13 @@ onValue(reference, (snap) => {
             case "3": 
                 myChart.data.labels = hour
                 myChart.data.datasets[0].data = pm10_1
-                myChart.data.datasets[0].label = `PM10_1 µg/m3`
+                myChart.data.datasets[0].label = `PM10 µg/m3`
                 myChart.update()
                 break;
             case "4": 
                 myChart.data.labels = hour
-                myChart.data.datasets[0].data = pm10_2
-                myChart.data.datasets[0].label = `PM10_2 µg/m3`
-                myChart.update()
-                break;
-            case "5": 
-                myChart.data.labels = hour
                 myChart.data.datasets[0].data = pm25_1
-                myChart.data.datasets[0].label = `PM2.5_1 µg/m3`
-                myChart.update()
-                break;
-            case "6": 
-                myChart.data.labels = hour
-                myChart.data.datasets[0].data = pm25_2
-                myChart.data.datasets[0].label = `PM2.5_2 µg/m3`
+                myChart.data.datasets[0].label = `PM2.5 µg/m3`
                 myChart.update()
                 break;
         }
@@ -224,5 +208,5 @@ let myDates = (dates) => {
     for(let date in datesReduced){
         datesFiltered.push(datesReduced[date])
     }
-    return datesFiltered
+    return datesFiltered.join(', ')
 }

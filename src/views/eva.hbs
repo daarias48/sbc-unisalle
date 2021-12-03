@@ -1,39 +1,43 @@
-<h1 class="sensor-title">Sensor Eva</h1>
+<h1 class="sensor-title"><b>Sensor Eva1</b></h1>
 <p class="p-dates"></p>
 <div class="graph-sensors">
     <div class="mySensors">
         <div class="a-sensors">
-            <a href="/modulair-pm">ModulairPM</a>
+            <a href="/modulair-pm">Modulair1</a>
         </div>
         <div class="a-sensors">
-            <a href="/modulair-pm2">ModulairPM2</a>
+            <a href="/modulair-pm2">Modulair2</a>
         </div>
         <div class="a-sensors">
             <a href="/nuboair">Nuboair</a>
         </div>
         <div class="a-sensors">
-            <a href="/clarity">Clarity</a>
+            <a href="/clarity">Clarity1</a>
         </div>
         <div class="a-sensors">
-            <a href="/eva">Eva</a>
+            <a href="/clarity2">Clarity2</a>
         </div>
         <div class="a-sensors">
+            <a href="/eva">Eva1</a>
+        </div>
+        <div class="a-sensors">
+            <a href="/eva2">Eva2</a>
+        </div>
+        {{!-- <div class="a-sensors">
             <a href="/plantower">Plantower</a>
         </div>
         <div class="a-sensors">
             <a href="/mhz">MHZ19C</a>
-        </div>
+        </div> --}}
     </div>
     <div class="graph">
         <div class="comBox-container">
             <select name="measures" class="select-measures">
-                <option value="0">Temperatura</option>
-                <option value="1">RH</option>
+                <option value="0">Temperatura ambiente</option>
+                <option value="1">RH externa</option>
                 <option value="2">Presión atm</option>
-                <option value="3">PM10_1</option>
-                <option value="4">PM10_2</option>
-                <option value="5">PM2.5_1</option>
-                <option value="6">PM2.5_2</option>
+                <option value="3">PM10</option>
+                <option value="4">PM2.5</option>
             </select>
         </div>
         <canvas id="myChartModulair"></canvas>
@@ -55,13 +59,13 @@
                 </thead>
                 <tbody class=" table" style="color: #fff;">
                     <tr class="table-active">
-                        <th scope="row">Temperatura</th>
+                        <th scope="row">Temperatura ambiente</th>
                         <td id="temp">
 
                         </td>
                     </tr>
                     <tr class="table-active">
-                        <th scope="row">Humedad relativa (RH)</th>
+                        <th scope="row">Humedad relativa (RH) interna</th>
                         <td id="rh">
 
                         </td>
@@ -73,26 +77,14 @@
                         </td>
                     </tr>
                     <tr class="table-active">
-                        <th scope="row">PM10_1 Conc. masas</th>
+                        <th scope="row">PM10</th>
                         <td id="pm10_1">
 
                         </td>
                     </tr>
                     <tr class="table-active">
-                        <th scope="row">PM10_2 Conc. masas</th>
-                        <td id="pm10_2">
-
-                        </td>
-                    </tr>
-                    <tr class="table-active">
-                        <th scope="row">PM2.5_1 Conc. masas</th>
+                        <th scope="row">PM2.5</th>
                         <td id="pm25_1">
-
-                        </td>
-                    </tr>
-                    <tr class="table-active">
-                        <th scope="row">PM2.5_2 Conc. masas</th>
-                        <td id="pm25_2">
 
                         </td>
                     </tr>
@@ -124,37 +116,33 @@
                 </thead>
                 <tbody class=" table" style="color: #fff;">
                     <tr class="table-active">
-                        <th scope="row">Nombre dispositivo</th>
+                        <th scope="row">Modelo</th>
                         <td id="deviceName">
 
                         </td>
                     </tr>
                     <tr class="table-active">
-                        <th scope="row">Dispositivo</th>
+                        <th scope="row">ID dispositivo</th>
                         <td id="device">
 
                         </td>
                     </tr>
                     <tr class="table-active">
-                        <th scope="row">Estado</th>
-                        <td id="status">
+                        <th scope="row">Fuente de alimentación</th>
+                        <td id="storage">
+                    
                         </td>
                     </tr>
                     <tr class="table-active">
-                        <th scope="row">País</th>
-                        <td id="country">
+                        <th scope="row">Comunicación</th>
+                        <td id="comunication">
+                    
                         </td>
                     </tr>
                     <tr class="table-active">
-                        <th scope="row">Tipo</th>
-                        <td id="type">
-
-                        </td>
-                    </tr>
-                    <tr class="table-active">
-                        <th scope="row">Batería</th>
-                        <td>
-                            NA
+                        <th scope="row">Fabricante</th>
+                        <td id="maker">
+                    
                         </td>
                     </tr>
                 </tbody>

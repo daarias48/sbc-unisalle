@@ -23,54 +23,57 @@ const selectModulair = document.querySelector('.select-measures')
 
 const temp = document.getElementById('temp');
 const rh = document.getElementById('rh');
-const pm1 = document.getElementById('pm1');
-const pm10 = document.getElementById('pm10');
-const pm25 = document.getElementById('pm25');
+const pm10_1 = document.getElementById('pm10_1');
+const pm25_1 = document.getElementById('pm25_1');
+const atmP = document.getElementById('atmPressure');
 const date = document.getElementById('date');
 const hour = document.getElementById('hour');
-const model = document.getElementById('model');
-const nSerial = document.getElementById('idModulair');
+
+
+const deviceName = document.getElementById('deviceName');
+const device = document.getElementById('device');
 const storage = document.getElementById('storage');
 const comunication = document.getElementById('comunication');
 const maker = document.getElementById('maker');
 
-let modulair = []
+let eva = []
 const allDates = []
 
 const dbRef = getDatabase();
-const commentsRef = query(ref(dbRef, 'sensors/modulairPm2'), limitToLast(1))
-onValue(commentsRef, (data) => {
-    data.forEach((doc) => {
-        modulair = doc.val()
-        console.log(modulair);
-        temp.innerHTML = `${modulair.temperature} °C`
-        rh.innerHTML = `${modulair.rh} (%)`
-        pm1.innerHTML = `${modulair.pm1} µg/m3`
-        pm10.innerHTML = `${modulair.pm10} µg/m3`
-        pm25.innerHTML = `${modulair.pm25} µg/m3`
-        date.innerHTML = modulair.date
-        hour.innerHTML = modulair.hour
-        model.innerHTML = modulair.model
-        nSerial.innerHTML = modulair.sn
-        storage.innerHTML = modulair.storage
-        comunication.innerHTML = modulair.comunication
-        maker.innerHTML = modulair.maker
-    })
-}, { onlyOnce: true })
+const commentsRef = ref(dbRef, 'sensors/eva2')
+onChildAdded(commentsRef, (data) => {
+    eva = data.val()
+    temp.innerHTML = `${eva.temperature} °C`
+    rh.innerHTML = `${eva.rh} (%)`
+    atmP.innerHTML = `${eva.pressure} hPa`
+    pm10_1.innerHTML = `${eva.pm10_1} µg/m3`
+    pm25_1.innerHTML = `${eva.pm25_1} µg/m3`
+    date.innerHTML = eva.date
+    hour.innerHTML = eva.hour
+    device.innerHTML = eva.device
+    deviceName.innerHTML = eva.model
+    storage.innerHTML = eva.storage
+    comunication.innerHTML = eva.comunication
+    maker.innerHTML = eva.maker
+}, {
+    onlyOn: true
+})
 
 const allHours = []
 const allTemperatures = []
 const allRh = []
-const allPm1 = []
-const allPm10 = []
-const allPm25 = []
+const allAtmP = []
+const allPm10_1 = []
+const allPm10_2 = []
+const allPm25_1 = []
+const allPm25_2 = []
 
 var myChart = new Chart(ctx, {
     type: 'line',
     data: {
     labels: [],
     datasets: [{
-        label: `Temperatura interna °C` ,
+        label: `Temperatura ambiente °C` ,
         data: [],
         backgroundColor: '#0a3356',
         borderColor: '#0056b4',
@@ -127,7 +130,7 @@ var myChart = new Chart(ctx, {
 
 let datesReduced = []
 
-const reference = ref(dbRef, 'sensors/modulairPm2')
+const reference = ref(dbRef, 'sensors/eva2')
 onValue(reference, (snap) => {
     const data = snap.val()
     for (const key in data) {
@@ -135,16 +138,20 @@ onValue(reference, (snap) => {
         allHours.push(data[key].hour)
         allTemperatures.push(data[key].temperature)
         allRh.push(data[key].rh)
-        allPm1.push(data[key].pm1)
-        allPm10.push(data[key].pm10)
-        allPm25.push(data[key].pm25)
+        allAtmP.push(data[key].pressure)
+        allPm10_1.push(data[key].pm10_1)
+        allPm10_2.push(data[key].pm10_2)
+        allPm25_1.push(data[key].pm25_1)
+        allPm25_2.push(data[key].pm25_2)
     }
     const hour = allHours.reverse().filter((el, i) => i < 20).reverse()
     const temperature = allTemperatures.reverse().filter((el, i) => i < 20).reverse()
     const rh = allRh.reverse().filter((el, i) => i < 20).reverse()
-    const pm1 = allPm1.reverse().filter((el, i) => i < 20).reverse()
-    const pm10 = allPm10.reverse().filter((el, i) => i < 20).reverse()
-    const pm25 = allPm25.reverse().filter((el, i) => i < 20).reverse()
+    const atmP = allAtmP.reverse().filter((el, i) => i < 20).reverse()
+    const pm10_1 = allPm10_1.reverse().filter((el, i) => i < 20).reverse()
+    const pm10_2 = allPm10_2.reverse().filter((el, i) => i < 20).reverse()
+    const pm25_1 = allPm25_1.reverse().filter((el, i) => i < 20).reverse()
+    const pm25_2 = allPm25_2.reverse().filter((el, i) => i < 20).reverse()
     datesReduced = allDates.reverse().filter((el, i) => i < 20).reverse()
     const dates = myDates(datesReduced) 
     inputDates.innerHTML = `Fecha: ${dates}`
@@ -152,7 +159,7 @@ onValue(reference, (snap) => {
 
     selectModulair.value = "0"
     myChart.data.datasets[0].data = temperature
-    myChart.data.datasets[0].label = `Temperatura interna °C` 
+    myChart.data.datasets[0].label = `Temperatura ambiente °C` 
     myChart.data.labels = hour
     myChart.update()
     selectModulair.addEventListener('change', updateSelect)
@@ -162,30 +169,30 @@ onValue(reference, (snap) => {
             case "0":
                 myChart.data.labels = hour
                 myChart.data.datasets[0].data = temperature
-                myChart.data.datasets[0].label = `Temperatura interna °C` 
+                myChart.data.datasets[0].label = `Temperatura ambiente °C` 
                 myChart.update()
                 break;
             case "1": 
                 myChart.data.labels = hour
                 myChart.data.datasets[0].data = rh
-                myChart.data.datasets[0].label = `Humedad Rel. interna (%)`
+                myChart.data.datasets[0].label = `Humedad Rel. externa (%)`
                 myChart.update()
                 break;
             case "2": 
                 myChart.data.labels = hour
-                myChart.data.datasets[0].data = pm1
-                myChart.data.datasets[0].label = `PM1 µg/m3`
+                myChart.data.datasets[0].data = atmP
+                myChart.data.datasets[0].label = `hPa`
                 myChart.update()
                 break;
             case "3": 
                 myChart.data.labels = hour
-                myChart.data.datasets[0].data = pm10
+                myChart.data.datasets[0].data = pm10_1
                 myChart.data.datasets[0].label = `PM10 µg/m3`
                 myChart.update()
                 break;
             case "4": 
                 myChart.data.labels = hour
-                myChart.data.datasets[0].data = pm25
+                myChart.data.datasets[0].data = pm25_1
                 myChart.data.datasets[0].label = `PM2.5 µg/m3`
                 myChart.update()
                 break;
@@ -201,5 +208,5 @@ let myDates = (dates) => {
     for(let date in datesReduced){
         datesFiltered.push(datesReduced[date])
     }
-    return datesFiltered.join(', ')
+    return datesFiltered
 }

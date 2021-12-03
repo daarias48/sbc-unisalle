@@ -29,36 +29,33 @@ const pm25 = document.getElementById('pm25');
 const date = document.getElementById('date');
 const hour = document.getElementById('hour');
 const model = document.getElementById('model');
-const description = document.getElementById('description');
-const country = document.getElementById('country');
-const city = document.getElementById('city');
-const status = document.getElementById('status');
-const nSerial = document.getElementById('n-serie');
+const nSerial = document.getElementById('idModulair');
+const storage = document.getElementById('storage');
+const comunication = document.getElementById('comunication');
+const maker = document.getElementById('maker');
 
 let modulair = []
 const allDates = []
 
 const dbRef = getDatabase();
-const commentsRef = ref(dbRef, 'sensors/modulairPm')
-onChildAdded(commentsRef, (data) => {
-    modulair = data.val()
-    temp.innerHTML = `${modulair.temperature} °C`
-    rh.innerHTML = `${modulair.rh} (%)`
-    pm1.innerHTML = `${modulair.pm1} µg/m3`
-    pm10.innerHTML = `${modulair.pm10} µg/m3`
-    pm25.innerHTML = `${modulair.pm25} µg/m3`
-    date.innerHTML = modulair.date
-    hour.innerHTML = modulair.hour
-    model.innerHTML = modulair.model
-    description.innerHTML = modulair.description
-    country.innerHTML = modulair.country
-    city.innerHTML = modulair.city
-    status.innerHTML = modulair.status
-    nSerial.innerHTML = modulair.sn
-
-}, {
-    onlyOn: true
-})
+const commentsRef = query(ref(dbRef, 'sensors/modulairPm'), limitToLast(1))
+onValue(commentsRef, (data) => {
+    data.forEach((doc) => {
+        modulair = doc.val()
+        temp.innerHTML = `${modulair.temperature} °C`
+        rh.innerHTML = `${modulair.rh} (%)`
+        pm1.innerHTML = `${modulair.pm1} µg/m3`
+        pm10.innerHTML = `${modulair.pm10} µg/m3`
+        pm25.innerHTML = `${modulair.pm25} µg/m3`
+        date.innerHTML = modulair.date
+        hour.innerHTML = modulair.hour
+        model.innerHTML = modulair.model
+        nSerial.innerHTML = modulair.sn
+        storage.innerHTML = modulair.storage
+        comunication.innerHTML = modulair.comunication
+        maker.innerHTML = modulair.maker
+    })
+}, { onlyOnce: true })
 
 const allHours = []
 const allTemperatures = []
@@ -72,10 +69,10 @@ var myChart = new Chart(ctx, {
     data: {
     labels: [],
     datasets: [{
-        label: `Temperatura °C` ,
+        label: `Temperatura interna °C` ,
         data: [],
-        backgroundColor: 'rgb(255, 0, 0)',
-        borderColor: 'rgb(255, 255, 255)',
+        backgroundColor: '#0a3356',
+        borderColor: '#0056b4',
         tension: 0
     }]},
     options: {
@@ -85,7 +82,7 @@ var myChart = new Chart(ctx, {
                 labels: {
                     boxWidth: 15,
                     font: {size: 30},
-                    color: '#fff'
+                    color: '#000'
                 }
             },
             tooltips: {
@@ -95,7 +92,7 @@ var myChart = new Chart(ctx, {
         },
         elements: {
             line: {
-                borderWidth: 2
+                borderWidth: 1
             },
             point: {
                 radius: 3,
@@ -107,14 +104,14 @@ var myChart = new Chart(ctx, {
             y: {
                 beginAtZero: false,
                 ticks: {
-                    color: '#fff'
+                    color: '#000'
                 }
 
             },
             x: {
                 grid: {display: false},
                 ticks: {
-                    color: '#fff'
+                    color: '#000'
                 }
             }
         },
@@ -154,7 +151,7 @@ onValue(reference, (snap) => {
 
     selectModulair.value = "0"
     myChart.data.datasets[0].data = temperature
-    myChart.data.datasets[0].label = `Temperatura °C` 
+    myChart.data.datasets[0].label = `Temperatura interna °C` 
     myChart.data.labels = hour
     myChart.update()
     selectModulair.addEventListener('change', updateSelect)
@@ -164,13 +161,13 @@ onValue(reference, (snap) => {
             case "0":
                 myChart.data.labels = hour
                 myChart.data.datasets[0].data = temperature
-                myChart.data.datasets[0].label = `Temperatura °C` 
+                myChart.data.datasets[0].label = `Temperatura interna °C` 
                 myChart.update()
                 break;
             case "1": 
                 myChart.data.labels = hour
                 myChart.data.datasets[0].data = rh
-                myChart.data.datasets[0].label = `Humedad Rel. (%)`
+                myChart.data.datasets[0].label = `Humedad Rel. interna (%)`
                 myChart.update()
                 break;
             case "2": 
@@ -203,6 +200,6 @@ let myDates = (dates) => {
     for(let date in datesReduced){
         datesFiltered.push(datesReduced[date])
     }
-    return datesFiltered
+    return datesFiltered.join(', ')
 }
 

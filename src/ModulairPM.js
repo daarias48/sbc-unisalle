@@ -7,14 +7,14 @@ const modulairPM = (data, info) => {
 
     return sensor = {
         'id': tiempo,
-        'temperature': data.met.temp.toFixed(1),
-        'rh': data.met.rh,
+        'temperature': data.met.temp.toFixed(0),
+        'rh': data.met.rh.toFixed(0),
         'pm1' : data.pm1.toFixed(2),
         'pm10' : data.pm10.toFixed(2),
         'pm25' : data.pm25.toFixed(2),
         'date': date,
         'hour' : hora,
-        'model': info.model,
+        'model': 'Modulair PM',
         'description': info.description,
         'country' : info.country,
         'city' : info.city,
@@ -22,7 +22,10 @@ const modulairPM = (data, info) => {
         'sn': info.sn,
         'battery' : 'NA',
         'lat': info.geo.lat,
-        'lon' : info.geo.lon
+        'lon' : info.geo.lon,
+        'storage': '110 VAC',
+        'maker': 'Quantaq',
+        'comunication': 'Celular 3G',
     }
 }
 module.exports = modulairPM

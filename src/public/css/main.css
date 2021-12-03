@@ -18,8 +18,10 @@ body {
     max-width: 90%;
 }
 .titleMain {
-    font-size: 30px;
-    font-family: 'Patua One', cursive;
+    font-size: 25px;
+    font-weight: bold;
+    margin-left: 10px;
+    /* font-family: 'Patua One', cursive; */
 }
 .father {
     padding: 0;
@@ -120,8 +122,15 @@ body {
     margin: 10px;
 }
 
+
 .container-ica img {
     width: 400px;
+}
+
+@media only screen and (max-width: 500px) {
+    .container-ica img {
+        width: 320px;
+    }    
 }
 
 .container-img-about {
@@ -145,17 +154,34 @@ body {
 .ul-nav {
     font-size: 20px;
 }
+.navbar-nav {
+    margin-left: 200px;
+}
 
 .logo-salle {
-    background-color: #0a3356;
+    display: inline-block;
 }
+
 .logo-salle > a {
     display: inline-block;
     color: #fff;
 }
 
 .img-logo {
-    width: 70px;
+    width: 110px;
+    margin: 0 10px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0 auto;
+    padding: 0;
+}
+
+
+.nav-link {
+    padding: 0;
 }
 .li {
     padding: 10px 0;
@@ -175,6 +201,7 @@ body {
 	display: flex;
 	flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
 }
 ul{
 	list-style: none;
@@ -257,10 +284,7 @@ ul{
 }
 
 .container-imgs-footer img {
-    max-width: 300px;
-    margin-top: 67px;
-    height: 100px;
-    background-color: #fff;
+    width: 400px;
     padding: 10px;
     border-radius: 10px;
 }
@@ -307,4 +331,27 @@ ul{
 
 .policy {
     padding: 10px;
+}
+
+.login-card-header {
+    padding: 0;
+    background-color: #0a3356;
+    text-align: center;
+    border-radius: 20px;
+}
+.login-card-header h3{
+    color: #fff;
+}
+
+.container-img-login{
+    text-align: center;
+    display: inline-block;
+    width: 35%;
+    margin-bottom: -20px;
+}
+.container-img-login img{
+    width: 100%;
+}
+.card {
+    box-shadow: 2px 3px 5px rgb(0, 0, 0, .5);
 }

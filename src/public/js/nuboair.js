@@ -31,6 +31,9 @@ const date = document.getElementById('date');
 const hour = document.getElementById('hour');
 const dName = document.getElementById('deviceName')
 const dId = document.getElementById('deviceId')
+const storage = document.getElementById('storage');
+const comunication = document.getElementById('comunication');
+const maker = document.getElementById('maker');
 
 let nuboair = []
 const allDates = []
@@ -47,8 +50,11 @@ onChildAdded(commentsRef, (data) => {
     hour.innerHTML = nuboair.hour
     airQ.innerHTML = nuboair.airQuality
     atmP.innerHTML = `${nuboair.pressure} hPa`
-    dName.innerHTML = nuboair.deviceName
+    dName.innerHTML = nuboair.model
     dId.innerHTML = nuboair.deviceId
+    storage.innerHTML = nuboair.storage
+    comunication.innerHTML = nuboair.comunication
+    maker.innerHTML = nuboair.maker
 
 }, {
     onlyOn: true
@@ -66,10 +72,10 @@ var myChart = new Chart(ctx, {
     data: {
     labels: [],
     datasets: [{
-        label: `Temperatura °C` ,
+        label: `Temperatura ambiente °C` ,
         data: [],
-        backgroundColor: 'rgb(255, 0, 0)',
-        borderColor: 'rgb(255, 255, 255)',
+        backgroundColor: '#0a3356',
+        borderColor: '#0056b4',
         tension: 0
     }]},
     options: {
@@ -79,7 +85,7 @@ var myChart = new Chart(ctx, {
                 labels: {
                     boxWidth: 15,
                     font: {size: 30},
-                    color: '#fff'
+                    color: '#000'
                 }
             },
             tooltips: {
@@ -89,7 +95,7 @@ var myChart = new Chart(ctx, {
         },
         elements: {
             line: {
-                borderWidth: 2
+                borderWidth: 1
             },
             point: {
                 radius: 3,
@@ -101,14 +107,14 @@ var myChart = new Chart(ctx, {
             y: {
                 beginAtZero: false,
                 ticks: {
-                    color: '#fff'
+                    color: '#000'
                 }
 
             },
             x: {
                 grid: {display: false},
                 ticks: {
-                    color: '#fff'
+                    color: '#000'
                 }
             }
         },
@@ -148,7 +154,7 @@ onValue(reference, (snap) => {
 
     selectModulair.value = "0"
     myChart.data.datasets[0].data = temperature
-    myChart.data.datasets[0].label = `Temperatura °C` 
+    myChart.data.datasets[0].label = `Temperatura ambiente °C` 
     myChart.data.labels = hour
     myChart.update()
     selectModulair.addEventListener('change', updateSelect)
@@ -158,13 +164,13 @@ onValue(reference, (snap) => {
             case "0":
                 myChart.data.labels = hour
                 myChart.data.datasets[0].data = temperature
-                myChart.data.datasets[0].label = `Temperatura °C` 
+                myChart.data.datasets[0].label = `Temperatura ambiente °C` 
                 myChart.update()
                 break;
             case "1": 
                 myChart.data.labels = hour
                 myChart.data.datasets[0].data = rh
-                myChart.data.datasets[0].label = `Humedad Rel. (%)`
+                myChart.data.datasets[0].label = `Humedad Rel. externa (%)`
                 myChart.update()
                 break;
             case "2": 
@@ -197,5 +203,5 @@ let myDates = (dates) => {
     for(let date in datesReduced){
         datesFiltered.push(datesReduced[date])
     }
-    return datesFiltered
+    return datesFiltered.join(', ')
 }

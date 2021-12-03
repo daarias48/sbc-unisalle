@@ -48,21 +48,28 @@ function initMap() {
           ica = ((modulair.pm25 - pm25Counts[i]) * (icaCounts[i + 1] - icaCounts[i]) / (pm25Counts[i + 1] - pm25Counts[i])) + icaCounts[i]
         }
       }
+      let color
+      if(ica >= 0 && ica <= 50) color = '#39c227'
+      if(ica >= 51 && ica <= 100) color = '#fcc438'
+      if(ica >= 101 && ica <= 150) color = '#EF8D22'
+      if(ica >= 151 && ica <= 200) color = '#f00'
+      if(ica >= 201 && ica <= 300) color = '#834187'
+      if(ica >= 301 && ica <= 500) color = '#754106'
 
       const info =
         '<div id="content">' +
         '<div id="siteNotice">' +
         "</div>" +
-        '<h4 id="firstHeading" class="firstHeading">Datos en tiempo real</h4>' +
+        '<h5 id="firstHeading" class="firstHeading">Ubicacion: Estación de bomberos Fontibón - UAECOB</h5>' +
+        '<h6 id="firstHeading" class="firstHeading">Datos en tiempo real</h6>' +
         '<div id="bodyContent">' +
-        `<p>Índice de calidad de aire ICA: ${ica.toFixed(0)}  </p>` +
+        `<p style="display: inline-block; color: #000; padding: 2px 5px; background-color: ${color};">Índice de calidad de aire ICA: ${ica.toFixed(0)}  </p>` +
         `<p>Temperatura: ${modulair.temperature} °C </p>` +
         `<p>Humedad: ${modulair.temperature} (%) </p>` +
         `<p>PM1: ${modulair.pm1} µg/m3 </p>` +
         `<p>PM10: ${modulair.pm10} µg/m3 </p>` +
         `<p>PM2.5: ${modulair.pm25} µg/m3 </p>` +
-        `<p>Fecha: ${modulair.date} </p>` +
-        `<p>Hora: ${modulair.hour} </p>` +
+        `<p>Fecha: ${modulair.date} Hora: ${modulair.hour}</p>` +
         "</div>" +
         "</div>";
       

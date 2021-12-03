@@ -1,17 +1,59 @@
 <section>
   <div>
-    <h1 class="titulo-main">Tecnologías de bajo costo para la medición y gobernanza de la calidad del aire en Bogotá - Colombia</h1>
+    <h1 class="titulo-main"><b> Proyecto de tecnologías de bajo costo para la medición y gobernanza de la calidad del aire en Bogotá - Colombia</b></h1>
     <hr>
     <div class="container-map-ica">
       <div id="map"></div>
       <div class="container-ica">
-        <img src="/imgs/indices.png" alt="Indices de la calidad del aire">
+        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="/imgs/indices.png" alt="Indices de la calidad del aire" title="Índice de calidad del aire..."></a>
       </div>
     </div>
 
   </div>
 </section>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Índice de calidad del aire ICA</h5>
+      </div>
+      <div class="modal-body">
+        El Índice de calidad del aire (ICA) es un valor asociado a un código de colores para reportar el estado de la calidad del aire al que están asociados unos efectos generales que deben ser tenidos en cuenta para reducir la exposición a altas concentraciones de contaminantes por parte de la población" (IDEAM, s.f).
+        <br>
+        Rangos:
+        <br>
+        <span style="display: inline-block; color: #000; padding: 2px 5px; background-color: #39c227;">Buena: </span>La
+        contaminación atmosférica supone un riesgo bajo para la salud.
+        <br>
+        <br>
+        <span style="display: inline-block; color: #000; padding: 2px 5px; background-color: #fcc438;" >Moderado: </span>Posibles síntomas respiratorios en grupos poblacionales sensibles.
+        <br>
+        <br>
+        <span style="display: inline-block; color: #000; padding: 2px 5px; background-color: #EF8D22;">Insalubre para grupos
+          sensibles: </span>las personas que pertenecen a grupos sensibles pueden experimentar efectos en su salud. Esto significa que se ven afectadas a niveles más bajos que el público en general. Por ejemplo, las personas que padecen de enfermedades pulmonares o coronarias.
+        <br>
+        <br>
+        <span style="display: inline-block; color: #000; padding: 2px 5px; background-color: #f00; color: #fff;">Insalubre: </span>Todos los
+        individuos pueden comenzar a
+        experimentar efectos sobre la salud. Los grupos
+        sensibles pueden experimentar efectos más
+        graves para la salud
+        <br>
+        <br>
+        <span style="display: inline-block; color: #000; padding: 2px 5px; background-color: #834187; color: #fff;">Muy insalubre: </span>Estado de alerta que significa que todos pueden experimentar efectos más graves para la salud.
+        <br>
+        <br>
+        <span style="display: inline-block; color: #000; padding: 2px 5px; background-color: #754106; color: #fff;">Peligroso: </span>Advertencia sanitaria. Toda la población puede presentar efectos graves en la salud. 
 
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
 {{!-- <section class="section-sensors">
   <h3>Sensores disponibles:</h3>
   <div class="container-sensors">

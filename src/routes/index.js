@@ -75,6 +75,22 @@ router.get('/clarity', checkAuthenticated, (req, res) => {
     }else {
         res.render('clarity-info', {user})
     }
+}
+)
+router.get('/clarity2', checkAuthenticated, (req, res) => {
+    let user = req.user
+    if(!user) {
+        onAuthStateChanged(auth, user => {
+            if(user) {
+                res.render('clarity2', {user})
+            }else {
+                req.flash('errorsMsg', 'No está autorizado, por favor ingrese o regístrese')
+                res.redirect('/login')
+            }
+        }) 
+    }else {
+        res.render('clarity2', {user})
+    }
 })
 
 router.get('/about', checkAuthenticated, (req, res) => {
@@ -186,6 +202,22 @@ router.get('/eva', checkAuthenticated, (req, res) => {
     }
 })
 
+router.get('/eva2', checkAuthenticated, (req, res) => {
+    let user = req.user
+    if(!user) {
+        onAuthStateChanged(auth, user => {
+            if(user) {
+                res.render('eva2', {user})
+            }else {
+                req.flash('errorsMsg', 'No está autorizado, por favor ingrese o regístrese')
+                res.redirect('/login')
+            }
+        }) 
+    }else {
+        res.render('eva2', {user})
+    }
+})
+
 router.get('/politics', checkAuthenticated, (req, res) => {
     let user = req.user
     if(!user) {
@@ -245,7 +277,6 @@ router.post('/signup', async (req, res) => {
     const errors = []
     const pass = await user.encryptPassword(password)
     const verifyUser = await user.getUser(req.body.email)
-    console.log(errors);
 
     if (verifyUser != null) {
         errors.push({ text: 'El email se encuentra registrado' })
@@ -256,10 +287,8 @@ router.post('/signup', async (req, res) => {
         createUserWithEmailAndPassword(auth, email, password)
         .then(data => {
             uid = data.user.uid
-            return data.user.getIdToken()
-        })
-        .then(token => {
-            tokenId = token
+            // tokenId = await data.user.getIdToken()
+            console.log(uid);
             if(errors.length <= 0) {
                 user.addUser({ name, email, pass, phone, id: uid })
                 req.flash('successMsg', 'Usuario añadido')
@@ -330,7 +359,7 @@ router.get('/logout', (req, res) => {
         signOut(auth)
         res.clearCookie('session-token')
         req.logout()
-        res.redirect('/')
+        return res.redirect('/')
     } catch (error) {
         console.log(error);
     }
@@ -356,10 +385,11 @@ function checkAuthenticated(req, res, next){
               next();
           })
           .catch(err=>{
-            req.flash('errorsMsg', 'No está autorizado, por favor ingrese o regístrese')
-            return res.redirect('/login')
-          })
-    }else {
+              req.flash('errorsMsg', 'No está autorizado, por favor ingrese o regístrese')
+              next()
+              return res.redirect('/login')
+            })
+    } else {
         next()
     }
 

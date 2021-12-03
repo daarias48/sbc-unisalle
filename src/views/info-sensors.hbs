@@ -11,14 +11,14 @@
             <a href="/modulair-pm">
                 <img src="/imgs/modulairpm.jpeg" alt="ModulairPM"
                     title="ModulairPM">
-                ModulairPM
+                Modulair1
             </a>
         </div>
         <div class="div-img">
             <a href="/modulair-pm2">
                 <img src="/imgs/modulairpm2.jpeg" alt="ModulairPM2"
                     title="ModulairPM2">
-                ModulairPM2
+                Modulair2
             </a>
         </div>
         <div class="div-img">
@@ -32,17 +32,31 @@
             <a href="/clarity">
                 <img src="/imgs/clarity.jpeg"
                     alt="Clarity" title="Clarity">
-                Clarity
+                Clarity1
+            </a>
+        </div>
+        <div class="div-img">
+            <a href="/clarity2">
+                <img src="/imgs/clarity.jpeg"
+                    alt="Clarity2" title="Clarity2">
+                Clarity2
             </a>
         </div>
         <div class="div-img">
             <a href="/eva">
                 <img src="/imgs/eva.jpeg"
                     alt="Eva" title="Eva">
-                Eva
+                Eva1
             </a>
         </div>
         <div class="div-img">
+            <a href="/eva2">
+                <img src="/imgs/eva.jpeg"
+                    alt="Eva2" title="Eva2">
+                Eva2
+            </a>
+        </div>
+        {{!-- <div class="div-img">
             <a href="/plantower">
                 <img src="/imgs/plantower.jpeg"
                     alt="Plantower 1" title="Plantower 1">
@@ -54,17 +68,61 @@
                 <img src="/imgs/mhz-sensor.jpeg" alt="mhz" title="MHZ">
                 MHZ
             </a>
-        </div>
+        </div> --}}
     </div>
 </section>
-{{!-- <div class="container-map-ica">
-      <div id="map"></div>
-      <div class="container-ica">
-        <img src="/imgs/indices.png" alt="Indices de la calidad del aire">
+<div class="container-map-ica">
+    <div id="map"></div>
+    <div class="container-ica">
+        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="/imgs/indices.png" alt="Indices de la calidad del aire" title="Índice de la calidad de aire..."></a>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Índice de calidad del aire ICA</h5>
+      </div>
+      <div class="modal-body">
+        El Índice de calidad del aire (ICA) es un valor asociado a un código de colores para reportar el estado de la calidad del aire al que están asociados unos efectos generales que deben ser tenidos en cuenta para reducir la exposición a altas concentraciones de contaminantes por parte de la población" (IDEAM, s.f).
+        <br>
+        Rangos:
+        <br>
+        <span style="display: inline-block; color: #000; padding: 2px 5px; background-color: #39c227;">Buena: </span>La
+        contaminación atmosférica supone un riesgo bajo para la salud.
+        <br>
+        <br>
+        <span style="display: inline-block; color: #000; padding: 2px 5px; background-color: #fcc438;" >Moderado: </span>Posibles síntomas respiratorios en grupos poblacionales sensibles.
+        <br>
+        <br>
+        <span style="display: inline-block; color: #000; padding: 2px 5px; background-color: #EF8D22;">Insalubre para grupos
+          sensibles: </span>las personas que pertenecen a grupos sensibles pueden experimentar efectos en su salud. Esto significa que se ven afectadas a niveles más bajos que el público en general. Por ejemplo, las personas que padecen de enfermedades pulmonares o coronarias.
+        <br>
+        <br>
+        <span style="display: inline-block; color: #000; padding: 2px 5px; background-color: #f00; color: #fff;">Insalubre: </span>Todos los
+        individuos pueden comenzar a
+        experimentar efectos sobre la salud. Los grupos
+        sensibles pueden experimentar efectos más
+        graves para la salud
+        <br>
+        <br>
+        <span style="display: inline-block; color: #000; padding: 2px 5px; background-color: #834187; color: #fff;">Muy insalubre: </span>Estado de alerta que significa que todos pueden experimentar efectos más graves para la salud.
+        <br>
+        <br>
+        <span style="display: inline-block; color: #000; padding: 2px 5px; background-color: #754106; color: #fff;">Peligroso: </span>Advertencia sanitaria. Toda la población puede presentar efectos graves en la salud. 
+
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
       </div>
     </div>
+  </div>
+</div>
 
 <script type="module" src="js/googleMaps.js"></script>
 <script async
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDeawHKlf1NBvPDIUer0sYDxn7WrIIL3ag&callback=initMap">
-  </script> --}}
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDeawHKlf1NBvPDIUer0sYDxn7WrIIL3ag">
+  </script>

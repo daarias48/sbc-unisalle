@@ -37,7 +37,7 @@ let clarity = []
 const allDates = []
 
 const dbRef = getDatabase();
-const commentsRef = ref(dbRef, 'sensors/clarity')
+const commentsRef = ref(dbRef, 'sensors/clarity2')
 onChildAdded(commentsRef, (data) => {
     clarity = data.val()
     temp.innerHTML = `${clarity.temperature} °C`
@@ -50,6 +50,7 @@ onChildAdded(commentsRef, (data) => {
     hour.innerHTML = clarity.hour
     model.innerHTML = clarity.model
     idClarity.innerHTML = clarity.deviceID
+    signal.innerHTML = clarity.signal
     battery.innerHTML = clarity.storage
     comunication.innerHTML = clarity.comunication
     maker.innerHTML = clarity.maker
@@ -75,8 +76,8 @@ var myChart = new Chart(ctx, {
         datasets: [{
             label: `Temperatura interna °C`,
             data: [],
-            backgroundColor: '#0a3356',
-            borderColor: '#0056b4',
+            backgroundColor: 'rgb(255, 0, 0)',
+            borderColor: 'rgb(255, 255, 255)',
             tension: 0
         }]
     },
@@ -87,7 +88,7 @@ var myChart = new Chart(ctx, {
                 labels: {
                     boxWidth: 15,
                     font: { size: 30 },
-                    color: '#000'
+                    color: '#fff'
                 }
             },
             tooltips: {
@@ -97,7 +98,7 @@ var myChart = new Chart(ctx, {
         },
         elements: {
             line: {
-                borderWidth: 1,
+                borderWidth: 2,
             },
             point: {
                 radius: 3,
@@ -109,13 +110,13 @@ var myChart = new Chart(ctx, {
             y: {
                 beginAtZero: false,
                 ticks: {
-                    color: '#000'
+                    color: '#fff'
                 }
             },
             x: {
                 grid: { display: false },
                 ticks: {
-                    color: '#000'
+                    color: '#fff'
                 }
             }
         },
@@ -131,7 +132,7 @@ var myChart = new Chart(ctx, {
 
 let datesReduced = []
 
-const reference = ref(dbRef, 'sensors/clarity')
+const reference = ref(dbRef, 'sensors/clarity2')
 onValue(reference, (snap) => {
     const data = snap.val()
     for (const key in data) {
@@ -152,8 +153,11 @@ onValue(reference, (snap) => {
     const no2 = allNO2.reverse().filter((el, i) => i < 20).reverse()
     const rh = allRh.reverse().filter((el, i) => i < 20).reverse()
     const pm1Mass = allPm1Mass.reverse().filter((el, i) => i < 20).reverse()
+    const pm1Num = allPm1Num.reverse().filter((el, i) => i < 20).reverse()
     const pm10Mass = allPm10Mass.reverse().filter((el, i) => i < 20).reverse()
+    const pm10Num = allPm10Num.reverse().filter((el, i) => i < 20).reverse()
     const pm25Mass = allPm25Mass.reverse().filter((el, i) => i < 20).reverse()
+    const pm25Num = allPm25Num.reverse().filter((el, i) => i < 20).reverse()
     datesReduced = allDates.reverse().filter((el, i) => i < 20).reverse()
     const dates = myDates(datesReduced)
     inputDatesClarity.innerHTML = `Fecha: ${dates}`

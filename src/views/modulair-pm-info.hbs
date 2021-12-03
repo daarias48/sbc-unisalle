@@ -1,9 +1,9 @@
-<h1 class="sensor-title">Sensor ModulairPM</h1>
+<h1 class="sensor-title"><b>Sensor ModulairPM</b></h1>
 <p class="p-dates"></p>
 <div class="graph-sensors">
     <div class="mySensors">
         <div class="a-sensors">
-            <a href="/modulair-pm">ModulairPM</a>
+            <a href="/modulair-pm">ModulairPM1</a>
         </div>
         <div class="a-sensors">
             <a href="/modulair-pm2">ModulairPM2</a>
@@ -12,23 +12,29 @@
             <a href="/nuboair">Nuboair</a>
         </div>
         <div class="a-sensors">
-            <a href="/clarity">Clarity</a>
+            <a href="/clarity">Clarity1</a>
         </div>
         <div class="a-sensors">
-            <a href="/eva">Eva</a>
+            <a href="/clarity2">Clarity2</a>
         </div>
         <div class="a-sensors">
+            <a href="/eva">Eva1</a>
+        </div>
+        <div class="a-sensors">
+            <a href="/eva2">Eva2</a>
+        </div>
+        {{!-- <div class="a-sensors">
             <a href="/plantower">Plantower</a>
         </div>
         <div class="a-sensors">
             <a href="/mhz">MHZ19C</a>
-        </div>
+        </div> --}}
     </div>
     <div class="graph">
         <div class="comBox-container">
             <select name="measures" class="select-measures">
-                <option value="0">Temperatura</option>
-                <option value="1">RH</option>
+                <option value="0">Temperatura interna</option>
+                <option value="1">RH interna</option>
                 <option value="2">PM1</option>
                 <option value="3">PM10</option>
                 <option value="4">PM2.5</option>
@@ -53,13 +59,13 @@
                 </thead>
                 <tbody class=" table" style="color: #fff;">
                     <tr class="table-active">
-                        <th scope="row">Temperatura</th>
+                        <th scope="row">Temperatura interna</th>
                         <td id="temp">
 
                         </td>
                     </tr>
                     <tr class="table-active">
-                        <th scope="row">Humedad relativa (RH)</th>
+                        <th scope="row">Humedad relativa (RH) interna</th>
                         <td id="rh">
 
                         </td>
@@ -116,39 +122,27 @@
                         </td>
                     </tr>
                     <tr class="table-active">
-                        <th scope="row">Descripción</th>
-                        <td id="description">
-
+                        <th scope="row">ID dispositivo</th>
+                        <td id="idModulair">
+                    
                         </td>
                     </tr>
                     <tr class="table-active">
-                        <th scope="row">País</th>
-                        <td id="country">
-
+                        <th scope="row">Fuente de alimentación</th>
+                        <td id="storage">
+                    
                         </td>
                     </tr>
                     <tr class="table-active">
-                        <th scope="row">Ciudad</th>
-                        <td id="city">
-
+                        <th scope="row">Comunicación</th>
+                        <td id="comunication">
+                    
                         </td>
                     </tr>
                     <tr class="table-active">
-                        <th scope="row">Status</th>
-                        <td id="status">
-
-                        </td>
-                    </tr>
-                    <tr class="table-active">
-                        <th scope="row">Número serial</th>
-                        <td id="n-serie">
-
-                        </td>
-                    </tr>
-                    <tr class="table-active">
-                        <th scope="row">Batería</th>
-                        <td>
-                            NA
+                        <th scope="row">Fabricante</th>
+                        <td id="maker">
+                    
                         </td>
                     </tr>
                 </tbody>

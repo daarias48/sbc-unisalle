@@ -9,8 +9,8 @@ const nuboairObj = (data, info) => {
     
     return nuboair = {
         id: id,
-        rh: data.RH.toFixed(1),
-        temperature: data.T.toFixed(1),
+        rh: data.RH.toFixed(0),
+        temperature: data.T.toFixed(0),
         pm25: data.PM2p5.toFixed(2),
         pm10: data.PM1p0.toFixed(2),
         pressure: data.AtmosphericPressure.toFixed(2),
@@ -19,6 +19,10 @@ const nuboairObj = (data, info) => {
         deviceName: info.deviceName,
         date: date,
         hour: hourFormat,
+        'storage': 'Panel solar',
+        'maker': 'Sensirion',
+        'comunication': 'Celular 2G',
+        'model' : 'NuboAir'
     }
 }
 

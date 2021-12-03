@@ -32,41 +32,52 @@ const pushingModulair = async () => {
     const dataEva = await eva.getDataEva(apis.urlDataEva)
     const infoEva = await eva.getInfoEva(apis.urlInfoEva)
 
+    const dataEva2 = await eva.getDataEva(apis.urlDataEva2)
+    const infoEva2 = await eva.getInfoEva(apis.urlInfoEva2)
+
     const collectionEva = evaObj(dataEva, infoEva)
+    const collectionEva2 = evaObj(dataEva2, infoEva2)
     const collectionModulair = modulairObj(dataModulair, infoModulair)
     const collectionModulair2 = modulairObj(dataModulair2, infoModulair2)
-    
 
-    try {
-        db.ref('sensors/eva').orderByChild('id').equalTo(collectionEva.id).once('value', (snapshot) =>{
-            if(!snapshot.exists()) db.ref('sensors/eva').push(collectionEva)            
-        })
-    } catch (error) {
-        console.log(error);
-    }
+    
+    db.ref('sensors/eva').orderByChild('id').equalTo(collectionEva.id).once('value', (snapshot) =>{
+        if(!snapshot.exists()) db.ref('sensors/eva').push(collectionEva)            
+    })
+    db.ref('sensors/eva2').orderByChild('id').equalTo(collectionEva2.id).once('value', (snapshot) =>{
+        if(!snapshot.exists()) db.ref('sensors/eva2').push(collectionEva2)            
+    })
     db.ref('sensors/modulairPm').orderByChild('id').equalTo(collectionModulair.id).once('value', (snapshot) =>{
         if(!snapshot.exists()) db.ref('sensors/modulairPm').push(collectionModulair)            
     })
     db.ref('sensors/modulairPm2').orderByChild('id').equalTo(collectionModulair2.id).once('value', (snapshot) =>{
         if(!snapshot.exists()) db.ref('sensors/modulairPm2').push(collectionModulair2)            
     })
+    
 }
 
 const pushingClarity = async () => {
     const dataClarity = await claritySensor.getDataClarity(apis.urlDataClarity)
     const infoClarity = await claritySensor.getInfoClarity(apis.urlInfoClarity)
 
+    const dataClarity2 = await claritySensor.getDataClarity(apis.urlDataClarity2)
+    const infoClarity2 = await claritySensor.getInfoClarity(apis.urlInfoClarity2)
+
     const dataNuboair = await nuboair.getDataNubo(apis.urlDataNuboair)
     const infoNuboair = await nuboair.getDataNubo(apis.urlInfoNuboair)
 
     const collectionNuboair = nuboairObj(dataNuboair, infoNuboair)
     const collectionClarity = clarityObj(dataClarity, infoClarity)
+    const collectionClarity2 = clarityObj(dataClarity2, infoClarity2)
 
     db.ref('sensors/nuboair').orderByChild('id').equalTo(collectionNuboair.id).once('value', (snapshot) =>{
         if(!snapshot.exists()) db.ref('sensors/nuboair').push(collectionNuboair)            
     })
     db.ref('sensors/clarity').orderByChild('id').equalTo(collectionClarity.id).once('value', (snapshot) =>{
         if(!snapshot.exists()) db.ref('sensors/clarity').push(collectionClarity)            
+    })
+    db.ref('sensors/clarity2').orderByChild('id').equalTo(collectionClarity2.id).once('value', (snapshot) =>{
+        if(!snapshot.exists()) db.ref('sensors/clarity2').push(collectionClarity2)            
     })
 
 }
