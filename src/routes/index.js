@@ -23,6 +23,7 @@ const {
 } = require('../config/firebase-config')
 
 const user = new User()
+const provider = new GoogleAuthProvider()
 const auth = getAuth()
 
 router.get('/', (req, res) => {
@@ -341,7 +342,7 @@ router.post('/googleLogin', (req, res) => {
     async function verify() {
         const ticket = await client.verifyIdToken({
             idToken: token,
-            audience: CLIENT_ID,  // Specify the CLIENT_ID of the app that accesses the backend
+            audience: CLIENT_ID, 
         });
         const payload = ticket.getPayload();
         const userid = payload['sub'];
@@ -356,8 +357,8 @@ router.post('/googleLogin', (req, res) => {
 
 router.get('/logout', (req, res) => {
     try {
-        signOut(auth)
         res.clearCookie('session-token')
+        signOut(auth)
         req.logout()
         return res.redirect('/')
     } catch (error) {

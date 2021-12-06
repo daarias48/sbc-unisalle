@@ -39,14 +39,17 @@ const pushingModulair = async () => {
     const collectionEva2 = evaObj(dataEva2, infoEva2)
     const collectionModulair = modulairObj(dataModulair, infoModulair)
     const collectionModulair2 = modulairObj(dataModulair2, infoModulair2)
-
     
-    db.ref('sensors/eva').orderByChild('id').equalTo(collectionEva.id).once('value', (snapshot) =>{
-        if(!snapshot.exists()) db.ref('sensors/eva').push(collectionEva)            
-    })
-    db.ref('sensors/eva2').orderByChild('id').equalTo(collectionEva2.id).once('value', (snapshot) =>{
-        if(!snapshot.exists()) db.ref('sensors/eva2').push(collectionEva2)            
-    })
+    try {
+        db.ref('sensors/eva').orderByChild('id').equalTo(collectionEva.id).once('value', (snapshot) =>{
+            if(!snapshot.exists()) db.ref('sensors/eva').push(collectionEva)            
+        })
+        db.ref('sensors/eva2').orderByChild('id').equalTo(collectionEva2.id).once('value', (snapshot) =>{
+            if(!snapshot.exists()) db.ref('sensors/eva2').push(collectionEva2)            
+        })
+    } catch (error) {
+        console.log(error);
+    }
     db.ref('sensors/modulairPm').orderByChild('id').equalTo(collectionModulair.id).once('value', (snapshot) =>{
         if(!snapshot.exists()) db.ref('sensors/modulairPm').push(collectionModulair)            
     })
