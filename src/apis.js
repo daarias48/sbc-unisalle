@@ -13,6 +13,7 @@ const apis = {
     'urlDataEva' : "https://makesens.aws.thinger.io/v1/users/MakeSens/buckets/BE2_00001/data?items=1",
     'urlInfoEva2' : "https://makesens.aws.thinger.io/v1/users/MakeSens/devices/E2_00002",
     'urlDataEva2' : "https://makesens.aws.thinger.io/v1/users/MakeSens/buckets/BE2_00002/data?items=1",
+    'urlDataPurpleair': "https://www.purpleair.com/json?key=NMXWHM1VZE35VWJM&show=105096",   
     'api_keyModulair' : "Y25LI6BNJQ4YPGGHXM0GT08M",
     'api_keyEva' : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJUT0tFTl9TQUxMRSIsInVzciI6Ik1ha2VTZW5zIn0.Qmw4E8_2yqf29nWq9qj5YtcjwT0NpzDYTHdLezq4xPY",
     'api_keyClarity' : "O67ZARLVyFiTnxx3Q8USbpy8iBenoCmD7DsT6oW6",

@@ -35,25 +35,25 @@ const storage = document.getElementById('storage');
 const comunication = document.getElementById('comunication');
 const maker = document.getElementById('maker');
 
-let airlink = []
+let purpleair = []
 const allDates = []
 
 const dbRef = getDatabase();
-const commentsRef = ref(dbRef, 'sensors/airlink')
+const commentsRef = ref(dbRef, 'sensors/purpleair')
 onChildAdded(commentsRef, (data) => {
-    airlink = data.val()
-    temp.innerHTML = `${airlink.temp} °C`
-    rh.innerHTML = `${airlink.rh} (%)`
-    pm1_1.innerHTML = `${airlink.pm_1} µg/m3`
-    pm10_1.innerHTML = `${airlink.pm_10} µg/m3`
-    pm25_1.innerHTML = `${airlink.pm_25} µg/m3`
-    date.innerHTML = airlink.date
-    hour.innerHTML = airlink.hour
-    device.innerHTML = airlink.device
-    deviceName.innerHTML = airlink.model
-    storage.innerHTML = airlink.storage
-    comunication.innerHTML = airlink.comunication
-    maker.innerHTML = airlink.marker
+    purpleair = data.val()
+    temp.innerHTML = `${purpleair.tempe} °C`
+    rh.innerHTML = `${purpleair.rh} (%)`
+    pm1_1.innerHTML = `${purpleair.pm1} µg/m3`
+    pm10_1.innerHTML = `${purpleair.pm10} µg/m3`
+    pm25_1.innerHTML = `${purpleair.pm25} µg/m3`
+    date.innerHTML = purpleair.date
+    hour.innerHTML = purpleair.hour
+    device.innerHTML = purpleair.device
+    deviceName.innerHTML = purpleair.model
+    storage.innerHTML = purpleair.storage
+    comunication.innerHTML = purpleair.comunication
+    maker.innerHTML = purpleair.maker
 
 }, {
     onlyOn: true
@@ -128,17 +128,17 @@ var myChart = new Chart(ctx, {
 
 let datesReduced = []
 
-const reference = ref(dbRef, 'sensors/airlink')
+const reference = ref(dbRef, 'sensors/purpleair')
 onValue(reference, (snap) => {
     const data = snap.val()
     for (const key in data) {
         allDates.push(data[key].date)
         allHours.push(data[key].hour)
-        allTemperatures.push(data[key].temp)
+        allTemperatures.push(data[key].tempe)
         allRh.push(data[key].rh)
-        allPm1.push(data[key].pm_1)
-        allPm10.push(data[key].pm_10)
-        allPm25.push(data[key].pm_25)
+        allPm1.push(data[key].pm1)
+        allPm10.push(data[key].pm10)
+        allPm25.push(data[key].pm25)
     }
     const hour = allHours.reverse().filter((el, i) => i < 20).reverse()
     const temperature = allTemperatures.reverse().filter((el, i) => i < 20).reverse()

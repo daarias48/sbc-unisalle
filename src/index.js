@@ -11,12 +11,15 @@ const clarityObj = require('./Clarity')
 const nuboairObj = require('./Nuboair')
 const evaObj = require('./Eva')
 const airlinkObj = require('./Airlink')
+const purpleairObj = require('./Purpleair');
+
 
 const modulairPMTest = new MySensor(apis.api_keyModulair)
 const claritySensor = new MySensor(apis.api_keyClarity)
 const nuboair = new MySensor(apis.api_keyNuboair)
 const eva = new MySensor(apis.api_keyEva)
 const airlink = new MySensor(apis.api_keyAirlink)
+const purpleair = new MySensor(apis.urlDataPurpleair)
 
 const db = admin.database()
 app.listen(app.get('port'))
@@ -38,11 +41,14 @@ const pushingModulair = async () => {
 
     const dataAirlink = await airlink.getDataAirlink()
 
+    const dataPurpleair = await purpleair.getDataPurpleair()
+
     const collectionAirlink = airlinkObj(dataAirlink)
     const collectionEva = evaObj(dataEva, infoEva)
     const collectionEva2 = evaObj(dataEva2, infoEva2)
     const collectionModulair = modulairObj(dataModulair, infoModulair)
     const collectionModulair2 = modulairObj(dataModulair2, infoModulair2)
+    const collectionPurpleair = purpleairObj(dataPurpleair)
     
     try {
         db.ref('sensors/eva').orderByChild('id').equalTo(collectionEva.id).once('value', (snapshot) =>{
@@ -63,7 +69,9 @@ const pushingModulair = async () => {
     db.ref('sensors/airlink').orderByChild('id').equalTo(collectionAirlink.id).once('value', (snapshot) => {
         if(!snapshot.exists()) db.ref('sensors/airlink').push(collectionAirlink)
     })
-    
+    db.ref('sensors/purpleair').orderByChild('id').equalTo(collectionPurpleair.id).once('value',(snapshot) => {
+        if(!snapshot.exists()) db.ref('sensors/purpleair').push(collectionPurpleair)
+    })
 }
 
 const pushingClarity = async () => {

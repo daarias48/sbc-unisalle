@@ -3,7 +3,8 @@ const airlinkSensor = (data) => {
     const format = new Date(objDate = new Date())
     const dateFormat = format.toLocaleString('es-MX', { timeZone: 'America/Guayaquil' }).split(' ')
     const date = dateFormat[0]
-    const hour = dateFormat[1]
+    const hourFormat = dateFormat[1].split(':')
+    const hour = `${hourFormat[0]}:${hourFormat[1]}`
 
     return sensor = {
         id: data.ts,
@@ -18,6 +19,8 @@ const airlinkSensor = (data) => {
         marker: 'Davis',
         model: 'Airlink',
         comunication: 'Wifi',
+        device: '464838'
+        
     }
 }
 
