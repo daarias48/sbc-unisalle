@@ -50,7 +50,6 @@ onChildAdded(commentsRef, (data) => {
     hour.innerHTML = clarity.hour
     model.innerHTML = clarity.model
     idClarity.innerHTML = clarity.deviceID
-    signal.innerHTML = clarity.signal
     battery.innerHTML = clarity.storage
     comunication.innerHTML = clarity.comunication
     maker.innerHTML = clarity.maker
@@ -76,8 +75,8 @@ var myChart = new Chart(ctx, {
         datasets: [{
             label: `Temperatura interna °C`,
             data: [],
-            backgroundColor: 'rgb(255, 0, 0)',
-            borderColor: 'rgb(255, 255, 255)',
+            backgroundColor: '#0a3356',
+            borderColor: '#0056b4',
             tension: 0
         }]
     },
@@ -88,7 +87,7 @@ var myChart = new Chart(ctx, {
                 labels: {
                     boxWidth: 15,
                     font: { size: 30 },
-                    color: '#fff'
+                    color: '#000'
                 }
             },
             tooltips: {
@@ -98,7 +97,7 @@ var myChart = new Chart(ctx, {
         },
         elements: {
             line: {
-                borderWidth: 2,
+                borderWidth: 1,
             },
             point: {
                 radius: 3,
@@ -110,13 +109,13 @@ var myChart = new Chart(ctx, {
             y: {
                 beginAtZero: false,
                 ticks: {
-                    color: '#fff'
+                    color: '#000'
                 }
             },
             x: {
                 grid: { display: false },
                 ticks: {
-                    color: '#fff'
+                    color: '#000'
                 }
             }
         },

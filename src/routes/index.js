@@ -219,6 +219,22 @@ router.get('/eva2', checkAuthenticated, (req, res) => {
     }
 })
 
+router.get('/airlink', checkAuthenticated, (req, res) => {
+    let user = req.user
+    if(!user) {
+        onAuthStateChanged(auth, user => {
+            if(user) {
+                res.render('airlink', {user})
+            }else {
+                req.flash('errorsMsg', 'No está autorizado, por favor ingrese o regístrese')
+                res.redirect('/login')
+            }
+        }) 
+    }else {
+        res.render('airlink', {user})
+    }
+})
+
 router.get('/politics', checkAuthenticated, (req, res) => {
     let user = req.user
     if(!user) {

@@ -20,8 +20,8 @@ initializeApp(firebaseConfig);
 let marker
 function initMap() {
   const coords = {
-    lat: 4.7499,
-    lng: -74.0333
+    lat: 4.669949261019475,
+    lng: -74.14294091700103
   }
 
   map = new google.maps.Map(document.getElementById("map"), {
@@ -50,11 +50,11 @@ function initMap() {
       }
       let color
       if(ica >= 0 && ica <= 50) color = '#39c227'
-      if(ica >= 51 && ica <= 100) color = '#fcc438'
-      if(ica >= 101 && ica <= 150) color = '#EF8D22'
-      if(ica >= 151 && ica <= 200) color = '#f00'
-      if(ica >= 201 && ica <= 300) color = '#834187'
-      if(ica >= 301 && ica <= 500) color = '#754106'
+      if(ica > 50 && ica <= 100) color = '#fcc438'
+      if(ica > 100 && ica <= 150) color = '#EF8D22'
+      if(ica > 150 && ica <= 200) color = '#f00'
+      if(ica > 200 && ica <= 300) color = '#834187'
+      if(ica > 300 && ica <= 500) color = '#754106'
 
       const info =
         '<div id="content">' +

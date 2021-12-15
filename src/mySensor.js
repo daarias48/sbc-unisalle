@@ -1,4 +1,6 @@
 const fetch = require('node-fetch')
+const crypto = require('crypto')
+
 class MySensor {
     constructor(api_key) {
         this.api_key = api_key
@@ -139,6 +141,30 @@ class MySensor {
         } catch (error) {
             console.log('Error:', error);
         }
+    }
+
+    getDataAirlink() {
+        let t = Math.floor(Date.now() / 1000);
+        let station_id = 124147;
+        let api_signature = "api-key" + this.api_key + "station-id" + station_id + "t" + t;
+        let api_key_secret = "binv0mrymunydaysoirnp3zsk8997hgp";
+        let hmac = crypto.createHmac('sha256', api_key_secret);
+        let data = hmac.update(api_signature);
+        //Creating the hmac in the required format
+        let gen_hmac = data.digest('hex');
+
+        const url ="https://api.weatherlink.com/v2/current/"+station_id+"?api-key="+this.api_key+"&t="+t+"&api-signature="+gen_hmac;
+        const headers = {
+            "Content-Type": "application/json",
+        }
+
+        return fetch(url, {
+            methods: 'GET',
+            headers,
+        })
+        .then(data => data.json())
+        .then(res => res.sensors[0].data[0])
+        .catch(err => console.log('Error', err))
     }
 }
 

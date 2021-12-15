@@ -17,6 +17,7 @@ const apis = {
     'api_keyEva' : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJUT0tFTl9TQUxMRSIsInVzciI6Ik1ha2VTZW5zIn0.Qmw4E8_2yqf29nWq9qj5YtcjwT0NpzDYTHdLezq4xPY",
     'api_keyClarity' : "O67ZARLVyFiTnxx3Q8USbpy8iBenoCmD7DsT6oW6",
     'api_keyNuboair' : "d76ljq9Nr9C6PCoAJxZWk2cLSIxCen8AN6v+tDULCKI=",
+    'api_keyAirlink': "p2aqlokszlu2yzhw8glo2sb6otgcq4ry",
     'urlTest' : "https://api.quant-aq.com/device-api/v1/devices/MOD-PM-00053/data/",
 }
 
