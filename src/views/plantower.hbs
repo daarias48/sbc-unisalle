@@ -1,132 +1,160 @@
+<h1 class="sensor-title"><b>Sensor Plantower1</b></h1>
+<p class="p-dates"></p>
 <div class="graph-sensors">
     <div class="mySensors">
         <div class="a-sensors">
-            <a href="/modulair-pm">ModulairPM</a>
+            <a href="/airlink">Airlink</a>
         </div>
         <div class="a-sensors">
-            <a href="/modulair-pm2">ModulairPM2</a>
+            <a href="/modulair-pm">Modulair1</a>
+        </div>
+        <div class="a-sensors">
+            <a href="/modulair-pm2">Modulair2</a>
         </div>
         <div class="a-sensors">
             <a href="/nuboair">Nuboair</a>
         </div>
         <div class="a-sensors">
-            <a href="/clarity">Clarity</a>
+            <a href="/clarity">Clarity1</a>
         </div>
         <div class="a-sensors">
-            <a href="/eva">Eva</a>
+            <a href="/clarity2">Clarity2</a>
         </div>
         <div class="a-sensors">
+            <a href="/eva">Eva1</a>
+        </div>
+        <div class="a-sensors">
+            <a href="/eva2">Eva2</a>
+        </div>
+        <div class="a-sensors">
+            <a href="/purpleair">PurpleAir</a>
+        </div>
+        <div class="a-sensors">
+            <a href="/plantower">Plantower1</a>
+        </div>
+
+        {{!-- <div class="a-sensors">
             <a href="/plantower">Plantower</a>
         </div>
         <div class="a-sensors">
             <a href="/mhz">MHZ19C</a>
-        </div>
+        </div> --}}
     </div>
-
-    <div class="sensor-container">
-        <section class="sensorData">
-            <h2 class="titulo">Sensor Plantower 1</h2>
-            <div class="container-table">
-                <table class="table">
-                    <thead class="theadModul">
-                        <tr>
-                            <th scope="col">Tipo</th>
-                            <th scope="col">Información</th>
-                        </tr>
-                    </thead>
-                    <tbody class="table" style="color: #fff;">
-                        <tr class="table-active">
-                            <th scope="row">Temperatura</th>
-                            <td id="tempTower1">
-
-                            </td>
-                        </tr>
-                        <tr class="table-active">
-                            <th scope="row">Humedad</th>
-                            <td id="humTower1">
-
-                            </td>
-                        </tr>
-                        <tr class="table-active">
-                            <th scope="row">Fecha de muestreo</th>
-                            <td id="dateTower1">
-
-                            </td>
-                        </tr>
-                        <tr class="table-active">
-                            <th scope="row">PM1.0</th>
-                            <td id="pm1Tower1">
-
-                            </td>
-                        </tr>
-                        <tr class="table-active">
-                            <th scope="row">PM2.5</th>
-                            <td id="pm25Tower1">
-
-                            </td>
-                        </tr>
-                        <tr class="table-active">
-                            <th scope="row">PM10</th>
-                            <td id="pm10Tower1">
-
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-        <section class="sensorData">
-
-            <h2 class="titulo">Sensor Plantower 2</h2>
-            <div class="container-table">
-                <table class="table">
-                    <thead class="theadModul">
-                        <tr>
-                            <th scope="col">Tipo</th>
-                            <th scope="col">Información</th>
-                        </tr>
-                    </thead>
-                    <tbody class="table" style="color: #fff;">
-                        <tr class="table-active">
-                            <th scope="row">Temperatura</th>
-                            <td id="tempTower2">
-
-                            </td>
-                        </tr>
-                        <tr class="table-active">
-                            <th scope="row">Humedad</th>
-                            <td id="humTower2">
-
-                            </td>
-                        </tr>
-                        <tr class="table-active">
-                            <th scope="row">Fecha de muestreo</th>
-                            <td id="dateTower2">
-
-                            </td>
-                        </tr>
-                        <tr class="table-active">
-                            <th scope="row">PM1.0</th>
-                            <td id="pm1Tower2">
-
-                            </td>
-                        </tr>
-                        <tr class="table-active">
-                            <th scope="row">PM2.5</th>
-                            <td id="pm25Tower2">
-
-                            </td>
-                        </tr>
-                        <tr class="table-active">
-                            <th scope="row">PM10</th>
-                            <td id="pm10Tower2">
-
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
+    <div class="graph">
+        <div class="comBox-container">
+            <select name="measures" class="select-measures">
+                <option value="0">Temperatura interna</option>
+                <option value="1">RH interna</option>
+                <option value="2">PM1</option>
+                <option value="3">PM10</option>
+                <option value="4">PM2.5</option>
+            </select>
+        </div>
+        {{!-- <canvas id="myChartModulair"></canvas> --}}
+        <p class="p-hour">Hora HH:mm</p>
     </div>
 </div>
+<div class="sensor-container">
+    <section class="sensorData">
+        <h2 class="titulo">Datos en tiempo real</h2>
+        <h3 id="subtitle"></h3>
+        <div class="container-table">
+            <table class="table">
+                <thead class="theadModul">
+                    <tr>
+                        <th scope="col">Medida</th>
+                        <th scope="col">Valores</th>
+                    </tr>
+                </thead>
+                <tbody class=" table" style="color: #fff;">
+                    <tr class="table-active">
+                        <th scope="row">Temperatura interna</th>
+                        <td id="temp">
+
+                        </td>
+                    </tr>
+                    <tr class="table-active">
+                        <th scope="row">Humedad relativa (RH) interna</th>
+                        <td id="rh">
+
+                        </td>
+                    </tr>
+                    <tr class="table-active">
+                        <th scope="row">PM1</th>
+                        <td id="pm1">
+
+                        </td>
+                    </tr>
+                    <tr class="table-active">
+                        <th scope="row">PM10</th>
+                        <td id="pm10">
+
+                        </td>
+                    </tr>
+                    <tr class="table-active">
+                        <th scope="row">PM2.5</th>
+                        <td id="pm25">
+
+                        </td>
+                    </tr>
+                    <tr class="table-active">
+                        <th scope="row">Fecha de muestreo</th>
+                        <td id="date">
+
+                        </td>
+                    </tr>
+                    <tr class="table-active">
+                        <th scope="row">Hora de muestreo</th>
+                        <td id="hour">
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <section class="sectionInfo">
+        <h2 class="titulo">Información del sensor</h2>
+        <div class="container-table">
+            <table class="table">
+                <thead class="theadModul">
+                    <tr>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Información</th>
+                    </tr>
+                </thead>
+                <tbody class=" table" style="color: #fff;">
+                    <tr class="table-active">
+                        <th scope="row">Modelo</th>
+                        <td id="deviceName">
+                        </td>
+                    </tr>
+                    <tr class="table-active">
+                        <th scope="row">ID dispositivo</th>
+                        <td id="device">
+                        </td>
+                    </tr>
+                    <tr class="table-active">
+                        <th scope="row">Fuente de alimentación</th>
+                        <td id="storage">
+                        </td>
+                    </tr>
+                    <tr class="table-active">
+                        <th scope="row">Comunicación</th>
+                        <td id="comunication">
+
+                        </td>
+                    </tr>
+                    <tr class="table-active">
+                        <th scope="row">Fabricante</th>
+                        <td id="maker">
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>
+
 <script type="module" src="/js/plantower.js"></script>
