@@ -139,6 +139,66 @@ router.get('/plantower', checkAuthenticated, (req, res) => {
         res.render('plantower', {user})
     }
 })
+router.get('/plantower2', checkAuthenticated, (req, res) => {
+    let user = req.user
+    if(!user) {
+        onAuthStateChanged(auth, user => {
+            if(user) {
+                res.render('plantower2', {user})
+            }else {
+                req.flash('errorsMsg', 'No está autorizado, por favor ingrese o regístrese')
+                res.redirect('/login')
+            }
+        }) 
+    }else {
+        res.render('plantower2', {user})
+    }
+})
+router.get('/plantower3', checkAuthenticated, (req, res) => {
+    let user = req.user
+    if(!user) {
+        onAuthStateChanged(auth, user => {
+            if(user) {
+                res.render('plantower3', {user})
+            }else {
+                req.flash('errorsMsg', 'No está autorizado, por favor ingrese o regístrese')
+                res.redirect('/login')
+            }
+        }) 
+    }else {
+        res.render('plantower3', {user})
+    }
+})
+router.get('/plantower4', checkAuthenticated, (req, res) => {
+    let user = req.user
+    if(!user) {
+        onAuthStateChanged(auth, user => {
+            if(user) {
+                res.render('plantower4', {user})
+            }else {
+                req.flash('errorsMsg', 'No está autorizado, por favor ingrese o regístrese')
+                res.redirect('/login')
+            }
+        }) 
+    }else {
+        res.render('plantower4', {user})
+    }
+})
+router.get('/plantower5', checkAuthenticated, (req, res) => {
+    let user = req.user
+    if(!user) {
+        onAuthStateChanged(auth, user => {
+            if(user) {
+                res.render('plantower5', {user})
+            }else {
+                req.flash('errorsMsg', 'No está autorizado, por favor ingrese o regístrese')
+                res.redirect('/login')
+            }
+        }) 
+    }else {
+        res.render('plantower5', {user})
+    }
+})
 
 router.get('/mhz', checkAuthenticated, (req, res) => {
     let user = req.user

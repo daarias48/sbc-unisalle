@@ -32,7 +32,7 @@ const storage = document.getElementById('storage');
 const comunication = document.getElementById('comunication');
 const maker = document.getElementById('maker');
 
-const macPlantower1 = '10:52:1C:5E:18:44'
+const macPlantower1 = '94:B9:7E:D3:20:1C'
 const dates = []
 const rhs = []
 const temps = []

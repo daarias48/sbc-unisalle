@@ -29,7 +29,7 @@ console.log('Server on port', app.get('port'));
 const pushingModulair = async () => {
     const dataModulair = await modulairPMTest.getUpdateDataModulair(apis.urlDataModulair)
     const infoModulair = await modulairPMTest.getSensorInfoModulAir(apis.urlInfoModulair)
-    
+
     const dataModulair2 = await modulairPMTest.getUpdateDataModulair(apis.urlDataModulair2)
     const infoModulair2 = await modulairPMTest.getSensorInfoModulAir(apis.urlInfoModulair2)
 
@@ -49,28 +49,28 @@ const pushingModulair = async () => {
     const collectionModulair = modulairObj(dataModulair, infoModulair)
     const collectionModulair2 = modulairObj(dataModulair2, infoModulair2)
     const collectionPurpleair = purpleairObj(dataPurpleair)
-    
+
     try {
-        db.ref('sensors/eva').orderByChild('id').equalTo(collectionEva.id).once('value', (snapshot) =>{
-            if(!snapshot.exists()) db.ref('sensors/eva').push(collectionEva)            
+        db.ref('sensors/eva').orderByChild('id').equalTo(collectionEva.id).once('value', (snapshot) => {
+            if (!snapshot.exists()) db.ref('sensors/eva').push(collectionEva)
         })
-        db.ref('sensors/eva2').orderByChild('id').equalTo(collectionEva2.id).once('value', (snapshot) =>{
-            if(!snapshot.exists()) db.ref('sensors/eva2').push(collectionEva2)            
+        db.ref('sensors/eva2').orderByChild('id').equalTo(collectionEva2.id).once('value', (snapshot) => {
+            if (!snapshot.exists()) db.ref('sensors/eva2').push(collectionEva2)
         })
     } catch (error) {
         console.log(error);
     }
-    db.ref('sensors/modulairPm').orderByChild('id').equalTo(collectionModulair.id).once('value', (snapshot) =>{
-        if(!snapshot.exists()) db.ref('sensors/modulairPm').push(collectionModulair)            
+    db.ref('sensors/modulairPm').orderByChild('id').equalTo(collectionModulair.id).once('value', (snapshot) => {
+        if (!snapshot.exists()) db.ref('sensors/modulairPm').push(collectionModulair)
     })
-    db.ref('sensors/modulairPm2').orderByChild('id').equalTo(collectionModulair2.id).once('value', (snapshot) =>{
-        if(!snapshot.exists()) db.ref('sensors/modulairPm2').push(collectionModulair2)            
+    db.ref('sensors/modulairPm2').orderByChild('id').equalTo(collectionModulair2.id).once('value', (snapshot) => {
+        if (!snapshot.exists()) db.ref('sensors/modulairPm2').push(collectionModulair2)
     })
     db.ref('sensors/airlink').orderByChild('id').equalTo(collectionAirlink.id).once('value', (snapshot) => {
-        if(!snapshot.exists()) db.ref('sensors/airlink').push(collectionAirlink)
+        if (!snapshot.exists()) db.ref('sensors/airlink').push(collectionAirlink)
     })
-    db.ref('sensors/purpleair').orderByChild('id').equalTo(collectionPurpleair.id).once('value',(snapshot) => {
-        if(!snapshot.exists()) db.ref('sensors/purpleair').push(collectionPurpleair)
+    db.ref('sensors/purpleair').orderByChild('id').equalTo(collectionPurpleair.id).once('value', (snapshot) => {
+        if (!snapshot.exists()) db.ref('sensors/purpleair').push(collectionPurpleair)
     })
 }
 
@@ -87,15 +87,20 @@ const pushingClarity = async () => {
     const collectionNuboair = nuboairObj(dataNuboair, infoNuboair)
     const collectionClarity = clarityObj(dataClarity, infoClarity)
     const collectionClarity2 = clarityObj(dataClarity2, infoClarity2)
+    
+    try {
+        db.ref('sensors/nuboair').orderByChild('id').equalTo(collectionNuboair.id).once('value', (snapshot) => {
+            if (!snapshot.exists()) db.ref('sensors/nuboair').push(collectionNuboair)
+        })
 
-    db.ref('sensors/nuboair').orderByChild('id').equalTo(collectionNuboair.id).once('value', (snapshot) =>{
-        if(!snapshot.exists()) db.ref('sensors/nuboair').push(collectionNuboair)            
+    } catch (error) {
+        console.log(error)
+    }
+    db.ref('sensors/clarity').orderByChild('id').equalTo(collectionClarity.id).once('value', (snapshot) => {
+        if (!snapshot.exists()) db.ref('sensors/clarity').push(collectionClarity)
     })
-    db.ref('sensors/clarity').orderByChild('id').equalTo(collectionClarity.id).once('value', (snapshot) =>{
-        if(!snapshot.exists()) db.ref('sensors/clarity').push(collectionClarity)            
-    })
-    db.ref('sensors/clarity2').orderByChild('id').equalTo(collectionClarity2.id).once('value', (snapshot) =>{
-        if(!snapshot.exists()) db.ref('sensors/clarity2').push(collectionClarity2)            
+    db.ref('sensors/clarity2').orderByChild('id').equalTo(collectionClarity2.id).once('value', (snapshot) => {
+        if (!snapshot.exists()) db.ref('sensors/clarity2').push(collectionClarity2)
     })
 
 }
@@ -103,14 +108,14 @@ const pushingClarity = async () => {
 cron.schedule('*/30 * * * * *', () => {
     try {
         pushingModulair()
-    }catch(err) {
+    } catch (err) {
         console.log(err);
     }
 });
 cron.schedule('*/120 * * * * *', () => {
     try {
         pushingClarity()
-    }catch(err) {
+    } catch (err) {
         console.log(err);
     }
 });
