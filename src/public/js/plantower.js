@@ -18,6 +18,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig, "daniAPP");
 const dbRef = getDatabase(app);
 
+const inputDates = document.querySelector('.p-dates')
+
 const temp = document.getElementById('temp');
 const rh = document.getElementById('rh');
 const pm1_1 = document.getElementById('pm1');
@@ -146,7 +148,8 @@ onValue(myRef, data => {
 	const pm_1 = pm1.reverse().filter((el, i) => i < 20).reverse()
 	const pm_10 = pm10.reverse().filter((el, i) => i < 20).reverse()
 	const pm_25 = pm25.reverse().filter((el, i) => i < 20).reverse()
-
+    const fechasFilter = myDates(fechas)
+    inputDates.innerHTML = `Fecha: ${fechasFilter}`
 
 	measures.value = "0"
         myChart.data.datasets[0].data = temperatura
@@ -192,3 +195,14 @@ onValue(myRef, data => {
     }else console.log('no existe')
 })
 
+let myDates = (dates) => {
+    const datesReduced = dates.reduce((acc, el) => {
+        if(!acc[el]) acc[el] = el
+        return acc
+    }, {})
+    const datesFiltered = []
+    for(let date in datesReduced){
+        datesFiltered.push(datesReduced[date])
+    }
+    return datesFiltered.join(', ')
+}
