@@ -80,7 +80,7 @@ get(child(myRef, `plantower/${macPlantower2}`))
             pm1_1.innerHTML = `${pm1[pm1.length - 1].toFixed(2)} µg/m3`
             pm10_1.innerHTML = `${pm10[pm10.length - 1].toFixed(2)} µg/m3`
             pm25_1.innerHTML = `${pm25[pm25.length - 1].toFixed(2)} µg/m3`
-
+            
         }
         else console.log('no existe')
     })
