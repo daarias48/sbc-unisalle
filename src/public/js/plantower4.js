@@ -18,6 +18,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig, "daniAPP");
 const dbRef = getDatabase(app);
 
+const inputDates = document.querySelector('.p-dates')
+
 const temp = document.getElementById('temp');
 const rh = document.getElementById('rh');
 const pm1_1 = document.getElementById('pm1');
@@ -142,6 +144,7 @@ onValue(myRef, data => {
         pm10_1.innerHTML = `${pm10[pm10.length - 1].toFixed(2)} µg/m3`
         pm25_1.innerHTML = `${pm25[pm25.length - 1].toFixed(2)} µg/m3`
 
+<<<<<<< HEAD
         const temperatura = temps.reverse().filter((el, i) => i < 20).reverse()
         const humedad = rhs.reverse().filter((el, i) => i < 20).reverse()
         const horas = hours.reverse().filter((el, i) => i < 20).reverse()
@@ -149,6 +152,17 @@ onValue(myRef, data => {
         const pm_1 = pm1.reverse().filter((el, i) => i < 20).reverse()
         const pm_10 = pm10.reverse().filter((el, i) => i < 20).reverse()
         const pm_25 = pm25.reverse().filter((el, i) => i < 20).reverse()
+=======
+	const temperatura = temps.reverse().filter((el, i) => i < 20).reverse()
+	const humedad = rhs.reverse().filter((el, i) => i < 20).reverse()
+	const horas = hours.reverse().filter((el, i) => i < 20).reverse()
+	const fechas = datesFormat.reverse().filter((el, i) => i < 20).reverse()
+	const pm_1 = pm1.reverse().filter((el, i) => i < 20).reverse()
+	const pm_10 = pm10.reverse().filter((el, i) => i < 20).reverse()
+	const pm_25 = pm25.reverse().filter((el, i) => i < 20).reverse()
+    const fechasFilter = myDates(fechas)
+    inputDates.innerHTML = `Fecha: ${fechasFilter}`
+>>>>>>> 2e29d32bf3db76cde184de61526ff76a20d1a21a
 
         measures.value = "0"
         myChart.data.datasets[0].data = pm_25
@@ -191,5 +205,22 @@ onValue(myRef, data => {
                     break;
             }
         }
+<<<<<<< HEAD
     } else console.log('no existe')
 })
+=======
+	}else console.log('no existe')
+})
+
+let myDates = (dates) => {
+    const datesReduced = dates.reduce((acc, el) => {
+        if(!acc[el]) acc[el] = el
+        return acc
+    }, {})
+    const datesFiltered = []
+    for(let date in datesReduced){
+        datesFiltered.push(datesReduced[date])
+    }
+    return datesFiltered.join(', ')
+}
+>>>>>>> 2e29d32bf3db76cde184de61526ff76a20d1a21a
