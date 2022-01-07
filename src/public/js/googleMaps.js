@@ -16,7 +16,6 @@ var firebaseConfig = {
 // Initialize Firebase
 initializeApp(firebaseConfig);
 
-
 let marker
 function initMap() {
   const coords = {
@@ -64,8 +63,6 @@ function initMap() {
         '<h6 id="firstHeading" class="firstHeading">Datos en tiempo real</h6>' +
         '<div id="bodyContent">' +
         `<p style="display: inline-block; color: #000; padding: 2px 5px; background-color: ${color};">Índice de calidad de aire ICA: ${ica.toFixed(0)}  </p>` +
-        `<p>Temperatura: ${modulair.temperature} °C </p>` +
-        `<p>Humedad: ${modulair.temperature} (%) </p>` +
         `<p>PM1: ${modulair.pm1} µg/m3 </p>` +
         `<p>PM10: ${modulair.pm10} µg/m3 </p>` +
         `<p>PM2.5: ${modulair.pm25} µg/m3 </p>` +

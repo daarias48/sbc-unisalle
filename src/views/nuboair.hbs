@@ -40,11 +40,11 @@
     <div class="graph">
         <div class="comBox-container">
             <select name="measures" class="select-measures">
-                <option value="0">Temperatura ambiente</option>
-                <option value="1">RH externa</option>
-                <option value="2">Presión atm</option>
-                <option value="3">PM10</option>
-                <option value="4">PM2.5</option>
+                <option value="0">PM2.5</option>
+                <option value="1">PM1</option>
+                <option value="2">PM10</option>
+                <option value="3">Temperatura externa</option>
+                <option value="4">RH externa</option>
             </select>
         </div>
         <canvas id="myChartModulair"></canvas>
@@ -56,7 +56,7 @@
         <h2 class="titulo">Datos en tiempo real</h2>
         <h3 id="subtitle"></h3>
         <div class="container-table">
-            <table class="table" >
+            <table class="table">
                 <thead class="theadModul">
                     <tr>
                         <th scope="col">Medida</th>
@@ -142,19 +142,19 @@
                     <tr class="table-active">
                         <th scope="row">Fuente de alimentación</th>
                         <td id="storage">
-                    
+
                         </td>
                     </tr>
                     <tr class="table-active">
                         <th scope="row">Comunicación</th>
                         <td id="comunication">
-                    
+
                         </td>
                     </tr>
                     <tr class="table-active">
                         <th scope="row">Fabricante</th>
                         <td id="maker">
-                    
+
                         </td>
                     </tr>
                 </tbody>

@@ -69,7 +69,7 @@ var myChart = new Chart(ctx, {
     data: {
     labels: [],
     datasets: [{
-        label: `Temperatura interna °C` ,
+        label: `PM2.5 µg/m3` ,
         data: [],
         backgroundColor: '#0a3356',
         borderColor: '#0056b4',
@@ -148,49 +148,49 @@ onValue(reference, (snap) => {
     const dates = myDates(datesReduced) 
     inputDates.innerHTML = `Fecha: ${dates}`
 
-
     selectModulair.value = "0"
-    myChart.data.datasets[0].data = temperature
-    myChart.data.datasets[0].label = `Temperatura interna °C` 
+    myChart.data.datasets[0].data = pm25
+    myChart.data.datasets[0].label = `PM2.5 µg/m3` 
     myChart.data.labels = hour
     myChart.update()
     selectModulair.addEventListener('change', updateSelect)
     function updateSelect() {
         const measureModulair = selectModulair.value
         switch(measureModulair) {
-            case "0":
-                myChart.data.labels = hour
-                myChart.data.datasets[0].data = temperature
-                myChart.data.datasets[0].label = `Temperatura interna °C` 
-                myChart.update()
-                break;
-            case "1": 
-                myChart.data.labels = hour
-                myChart.data.datasets[0].data = rh
-                myChart.data.datasets[0].label = `Humedad Rel. interna (%)`
-                myChart.update()
-                break;
-            case "2": 
-                myChart.data.labels = hour
-                myChart.data.datasets[0].data = pm1
-                myChart.data.datasets[0].label = `PM1 µg/m3`
-                myChart.update()
-                break;
-            case "3": 
-                myChart.data.labels = hour
-                myChart.data.datasets[0].data = pm10
-                myChart.data.datasets[0].label = `PM10 µg/m3`
-                myChart.update()
-                break;
-            case "4": 
+            case "0": 
                 myChart.data.labels = hour
                 myChart.data.datasets[0].data = pm25
                 myChart.data.datasets[0].label = `PM2.5 µg/m3`
                 myChart.update()
                 break;
+            case "1": 
+                myChart.data.labels = hour
+                myChart.data.datasets[0].data = pm1
+                myChart.data.datasets[0].label = `PM1 µg/m3`
+                myChart.update()
+                break;
+            case "2": 
+                myChart.data.labels = hour
+                myChart.data.datasets[0].data = pm10
+                myChart.data.datasets[0].label = `PM10 µg/m3`
+                myChart.update()
+                break;
+            case "3":
+                myChart.data.labels = hour
+                myChart.data.datasets[0].data = temperature
+                myChart.data.datasets[0].label = `Temperatura interna °C` 
+                myChart.update()
+                break;
+            case "4": 
+                myChart.data.labels = hour
+                myChart.data.datasets[0].data = rh
+                myChart.data.datasets[0].label = `Humedad Rel. interna (%)`
+                myChart.update()
+                break;
         }
     }
 })
+
 let myDates = (dates) => {
     const datesReduced = dates.reduce((acc, el) => {
         if(!acc[el]) acc[el] = el

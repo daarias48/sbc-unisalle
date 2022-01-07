@@ -72,7 +72,7 @@ var myChart = new Chart(ctx, {
     data: {
     labels: [],
     datasets: [{
-        label: `Temperatura ambiente °C` ,
+        label: `PM2.5 µg/m3` ,
         data: [],
         backgroundColor: '#0a3356',
         borderColor: '#0056b4',
@@ -153,39 +153,39 @@ onValue(reference, (snap) => {
 
 
     selectModulair.value = "0"
-    myChart.data.datasets[0].data = temperature
-    myChart.data.datasets[0].label = `Temperatura ambiente °C` 
+    myChart.data.datasets[0].data = pm25
+    myChart.data.datasets[0].label = `PM2.5 µg/m3` 
     myChart.data.labels = hour
     myChart.update()
     selectModulair.addEventListener('change', updateSelect)
     function updateSelect() {
         const measureModulair = selectModulair.value
         switch(measureModulair) {
-            case "0":
+            case "2":
                 myChart.data.labels = hour
                 myChart.data.datasets[0].data = temperature
                 myChart.data.datasets[0].label = `Temperatura ambiente °C` 
                 myChart.update()
                 break;
-            case "1": 
+            case "3": 
                 myChart.data.labels = hour
                 myChart.data.datasets[0].data = rh
                 myChart.data.datasets[0].label = `Humedad Rel. externa (%)`
                 myChart.update()
                 break;
-            case "2": 
+            case "4": 
                 myChart.data.labels = hour
                 myChart.data.datasets[0].data = atmP
-                myChart.data.datasets[0].label = `hPa`
+                myChart.data.datasets[0].label = `Presión atm hPa`
                 myChart.update()
                 break;
-            case "3": 
+            case "1": 
                 myChart.data.labels = hour
                 myChart.data.datasets[0].data = pm10
                 myChart.data.datasets[0].label = `PM10 µg/m3`
                 myChart.update()
                 break;
-            case "4": 
+            case "0": 
                 myChart.data.labels = hour
                 myChart.data.datasets[0].data = pm25
                 myChart.data.datasets[0].label = `PM2.5 µg/m3`

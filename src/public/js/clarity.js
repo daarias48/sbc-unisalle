@@ -73,7 +73,7 @@ var myChart = new Chart(ctx, {
     data: {
         labels: [],
         datasets: [{
-            label: `Temperatura interna °C`,
+            label: `PM2.5 µg/m3`,
             data: [],
             backgroundColor: '#0a3356',
             borderColor: '#0056b4',
@@ -159,45 +159,45 @@ onValue(reference, (snap) => {
     inputDatesClarity.innerHTML = `Fecha: ${dates}`
 
     selectClarity.value = "0"
-    myChart.data.datasets[0].data = temperature
-    myChart.data.datasets[0].label = `Temperatura interna °C`
+    myChart.data.datasets[0].data = pm25Mass
+    myChart.data.datasets[0].label = `PM2.5 µg/m3`
     myChart.data.labels = hour
     myChart.update()
     selectClarity.addEventListener('change', updateSelect)
     function updateSelect() {
         const measureClarity = selectClarity.value
         switch (measureClarity) {
-            case "0":
+            case "3":
                 myChart.data.labels = hour
                 myChart.data.datasets[0].data = temperature
                 myChart.data.datasets[0].label = `Temperatura interna °C`
                 myChart.update()
                 break;
-            case "1":
+            case "4":
                 myChart.data.labels = hour
                 myChart.data.datasets[0].data = rh
                 myChart.data.datasets[0].label = `Humedad Rel. interna (%)`
                 myChart.update()
                 break;
-            case "2":
+            case "5":
                 myChart.data.labels = hour
                 myChart.data.datasets[0].data = no2
                 myChart.data.datasets[0].label = `PPB`
                 myChart.update()
                 break;
-            case "3":
+            case "1":
                 myChart.data.labels = hour
                 myChart.data.datasets[0].data = pm1Mass
                 myChart.data.datasets[0].label = `PM1 µg/m3`
                 myChart.update()
                 break;
-            case "4":
+            case "2":
                 myChart.data.labels = hour
                 myChart.data.datasets[0].data = pm10Mass
                 myChart.data.datasets[0].label = `PM10 µg/m3`
                 myChart.update()
                 break;
-            case "5":
+            case "0":
                 myChart.data.labels = hour
                 myChart.data.datasets[0].data = pm25Mass
                 myChart.data.datasets[0].label = `PM2.5 µg/m3`
