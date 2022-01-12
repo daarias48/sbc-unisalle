@@ -19,8 +19,8 @@ initializeApp(firebaseConfig);
 let marker
 function initMap() {
   const coords = {
-    lat: 4.669949261019475,
-    lng: -74.14294091700103
+    lat: 4.645257295775558,
+    lng: -74.11301851098555
   }
 
   map = new google.maps.Map(document.getElementById("map"), {
@@ -59,7 +59,7 @@ function initMap() {
         '<div id="content">' +
         '<div id="siteNotice">' +
         "</div>" +
-        '<h5 id="firstHeading" class="firstHeading">Ubicacion: Estación de bomberos Fontibón - UAECOB</h5>' +
+        '<h5 id="firstHeading" class="firstHeading">Ubicacion: Estación de bomberos Puente Aranda</h5>' +
         '<h6 id="firstHeading" class="firstHeading">Datos en tiempo real</h6>' +
         '<div id="bodyContent">' +
         `<p style="display: inline-block; color: #000; padding: 2px 5px; background-color: ${color};">Índice de calidad de aire ICA: ${ica.toFixed(0)}  </p>` +
