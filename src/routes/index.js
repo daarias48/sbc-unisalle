@@ -1,12 +1,10 @@
 const { Router } = require('express') // El método Router desde express
-const app = require('express') // El método Router desde express
 const router = Router()
-const validator = require('../controllers/validator')
 const User = require('../models/User')
-const passport = require('passport')
 const admin = require('../controllers/database')
 const db = admin.firestore()
 const {OAuth2Client} = require('google-auth-library');
+const { exportData } = require('../controllers/exportData.controller')
 
 const CLIENT_ID = '72274332118-6qqr49ssj9u903hevdk3kmjhevv27m7q.apps.googleusercontent.com'
 const client = new OAuth2Client(CLIENT_ID);
@@ -29,6 +27,8 @@ const auth = getAuth()
 router.get('/', (req, res) => {
     res.render('index')
 })
+
+router.post('/exportdata', exportData)
 
 router.get('/modulair-pm', checkAuthenticated, (req, res) => {
     let user = req.user

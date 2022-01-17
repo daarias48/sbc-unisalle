@@ -17,7 +17,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig, "daniAPP");
 const dbRef = getDatabase(app);
-
+const database = ref(getDatabase(app))
 const inputDates = document.querySelector('.p-dates')
 
 const temp = document.getElementById('temp');
@@ -206,4 +206,91 @@ let myDates = (dates) => {
         datesFiltered.push(datesReduced[date])
     }
     return datesFiltered.join(', ')
+}
+
+const formExport = document.getElementById('formExport')
+const date1 = document.getElementById('date1')
+
+formExport.addEventListener('submit', e => {
+    e.preventDefault()
+    get(child(database,`sensoresbajocosto/plantower/${macPlantower1}` )).then(snapshot => {
+        let dateFormat1 = date1.value.split('-').reverse().join('/')
+        let dateFiltered
+        let dateFlag
+        dateFormat1.split('/')[0] === '01' ? dateFlag = false : dateFlag = true
+
+        if(dateFlag) {
+            const formatDay = parseInt(dateFormat1.split('/')[0])
+            if(formatDay < 10) {
+                dateFiltered = `0${formatDay - 1}/${dateFormat1.split('/')[1]}/${dateFormat1.split('/')[2]}`
+            }else {
+                dateFiltered = `${formatDay - 1}/${dateFormat1.split('/')[1]}/${dateFormat1.split('/')[2]}`
+            }
+        }else dateFiltered = dateFormat1
+
+        const dato = snapshot.val()
+        let structure = []
+        let indice = 0
+        let indice1 = 0
+    
+        for (let key in dato) {
+            let splited = key.split(':')
+            let f = `${splited[2]}/${splited[1]}/${splited[0]}`
+            const h = `${splited[3]}:${splited[4]}`
+            if(f === dateFiltered.toString()) {
+                indice1 = indice
+            }
+            structure.push({
+                date: f,
+                hour: h,
+                temperature: dato[key].temperatura,
+                humedity: dato[key].humedad,
+                pm1: dato[key].pm1,
+                pm10: dato[key].pm10,
+                pm25: dato[key].pm2
+            })
+            indice++
+        }
+        
+        if(indice1 != 0) {
+            let datas = structure.map((el, i) => {
+                let obj = {}
+                if(i === indice1) {
+                    indice1++
+                    obj = el
+                }
+                return obj
+            })
+            dataToExport(datas)
+        }else {
+            alert('Fecha fuera de rango')
+        }
+        indice1 = 0            
+    })
+})
+
+const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetmt.sheet;charset=UTF-8'
+const EXCEL_EXTENSION = '.xlsx'
+
+const dataToExport = async (obj) => {
+    await obj
+    let datas = obj.filter((el) => el.date ? el : null)
+    datas != null ? downloadExcel(datas) : alert('Ocurrió un error')
+}
+
+const downloadExcel = (data) => {
+    const worksheet = XLSX.utils.json_to_sheet(data)
+    const workbook = {
+        Sheets: {
+            'data': worksheet
+        },
+        SheetNames: ['data']
+    }
+    const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' })
+    saveAsExcel(excelBuffer, 'Mediciones-Plantower5')
+}
+
+const saveAsExcel = (buffer, fileName) => {
+    const data = new Blob([buffer], { type: EXCEL_TYPE })
+    saveAs(data, fileName + EXCEL_EXTENSION)
 }

@@ -1,5 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-app.js";
 import { getDatabase, ref, onChildAdded, get, child, limitToLast, query, onValue } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-database.js";
+import XSLX from 'xlsx'
+
 
 var ctx = document.getElementById('myChartModulair').getContext('2d');
 
@@ -126,7 +128,7 @@ var myChart = new Chart(ctx, {
 
 let datesReduced = []
 
-const reference = ref(dbRef, 'sensors/modulairPm')
+const reference = query(ref(dbRef, 'sensors/modulairPm'), limitToLast(20))
 onValue(reference, (snap) => {
     const data = snap.val()
     for (const key in data) {
@@ -202,4 +204,3 @@ let myDates = (dates) => {
     }
     return datesFiltered.join(', ')
 }
-

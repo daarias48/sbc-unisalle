@@ -130,7 +130,7 @@ var myChart = new Chart(ctx, {
 
 let datesReduced = []
 
-const reference = ref(dbRef, 'sensors/eva')
+const reference = query(ref(dbRef, 'sensors/eva'), limitToLast(20))
 onValue(reference, (snap) => {
     const data = snap.val()
     for (const key in data) {

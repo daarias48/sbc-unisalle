@@ -127,7 +127,7 @@ var myChart = new Chart(ctx, {
 
 let datesReduced = []
 
-const reference = ref(dbRef, 'sensors/modulairPm2')
+const reference = query(ref(dbRef, 'sensors/modulairPm2'), limitToLast(20))
 onValue(reference, (snap) => {
     const data = snap.val()
     for (const key in data) {

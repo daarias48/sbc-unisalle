@@ -355,3 +355,6 @@ ul{
 .card {
     box-shadow: 2px 3px 5px rgb(0, 0, 0, .5);
 }
+.divForm {
+    padding: 20px;    
+}

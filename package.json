@@ -32,7 +32,8 @@
     "node-fetch": "^2.6.1",
     "passport": "^0.5.0",
     "passport-local": "^1.0.0",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "xlsx": "^0.17.5"
   },
   "devDependencies": {
     "@babel/helper-compilation-targets": "^7.16.0",
