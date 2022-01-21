@@ -163,39 +163,39 @@ onValue(myRef, data => {
         measures.addEventListener('change', updateSelect)
 	function updateSelect() {
 	  const measuresPlantower = measures.value
-          switch(measuresPlantower) {
-              case "0":
-                  myChart.data.labels = horas
-	          myChart.data.datasets[0].data = temperatura
-	          myChart.data.datasets[0].label = `Temperatura externa °C` 
-	          myChart.update()
-	          break;
-	      case "1": 
-		  myChart.data.labels = horas
-		  myChart.data.datasets[0].data = humedad
-                  myChart.data.datasets[0].label = `Humedad Rel. externa (%)`
-                  myChart.update()
-                  break;
-	      case "2": 
-	          myChart.data.labels = horas
-	          myChart.data.datasets[0].data = pm_1
-	          myChart.data.datasets[0].label = `PM1 µg/m3`
-		  myChart.update()
-		  break;
-              case "3": 
-                  myChart.data.labels = horas
-                  myChart.data.datasets[0].data = pm_10
-	          myChart.data.datasets[0].label = `PM10 µg/m3`
-	          myChart.update()
-	          break;
-	      case "4": 
-		  myChart.data.labels = horas
-		  myChart.data.datasets[0].data = pm_25
-		  myChart.data.datasets[0].label = `PM2.5 µg/m3`
-                  myChart.update()
-                  break;
-	    }
-      }
+        switch(measuresPlantower) {
+            case "4":
+                myChart.data.labels = horas
+                myChart.data.datasets[0].data = temperatura
+                myChart.data.datasets[0].label = `Temperatura externa °C` 
+                myChart.update()
+                break;
+            case "3": 
+                myChart.data.labels = horas
+                myChart.data.datasets[0].data = humedad
+                myChart.data.datasets[0].label = `Humedad Rel. externa (%)`
+                myChart.update()
+                break;
+	          case "1": 
+	              myChart.data.labels = horas
+                myChart.data.datasets[0].data = pm_1
+                myChart.data.datasets[0].label = `PM1 µg/m3`
+                myChart.update()
+                break;
+            case "2": 
+                myChart.data.labels = horas
+                myChart.data.datasets[0].data = pm_10
+                myChart.data.datasets[0].label = `PM10 µg/m3`
+                myChart.update()
+                break;
+            case "0": 
+                myChart.data.labels = horas
+                myChart.data.datasets[0].data = pm_25
+                myChart.data.datasets[0].label = `PM2.5 µg/m3`
+                myChart.update()
+                break;
+	      }
+    }
 	}else console.log('no existe')
 })
 
