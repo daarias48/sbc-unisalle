@@ -75,8 +75,8 @@ const pushingModulair = async () => {
 }
 
 const pushingClarity = async () => {
-    const dataClarity = await claritySensor.getDataClarity(apis.urlDataClarity)
-    const infoClarity = await claritySensor.getInfoClarity(apis.urlInfoClarity)
+    /*const dataClarity = await claritySensor.getDataClarity(apis.urlDataClarity)*/
+    /*const infoClarity = await claritySensor.getInfoClarity(apis.urlInfoClarity)*/
 
     const dataClarity2 = await claritySensor.getDataClarity(apis.urlDataClarity2)
     const infoClarity2 = await claritySensor.getInfoClarity(apis.urlInfoClarity2)
@@ -85,7 +85,7 @@ const pushingClarity = async () => {
     const infoNuboair = await nuboair.getDataNubo(apis.urlInfoNuboair)
 
     const collectionNuboair = nuboairObj(dataNuboair, infoNuboair)
-    const collectionClarity = clarityObj(dataClarity, infoClarity)
+    //const collectionClarity = clarityObj(dataClarity, infoClarity)
     const collectionClarity2 = clarityObj(dataClarity2, infoClarity2)
     
     try {
@@ -96,9 +96,9 @@ const pushingClarity = async () => {
     } catch (error) {
          console.log(error)
     }
-    db.ref('sensors/clarity').orderByChild('id').equalTo(collectionClarity.id).once('value', (snapshot) => {
-        if (!snapshot.exists()) db.ref('sensors/clarity').push(collectionClarity)
-    })
+    /*db.ref('sensors/clarity').orderByChild('id').equalTo(collectionClarity.id).once('value', (snapshot) => {*/
+        /*if (!snapshot.exists()) db.ref('sensors/clarity').push(collectionClarity)*/
+    /*})*/
     db.ref('sensors/clarity2').orderByChild('id').equalTo(collectionClarity2.id).once('value', (snapshot) => {
         if (!snapshot.exists()) db.ref('sensors/clarity2').push(collectionClarity2)
     })

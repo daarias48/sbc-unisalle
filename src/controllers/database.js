@@ -1,8 +1,10 @@
 const admin = require('firebase-admin')
-var serviceAccount = require('../../mysensorinfo-firebase-adminsdk-n3tpr-a14a6527e5.json')
+
+var serviceAccount = require('../../aire-ciudadano-firebase-adminsdk-742xr-fba775cb94.json')
+
 admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-    databaseURL: 'https://mysensorinfo-default-rtdb.firebaseio.com/',
-})
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://aire-ciudadano-default-rtdb.firebaseio.com"
+});
 
 module.exports = admin

@@ -49,7 +49,7 @@ app.use((req, res, next) => {
 
 //routes
 app.use(require('./routes/index'))
-app.use('/api', require('./routes/api'))
+//app.use('/api', require('./routes/api'))
 
 
 //static files

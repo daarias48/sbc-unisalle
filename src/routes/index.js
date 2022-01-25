@@ -4,7 +4,6 @@ const User = require('../models/User')
 const admin = require('../controllers/database')
 const db = admin.firestore()
 const {OAuth2Client} = require('google-auth-library');
-const { exportData } = require('../controllers/exportData.controller')
 
 const CLIENT_ID = '72274332118-6qqr49ssj9u903hevdk3kmjhevv27m7q.apps.googleusercontent.com'
 const client = new OAuth2Client(CLIENT_ID);
@@ -27,8 +26,6 @@ const auth = getAuth()
 router.get('/', (req, res) => {
     res.render('index')
 })
-
-router.post('/exportdata', exportData)
 
 router.get('/modulair-pm', checkAuthenticated, (req, res) => {
     let user = req.user
