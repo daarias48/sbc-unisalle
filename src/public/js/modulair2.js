@@ -18,7 +18,6 @@ var firebaseConfig = {
 initializeApp(firebaseConfig);
 
 const inputDates = document.querySelector('.p-dates')
-
 const selectModulair = document.querySelector('.select-measures')
 
 const temp = document.getElementById('temp');
@@ -38,11 +37,11 @@ let modulair = []
 const allDates = []
 
 const dbRef = getDatabase();
+const database = ref(getDatabase());
 const commentsRef = query(ref(dbRef, 'sensors/modulairPm2'), limitToLast(1))
 onValue(commentsRef, (data) => {
     data.forEach((doc) => {
         modulair = doc.val()
-        console.log(modulair);
         temp.innerHTML = `${modulair.temperature} °C`
         rh.innerHTML = `${modulair.rh} (%)`
         pm1.innerHTML = `${modulair.pm1} µg/m3`
@@ -202,4 +201,79 @@ let myDates = (dates) => {
         datesFiltered.push(datesReduced[date])
     }
     return datesFiltered.join(', ')
+}
+
+const formExport = document.getElementById('formExport')
+const date1 = document.getElementById('date1')
+
+formExport.addEventListener('submit', e => {
+    e.preventDefault()
+    get(child(database, 'sensors/modulairPm2'))
+        .then(snapshot => {
+            let dayFormat = parseInt(date1.value.split('-').reverse()[0])
+            let monthFormat = parseInt(date1.value.split('-').reverse()[1])
+            let yearFormat = date1.value.split('-').reverse()[2]
+            const dateFormated = `${dayFormat}/${monthFormat}/${yearFormat}`
+            let dateFiltered
+            let dateFlag
+
+            dayFormat === 1 ? dateFlag = false : dateFlag = true
+
+            if(dateFlag) dateFiltered = `${dayFormat - 1}/${monthFormat}/${yearFormat}`
+            else dateFiltered = dateFormated
+            
+            const dato = snapshot.val()
+            let structure = []
+            let indice = 0
+            let indiceFiltered = 0
+
+            for (let key in dato) {
+                if(dato[key].date == dateFiltered.toString()) {
+                    indiceFiltered = indice
+                }
+                structure.push(dato[key])
+                indice++
+            }
+
+            if(indiceFiltered != 0) {
+                let datas = structure.map((el, i) => {
+                    let obj = {}
+                    if(i === indiceFiltered) {
+                        indiceFiltered++
+                        obj = el
+                    }
+                    return obj
+                })
+                dataToExport(datas)
+            }else {
+                alert('Fecha fuera de rango')
+            }
+            indiceFiltered = 0 
+        })
+})
+
+const dataToExport = async (obj) => {
+    await obj
+    let datas = obj.filter((el) => el.date ? el : null)
+    datas != null ? downloadExcel(datas) : alert('Ocurrió un error')
+}
+
+const downloadExcel = (data) => {
+    const worksheet = XLSX.utils.json_to_sheet(data)
+    const workbook = {
+        Sheets: {
+            'data': worksheet
+        },
+        SheetNames: ['data']
+    }
+    const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' })
+    saveAsExcel(excelBuffer, 'Mediciones-Modulair2')
+}
+
+const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetmt.sheet;charset=UTF-8'
+const EXCEL_EXTENSION = '.xlsx'
+
+const saveAsExcel = (buffer, fileName) => {
+    const data = new Blob([buffer], { type: EXCEL_TYPE })
+    saveAs(data, fileName + EXCEL_EXTENSION)
 }

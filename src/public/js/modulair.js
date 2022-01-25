@@ -18,7 +18,6 @@ var firebaseConfig = {
 initializeApp(firebaseConfig);
 
 const inputDates = document.querySelector('.p-dates')
-
 const selectModulair = document.querySelector('.select-measures')
 
 const temp = document.getElementById('temp');
