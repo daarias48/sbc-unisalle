@@ -37,7 +37,7 @@ const maker = document.getElementById('maker');
 
 let purpleair = []
 const allDates = []
-
+const database = ref(getDatabase());
 const dbRef = getDatabase();
 const commentsRef = ref(dbRef, 'sensors/purpleair')
 onChildAdded(commentsRef, (data) => {
@@ -203,4 +203,77 @@ let myDates = (dates) => {
         datesFiltered.push(datesReduced[date])
     }
     return datesFiltered.join(', ')
+}
+
+
+formExport.addEventListener('submit', e => {
+    e.preventDefault()
+    get(child(database, 'sensors/purpleair'))
+        .then(snapshot => {
+            let dayFormat = parseInt(date1.value.split('-').reverse()[0])
+            let monthFormat = parseInt(date1.value.split('-').reverse()[1])
+            let yearFormat = date1.value.split('-').reverse()[2]
+            const dateFormated = `${dayFormat}/${monthFormat}/${yearFormat}`
+            let dateFiltered
+            let dateFlag
+
+            dayFormat === 1 ? dateFlag = false : dateFlag = true
+
+            if(dateFlag) dateFiltered = `${dayFormat - 1}/${monthFormat}/${yearFormat}`
+            else dateFiltered = dateFormated
+            
+            const dato = snapshot.val()
+            let structure = []
+            let indice = 0
+            let indiceFiltered = 0
+
+            for (let key in dato) {
+                if(dato[key].date == dateFiltered.toString()) {
+                    indiceFiltered = indice
+                }
+                structure.push(dato[key])
+                indice++
+            }
+
+            if(indiceFiltered != 0) {
+                let datas = structure.map((el, i) => {
+                    let obj = {}
+                    if(i === indiceFiltered) {
+                        indiceFiltered++
+                        obj = el
+                    }
+                    return obj
+                })
+                dataToExport(datas)
+            }else {
+                alert('Fecha fuera de rango')
+            }
+            indiceFiltered = 0 
+        })
+})
+
+const dataToExport = async (obj) => {
+    await obj
+    let datas = obj.filter((el) => el.date ? el : null)
+    datas != null ? downloadExcel(datas) : alert('Ocurrió un error')
+}
+
+const downloadExcel = (data) => {
+    const worksheet = XLSX.utils.json_to_sheet(data)
+    const workbook = {
+        Sheets: {
+            'data': worksheet
+        },
+        SheetNames: ['data']
+    }
+    const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' })
+    saveAsExcel(excelBuffer, 'Mediciones-Purpleair')
+}
+
+const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetmt.sheet;charset=UTF-8'
+const EXCEL_EXTENSION = '.xlsx'
+
+const saveAsExcel = (buffer, fileName) => {
+    const data = new Blob([buffer], { type: EXCEL_TYPE })
+    saveAs(data, fileName + EXCEL_EXTENSION)
 }
