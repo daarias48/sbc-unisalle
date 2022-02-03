@@ -368,6 +368,7 @@ router.post('/signup', async (req, res) => {
     const pass = await user.encryptPassword(password)
     const verifyUser = await user.getUser(req.body.email)
 
+    console.log(verifyUser)
     if (verifyUser != null) {
         errors.push({ text: 'El email se encuentra registrado' })
         res.render('signup', { errors, name, email, password, phone })

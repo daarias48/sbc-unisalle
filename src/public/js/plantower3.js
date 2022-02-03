@@ -156,8 +156,8 @@ onValue(myRef, data => {
     inputDates.innerHTML = `Fecha: ${fechasFilter}`
 
 	measures.value = "0"
-        myChart.data.datasets[0].data = temperatura
-	myChart.data.datasets[0].label = `Temperatura externa °C` 
+        myChart.data.datasets[0].data = pm_25
+	myChart.data.datasets[0].label = `PM2.5 µg/m3` 
         myChart.data.labels = horas
         myChart.update()
         measures.addEventListener('change', updateSelect)
