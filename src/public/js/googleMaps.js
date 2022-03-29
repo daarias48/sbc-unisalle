@@ -60,7 +60,7 @@ function initMap() {
         '<div id="content">' +
         '<div id="siteNotice">' +
         "</div>" +
-        '<h5 id="firstHeading" class="firstHeading">Ubicacion: Unidad administrativa Cuerpo Oficial de Bomberos</h5>' +
+        '<h5 id="firstHeading" class="firstHeading">Ubicacion: Edificio Teusaca</h5>' +
         '<h6 id="firstHeading" class="firstHeading">Datos en tiempo real</h6>' +
         '<div id="bodyContent">' +
         `<p style="display: inline-block; color: #000; padding: 2px 5px; background-color: ${color};">Índice de calidad de aire ICA: ${ica.toFixed(0)}  </p>` +
